@@ -79,10 +79,6 @@ steal("documentjs", "steal/rhino/json.js", function (DocumentJS) {
 		minifyBuild: minifyBuild
 		
 	});
-	
-	var pkg = JSON.parse(readFile('./can/package.json'));
-	var self = JSON.parse(readFile('./package.json'));
-	var builder = JSON.parse(readFile('./can/builder.json'));
 
 	DocumentJS('guides_source',{
 		"markdown": [ 'guides_source', 'can/changelog.md', 'can/contributing.md', 'can/license.md' ],
