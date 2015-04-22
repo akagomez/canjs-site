@@ -104,13 +104,6 @@
 	<!-- First Level -->
 	
 	   <li class="search-container">
-	   		<a href="can.elementAndAttributes.html" data-search="Elements and Attributes">
-				Elements and Attributes
-			</a>
-			
-	   </li>
-	
-	   <li class="search-container">
 	   		<a href="can.Component.html" data-search="can.Component">
 				can.Component
 			</a>
@@ -224,15 +217,21 @@
 	<ul class="primary-grouping">
 		
 			
+				
+					
+					<li class="heading search-container">
+						<span>plugins</span>
+						
+	<ul >
 		
 			
 				
 				
 					<li class="search-container parent ">
-						<a 	class="property" 
-							href="can.view.elements.html" 
-							data-search="can.view.elements">
-							elements
+						<a 	class="page" 
+							href="can.view.modifiers.html" 
+							data-search="jQuery modifiers">
+							jQuery modifiers
 						</a>
 						
 					</li>
@@ -241,7 +240,44 @@
 			
 		
 			
+				
+				
+					<li class="search-container active  expanded">
+						<a 	class="module" 
+							href="can|view|autorender.html" 
+							data-search="can.autorender">
+							can.autorender
+						</a>
+						
+							
+						
+					</li>
+				
+			
+			
 		
+			
+				
+				
+					<li class="search-container  ">
+						<a 	class="module" 
+							href="can|view|autorender.can-autorender.html" 
+							data-search="can-autorender">
+							can-autorender
+						</a>
+						
+					</li>
+				
+			
+			
+		
+	</ul>
+
+					</li>
+					
+				
+				
+			
 			
 		
 			
@@ -461,31 +497,13 @@
 			
 		
 			
-		
-			
-		
-			
-		
-			
-		
-			
-		
-			
-				
-					
-					<li class="heading search-container">
-						<span>plugins</span>
-						
-	<ul >
-		
-			
 				
 				
 					<li class="search-container parent ">
-						<a 	class="page" 
-							href="can.view.modifiers.html" 
-							data-search="jQuery modifiers">
-							jQuery modifiers
+						<a 	class="property" 
+							href="can.view.elements.html" 
+							data-search="can.view.elements">
+							elements
 						</a>
 						
 					</li>
@@ -494,44 +512,35 @@
 			
 		
 			
-				
-				
-					<li class="search-container active  expanded">
-						<a 	class="module" 
-							href="can|view|autorender.html" 
-							data-search="can.autorender">
-							can.autorender
-						</a>
-						
-							
-						
-					</li>
-				
-			
+		
 			
 		
 			
-				
-				
-					<li class="search-container  ">
-						<a 	class="module" 
-							href="can|view|autorender.can-autorender.html" 
-							data-search="can-autorender">
-							can-autorender
-						</a>
-						
-					</li>
-				
-			
+		
 			
 		
-	</ul>
-
-					</li>
-					
-				
-				
 			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
 			
 		
 	</ul>
@@ -580,7 +589,7 @@
 <ul class="links">
 	
 	
-		<li><a href="https://github.com/bitovi/canjs/tree/master/view/autorender/autorender.md">source</a></li>
+		<li><a href="/Users/akagomez/Sites/bitovi/canjs">source</a></li>
 	
 	
 	
@@ -683,8 +692,8 @@ all templates have finished rendering, it will call any callbacks passed to <cod
     // Wait until everything has rendered.
     can.autorender(function(){
       
-      // Update the viewModel the template was rendred with:
-      $(&quot;#main&quot;).viewModel().attr(&quot;message&quot;,&quot;Rendered!&quot;);
+      // Update the scope the template was rendred with:
+      $(&quot;#main&quot;).scope().attr(&quot;message&quot;,&quot;Rendered!&quot;);
       
     })
   &lt;/script&gt;
@@ -750,20 +759,20 @@ tag, the rendered result will be placed just before the closing <code>&lt;/body&
 <h2>Scope</h2>
 <p>The template is rendered with a <a href="can.Map.html">can.Map</a> made from the attributes of the
 template source element.  That <code>map</code> is available on the
-template source element via <a href="can.viewModel.html">can.viewModel</a>.  You can
+template source element via [can.scope].  You can
 change the map at any time:</p>
 <pre><code>&lt;body&gt;
   &lt;script type='text/stache' can-autorender id='main'&gt;
     {{message}}!
   &lt;/script&gt;
   &lt;script&gt;
-    var viewModel = can.viewModel(document.getElementById(&quot;main&quot;));
-    viewModel.attr(&quot;message&quot;,&quot;Hello There!&quot;);
+    var scope = can.scope(document.getElementById(&quot;main&quot;));
+    scope.attr(&quot;message&quot;,&quot;Hello There!&quot;);
   &lt;/script&gt;
 &lt;/body&gt;
 </code></pre>
 <p>You can change attributes on the element and it will update the
-viewModel too:</p>
+scope too:</p>
 <pre><code>&lt;body&gt;
   &lt;script type='text/stache' can-autorender id='main'&gt;
     {{message}}!
@@ -801,7 +810,7 @@ viewModel too:</p>
   &lt;/script&gt;
   &lt;script&gt;
     steal('can','jquery','can/view/autorender', function(can, $){
-      $(&quot;my-component&quot;).viewModel().attr(&quot;message&quot;, &quot;Hi&quot;);
+      $(&quot;my-component&quot;).scope().attr(&quot;message&quot;, &quot;Hi&quot;);
     });
   &lt;/script&gt;
 &lt;/body&gt;
@@ -870,7 +879,7 @@ a <a href="can|view|stache|system.import.html"><can-import></a> fails.</p>
 	</script>
 	
 	<script type="text/javascript">
-		var docObject = {"type":"module","name":"can/view/autorender","src":"view/autorender/autorender.md","description":"A module that automatically renders script and other elements with \nthe [can/view/autorender.can-autorender] attribute. This function is useful to know when \nthe templates have finished rendering.","title":"can.autorender","types":[{"type":"function","returns":{"types":[{"type":"undefined"}]},"params":[]}],"parent":"can.view.plugins","signatures":[{"code":"can.autorender(succcess, error)","description":"Registers functions to callback when all templates successfully render or an error in rendering happens.","params":[{"types":[{"type":"function","returns":{"types":[{"type":"undefined"}]},"params":[]}],"name":"success","description":"A function to callback when all autorendered templates have been rendered\nsuccessfully."},{"types":[{"type":"function","returns":{"types":[{"type":"undefined"}]},"params":[]}],"optional":true,"name":"error","description":"A function to callback if a template was not rendered successfully."}]}],"comment":" ","ignoreTemplateRender":true,"templates":"/Users/justin/dev/canjs.com/theme/templates","static":"/Users/justin/dev/canjs.com/theme/static","versionsSelectText":"CanJS v<%= version %>","glob":{"ignore":["guides/*.md","{node_modules,bower_components}/**/*","lib/**/*","test/**/*","util/dojo/dojo.js","**/*_test.js","Gruntfile.js"],"pattern":"**/*.{md,js}","cwd":"/Users/justin/dev/canjs.com/can"},"dest":"/Users/justin/dev/canjs.com/docs","generators":["html"],"urls":{"builderData":"http://bitbuilder.herokuapp.com/canjs","builder":"http://bitbuilder.herokuapp.com/can.custom.js","bithub":"http://bitovi.bithub.com/api/v1/events/","cdn":"//canjs.com/release/","github":"https://github.com/bitovi/canjs.com"},"versions":[{"branch":"master","number":"2.1"},{"number":"2.0"},{"number":"1.1"}],"defaultDownloadVersion":"2.2.4","docConfigDest":"../documentjs.json","project":{"version":"2.2","name":"canjs","source":"git://github.com/bitovi/canjs#master"}};
+		var docObject = {"type":"module","name":"can/view/autorender","src":"view/autorender/autorender.md","description":"A module that automatically renders script and other elements with \nthe [can/view/autorender.can-autorender] attribute. This function is useful to know when \nthe templates have finished rendering.","title":"can.autorender","types":[{"type":"function","returns":{"types":[{"type":"undefined"}]},"params":[]}],"parent":"can.view.plugins","signatures":[{"code":"can.autorender(succcess, error)","description":"Registers functions to callback when all templates successfully render or an error in rendering happens.","params":[{"types":[{"type":"function","returns":{"types":[{"type":"undefined"}]},"params":[]}],"name":"success","description":"A function to callback when all autorendered templates have been rendered\nsuccessfully."},{"types":[{"type":"function","returns":{"types":[{"type":"undefined"}]},"params":[]}],"optional":true,"name":"error","description":"A function to callback if a template was not rendered successfully."}]}],"comment":" ","ignoreTemplateRender":true,"templates":"/Users/akagomez/Sites/bitovi/canjs.com/theme/templates","static":"/Users/akagomez/Sites/bitovi/canjs.com/theme/static","versionsSelectText":"CanJS v<%= version %>","glob":{"ignore":["guides/*.md","guides/**/*.md","{node_modules,bower_components}/**/*","lib/**/*"],"pattern":"**/*.{md,js}","cwd":"/Users/akagomez/Sites/bitovi/canjs.com/can"},"dest":"/Users/akagomez/Sites/bitovi/canjs.com/docs","generators":["html"],"urls":{"builderData":"http://bitbuilder.herokuapp.com/canjs","builder":"http://bitbuilder.herokuapp.com/can.custom.js","bithub":"http://bitovi.bithub.com/api/v1/events/","cdn":"//canjs.com/release/","github":"https://github.com/bitovi/canjs.com"},"versions":[{"branch":"master","number":"2.1"},{"number":"2.0"},{"number":"1.1"}],"defaultDownloadVersion":"2.2.4","docConfigDest":"../documentjs.json","project":{"version":"2.2","name":"canjs","source":"/Users/akagomez/Sites/bitovi/canjs"}};
 	</script>
 	
 	

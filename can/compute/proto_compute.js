@@ -49,10 +49,11 @@ steal('can/util', 'can/util/bind', 'can/compute/read.js','can/util/batch', funct
 		// Go through what needs to be observed.
 		bindNewSet(oldObserved, newObserveSet, onchanged);
 		unbindOldSet(oldObserved, onchanged);
-		// set ready after all previous events have fired
-		can.batch.afterPreviousEvents(function(){
+		// set ready only after all events that might be caused by a change
+		can.bind.call(info,"ready", function(){
 			info.ready = true;
 		});
+		can.batch.trigger(info,"ready");
 		
 		return info;
 	};
@@ -535,7 +536,6 @@ steal('can/util', 'can/util/bind', 'can/compute/read.js','can/util/batch', funct
 	};
 
 	can.Compute.read = read;
-	can.Compute.set = read.write;
 	
 	can.Compute.truthy = function(compute) {
 		return new can.Compute(function() {
@@ -545,6 +545,20 @@ steal('can/util', 'can/util/bind', 'can/compute/read.js','can/util/batch', funct
 			}
 			return !!res;
 		});
+	};
+	
+	can.Compute.set = function(parent, key, value) {
+		if(can.isMapLike(parent)) {
+			return parent.attr(key, value);
+		}
+
+		if(parent[key] && parent[key].isComputed) {
+			return parent[key](value);
+		}
+
+		if(typeof parent === 'object') {
+			parent[key] = value;
+		}
 	};
 
 	return can.Compute;

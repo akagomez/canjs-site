@@ -39,7 +39,7 @@ steal("can/util",function(can){
 		}
 	}
 	function setupScope(el) {
-		var scope = can.viewModel(el);
+		var scope = can.scope(el);
 		
 		can.each(el.attributes||[], function(attr) {
 			setAttr(el, attr.name, scope);
@@ -65,7 +65,7 @@ steal("can/util",function(can){
 				type = typeInfo && typeInfo[1],
 				typeModule = "can/view/" + type;
 
-			if(window.System || !(window.define && window.define.amd)) {
+			if(!(window.define && window.define.amd)) {
 				typeModule += "/" + type;
 			}
 			
@@ -90,13 +90,14 @@ steal("can/util",function(can){
 			can.proxy(deferred.reject, deferred)
 		);
 	}
-
-	if (document.readyState === 'complete') {
+	
+	
+	
+	if(document.body){
 		autoload();
 	} else {
-		can.bind.call(window, 'load', autoload);
+		can.bind.call(document,"DOMContentLoaded", autoload);
 	}
-
 	var promise = deferred.promise();
 	can.autorender = function(success, error){
 		return promise.then(success, error);

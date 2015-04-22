@@ -104,13 +104,6 @@
 	<!-- First Level -->
 	
 	   <li class="search-container">
-	   		<a href="can.elementAndAttributes.html" data-search="Elements and Attributes">
-				Elements and Attributes
-			</a>
-			
-	   </li>
-	
-	   <li class="search-container">
 	   		<a href="can.Component.html" data-search="can.Component">
 				can.Component
 			</a>
@@ -650,7 +643,7 @@
 <ul class="links">
 	
 	
-		<li><a href="https://github.com/bitovi/canjs/tree/master/model/doc/model_save.md">source</a></li>
+		<li><a href="/Users/akagomez/Sites/bitovi/canjs">source</a></li>
 	
 	
 	
@@ -689,7 +682,7 @@
 			<h4>success
 				<code>{function()}</code><span class="pull-right optional">Optional</span></h4>
 			<div class="description">
-				<p>A callback to call on successful save. The callback receives
+				<p>A callback to call on successful save. The callback recieves
 the can.Model after saving.</p>
 
 			</div>
@@ -765,7 +758,7 @@ todo.save(function(todo){
 </code></pre>
 <h2>Using <code>save</code> to update an instance.</h2>
 <p>If save is called on an instance that has
-an <a href="can.Model.id.html">id</a> property, it calls <a href="can.Model.update.html">update</a>
+an <a href="can.Model.id.html">id</a> property, it calls <a href="can.Model.create.html">create</a>
 with the instance's properties.  When the save is complete,
 it triggers an &quot;updated&quot; event on the instance and the instance's model.</p>
 <p>Instances with an
@@ -850,7 +843,7 @@ Todo.findOne({id: 5},function(todo){
 	</script>
 	
 	<script type="text/javascript">
-		var docObject = {"type":"function","name":"can.Model.prototype.save","src":"model/doc/model_save.md","description":"Save a model back to the server.","title":"save","parent":"can.Model.prototype","signatures":[{"code":"model.save([success[, error]])","description":"","params":[{"types":[{"type":"function","returns":{"types":[{"type":"undefined"}]},"params":[]}],"optional":true,"name":"success","description":"A callback to call on successful save. The callback receives\nthe can.Model after saving."},{"types":[{"type":"function","returns":{"types":[{"type":"undefined"}]},"params":[]}],"optional":true,"name":"error","description":"A callback to call when an error occurs. The callback receives the\nXmlHttpRequest object."}],"returns":{"types":[{"type":"can.Deferred"}],"description":"A Deferred that resolves to the Model after it has been saved."}}],"comment":" ","ignoreTemplateRender":true,"templates":"/Users/justin/dev/canjs.com/theme/templates","static":"/Users/justin/dev/canjs.com/theme/static","versionsSelectText":"CanJS v<%= version %>","glob":{"ignore":["guides/*.md","{node_modules,bower_components}/**/*","lib/**/*","test/**/*","util/dojo/dojo.js","**/*_test.js","Gruntfile.js"],"pattern":"**/*.{md,js}","cwd":"/Users/justin/dev/canjs.com/can"},"dest":"/Users/justin/dev/canjs.com/docs","generators":["html"],"urls":{"builderData":"http://bitbuilder.herokuapp.com/canjs","builder":"http://bitbuilder.herokuapp.com/can.custom.js","bithub":"http://bitovi.bithub.com/api/v1/events/","cdn":"//canjs.com/release/","github":"https://github.com/bitovi/canjs.com"},"versions":[{"branch":"master","number":"2.1"},{"number":"2.0"},{"number":"1.1"}],"defaultDownloadVersion":"2.2.4","docConfigDest":"../documentjs.json","project":{"version":"2.2","name":"canjs","source":"git://github.com/bitovi/canjs#master"}};
+		var docObject = {"type":"function","name":"can.Model.prototype.save","src":"model/doc/model_save.md","description":"Save a model back to the server.","title":"save","parent":"can.Model.prototype","signatures":[{"code":"model.save([success[, error]])","description":"","params":[{"types":[{"type":"function","returns":{"types":[{"type":"undefined"}]},"params":[]}],"optional":true,"name":"success","description":"A callback to call on successful save. The callback recieves\nthe can.Model after saving."},{"types":[{"type":"function","returns":{"types":[{"type":"undefined"}]},"params":[]}],"optional":true,"name":"error","description":"A callback to call when an error occurs. The callback receives the\nXmlHttpRequest object."}],"returns":{"types":[{"type":"can.Deferred"}],"description":"A Deferred that resolves to the Model after it has been saved."}}],"comment":" ","ignoreTemplateRender":true,"templates":"/Users/akagomez/Sites/bitovi/canjs.com/theme/templates","static":"/Users/akagomez/Sites/bitovi/canjs.com/theme/static","versionsSelectText":"CanJS v<%= version %>","glob":{"ignore":["guides/*.md","guides/**/*.md","{node_modules,bower_components}/**/*","lib/**/*"],"pattern":"**/*.{md,js}","cwd":"/Users/akagomez/Sites/bitovi/canjs.com/can"},"dest":"/Users/akagomez/Sites/bitovi/canjs.com/docs","generators":["html"],"urls":{"builderData":"http://bitbuilder.herokuapp.com/canjs","builder":"http://bitbuilder.herokuapp.com/can.custom.js","bithub":"http://bitovi.bithub.com/api/v1/events/","cdn":"//canjs.com/release/","github":"https://github.com/bitovi/canjs.com"},"versions":[{"branch":"master","number":"2.1"},{"number":"2.0"},{"number":"1.1"}],"defaultDownloadVersion":"2.2.4","docConfigDest":"../documentjs.json","project":{"version":"2.2","name":"canjs","source":"/Users/akagomez/Sites/bitovi/canjs"}};
 	</script>
 	
 	

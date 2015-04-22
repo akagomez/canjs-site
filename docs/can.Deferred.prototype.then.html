@@ -104,13 +104,6 @@
 	<!-- First Level -->
 	
 	   <li class="search-container">
-	   		<a href="can.elementAndAttributes.html" data-search="Elements and Attributes">
-				Elements and Attributes
-			</a>
-			
-	   </li>
-	
-	   <li class="search-container">
 	   		<a href="can.Component.html" data-search="can.Component">
 				can.Component
 			</a>
@@ -261,7 +254,7 @@
 <ul class="links">
 	
 	
-		<li><a href="https://github.com/bitovi/canjs/tree/master/util/func.js">source</a></li>
+		<li><a href="/Users/akagomez/Sites/bitovi/canjs">source</a></li>
 	
 	
 	
@@ -338,15 +331,13 @@
 
 		
 		<section class="comment">
-			<p><code>deferred.then(doneCallback, failCallback)</code> adds handler(s) to be called when the Deferred object to be called after its resolved.</p>
+			<p><code>deferred.then( doneCallback, failCallback )</code> adds handler(s) to be called when the Deferred object to be called after its resolved.</p>
 <pre><code>var def = can.Deferred();
-def.then(function(success) {
-    console.log(success);
-}, function(reason) {
-    console.error(reason); //-&gt; &quot;Oh no! So sad.&quot;
-});
-
-def.reject(&quot;Oh no! So sad.&quot;);
+def.then(function(){
+    //- Called when the deferred is resolved.
+}, function(){
+    //- Called when the deferred fails.
+})
 </code></pre>
 
 		</section>
@@ -409,7 +400,7 @@ def.reject(&quot;Oh no! So sad.&quot;);
 	</script>
 	
 	<script type="text/javascript">
-		var docObject = {"src":"util/func.js","line":806,"codeLine":827,"type":"function","description":"Add callbacks to a Deferred.","title":"then","name":"can.Deferred.prototype.then","parent":"can.Deferred.prototype","signatures":[{"code":"deferred.then(doneCallback[, failCallback])","description":"","params":[{"types":[{"type":"function","returns":{"types":[{"type":"undefined"}]},"params":[]}],"name":"doneCallback","description":"A function called when the Deferred is resolved."},{"types":[{"type":"function","returns":{"types":[{"type":"undefined"}]},"params":[]}],"optional":true,"name":"failCallback","description":"A function called when the Deferred is rejected."}]}],"comment":" ","ignoreTemplateRender":true,"templates":"/Users/justin/dev/canjs.com/theme/templates","static":"/Users/justin/dev/canjs.com/theme/static","versionsSelectText":"CanJS v<%= version %>","glob":{"ignore":["guides/*.md","{node_modules,bower_components}/**/*","lib/**/*","test/**/*","util/dojo/dojo.js","**/*_test.js","Gruntfile.js"],"pattern":"**/*.{md,js}","cwd":"/Users/justin/dev/canjs.com/can"},"dest":"/Users/justin/dev/canjs.com/docs","generators":["html"],"urls":{"builderData":"http://bitbuilder.herokuapp.com/canjs","builder":"http://bitbuilder.herokuapp.com/can.custom.js","bithub":"http://bitovi.bithub.com/api/v1/events/","cdn":"//canjs.com/release/","github":"https://github.com/bitovi/canjs.com"},"versions":[{"branch":"master","number":"2.1"},{"number":"2.0"},{"number":"1.1"}],"defaultDownloadVersion":"2.2.4","docConfigDest":"../documentjs.json","project":{"version":"2.2","name":"canjs","source":"git://github.com/bitovi/canjs#master"}};
+		var docObject = {"src":"util/func.js","line":775,"codeLine":794,"type":"function","description":"Add callbacks to a Deferred.","title":"then","name":"can.Deferred.prototype.then","parent":"can.Deferred.prototype","signatures":[{"code":"deferred.then(doneCallback[, failCallback])","description":"","params":[{"types":[{"type":"function","returns":{"types":[{"type":"undefined"}]},"params":[]}],"name":"doneCallback","description":"A function called when the Deferred is resolved."},{"types":[{"type":"function","returns":{"types":[{"type":"undefined"}]},"params":[]}],"optional":true,"name":"failCallback","description":"A function called when the Deferred is rejected."}]}],"comment":" ","ignoreTemplateRender":true,"templates":"/Users/akagomez/Sites/bitovi/canjs.com/theme/templates","static":"/Users/akagomez/Sites/bitovi/canjs.com/theme/static","versionsSelectText":"CanJS v<%= version %>","glob":{"ignore":["guides/*.md","guides/**/*.md","{node_modules,bower_components}/**/*","lib/**/*"],"pattern":"**/*.{md,js}","cwd":"/Users/akagomez/Sites/bitovi/canjs.com/can"},"dest":"/Users/akagomez/Sites/bitovi/canjs.com/docs","generators":["html"],"urls":{"builderData":"http://bitbuilder.herokuapp.com/canjs","builder":"http://bitbuilder.herokuapp.com/can.custom.js","bithub":"http://bitovi.bithub.com/api/v1/events/","cdn":"//canjs.com/release/","github":"https://github.com/bitovi/canjs.com"},"versions":[{"branch":"master","number":"2.1"},{"number":"2.0"},{"number":"1.1"}],"defaultDownloadVersion":"2.2.4","docConfigDest":"../documentjs.json","project":{"version":"2.2","name":"canjs","source":"/Users/akagomez/Sites/bitovi/canjs"}};
 	</script>
 	
 	

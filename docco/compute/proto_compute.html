@@ -1248,7 +1248,6 @@ a single, non undefined value, works.</p>
 	};
 
 	can.Compute.read = read;
-	can.Compute.set = read.write;
 	
 	can.Compute.truthy = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(compute)</span> </span>{
 		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> can.Compute(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
@@ -1258,6 +1257,20 @@ a single, non undefined value, works.</p>
 			}
 			<span class="hljs-keyword">return</span> !!res;
 		});
+	};
+	
+	can.Compute.set = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(parent, key, value)</span> </span>{
+		<span class="hljs-keyword">if</span>(can.isMapLike(parent)) {
+			<span class="hljs-keyword">return</span> parent.attr(key, value);
+		}
+
+		<span class="hljs-keyword">if</span>(parent[key] &amp;&amp; parent[key].isComputed) {
+			<span class="hljs-keyword">return</span> parent[key](value);
+		}
+
+		<span class="hljs-keyword">if</span>(<span class="hljs-keyword">typeof</span> parent === <span class="hljs-string">'object'</span>) {
+			parent[key] = value;
+		}
 	};
 
 	<span class="hljs-keyword">return</span> can.Compute;

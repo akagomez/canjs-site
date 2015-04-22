@@ -86,10 +86,10 @@ can.Component.extend({
 	},
 	events: {
 		inserted: function(){
-			this.element.parent().viewModel().addPanel( this.viewModel );
+			this.element.parent().scope().addPanel( this.scope );
 		},
 		removed: function(){
-			this.element.parent().viewModel().removePanel( this.viewModel );
+			this.element.parent().scope().removePanel( this.scope );
 		}
 	}
 });
@@ -101,6 +101,6 @@ $("#out").on("click","button", function(){
 	$(this).remove();
 })
 
-});
+})
 </script>
 

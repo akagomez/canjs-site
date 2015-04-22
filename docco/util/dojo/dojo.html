@@ -278,7 +278,7 @@ some tests will fail until del._stopPropagation has support.</p>
     listeners. Be careful not to override important members, like
     <code>type</code>, or <code>preventDefault</code>. It will likely error.</p>
 <pre><code>Additionally, extraArgs is moot <span class="hljs-keyword">in</span> the object-triggering <span class="hljs-keyword">case</span>,
-as all <span class="hljs-built_in">arguments</span> beyond the `event` are curried onto the triggered
+<span class="hljs-keyword">as</span> all <span class="hljs-built_in">arguments</span> beyond the <span class="hljs-string">`event`</span> are curried onto the triggered
 <span class="hljs-function"><span class="hljs-keyword">function</span>.</span>
 </code></pre><p>example: 
 |    dojo.connect(node, “onclick”, function(e){ /<em> stuff </em>/ });

@@ -214,7 +214,7 @@ steal("can/util", "can/view/stache/mustache_core.js", "can/view/callbacks", "can
 					"@element": $el,
 					"@event": ev,
 					"@viewModel": viewModel,
-					"@scope": data.scope,
+					"@scope": viewModel,
 					"@context": data.scope._context
 				});
 
@@ -227,7 +227,9 @@ steal("can/util", "can/view/stache/mustache_core.js", "can/view/callbacks", "can
 					can.each(attrInfo.hash, function(val, key) {
 						if (val && val.hasOwnProperty("get")) {
 							var s = !val.get.indexOf("@") ? localScope : data.scope;
-							hash[key] = s.read(val.get, {}).value;
+							hash[key] = s.read(val.get, {
+								isArgument: true
+							}).value;
 						} else {
 							hash[key] = val;
 						}
@@ -243,7 +245,9 @@ steal("can/util", "can/view/stache/mustache_core.js", "can/view/callbacks", "can
 						arg = attrInfo.args[i];
 						if (arg && arg.hasOwnProperty("get")) {
 							var s = !arg.get.indexOf("@") ? localScope : data.scope;
-							args.unshift(s.read(arg.get, {}).value);
+							args.unshift(s.read(arg.get, {
+								isArgument: true
+							}).value);
 						} else {
 							args.unshift(arg);
 						}

@@ -103,13 +103,6 @@
 <ul class="api">
 	<!-- First Level -->
 	
-	   <li class="search-container">
-	   		<a href="can.elementAndAttributes.html" data-search="Elements and Attributes">
-				Elements and Attributes
-			</a>
-			
-	   </li>
-	
 	   <li class="search-container active">
 	   		<a href="can.Component.html" data-search="can.Component">
 				can.Component
@@ -164,21 +157,6 @@
 							href="can.Component.prototype.leakScope.html" 
 							data-search="can.Component.prototype.leakScope">
 							leakScope
-						</a>
-						
-					</li>
-				
-			
-			
-		
-			
-				
-				
-					<li class="search-container  ">
-						<a 	class="property" 
-							href="can.Component.prototype.scope.html" 
-							data-search="can.Component.prototype.scope">
-							scope
 						</a>
 						
 					</li>
@@ -419,7 +397,7 @@
 		<li><a href="../docco/component/component.html">docco</a></li>
 	
 	
-		<li><a href="https://github.com/bitovi/canjs/tree/master/component/component.js">source</a></li>
+		<li><a href="/Users/akagomez/Sites/bitovi/canjs">source</a></li>
 	
 	
 		<li><a href="http://bitbuilder.herokuapp.com/can.custom.js?plugins=can/component">download</a></li>
@@ -442,11 +420,94 @@
 		
 		<section class="description">
 			<p>Create widgets that use a template, a view-model  and custom tags.</p>
+<p>value with <code>{}</code>. In 3.0, <a href="can.mustache.html">can.mustache</a>
+will use <a href="can.stache.html">can.stache</a>'s method.</p>
 
 		</section>
 		
 
 		
+			
+				<section class="signature">
+					<h2 id="sig__lt_TAG_ATTR_NAME_KEY_ATTR_VALUE__gt_">&lt; TAG [ATTR-NAME=KEY|ATTR-VALUE] &gt;
+</h2>
+<div class="signature-wrapper">
+<p>Create an instance of a component on a particular
+tag in a <a href="can.mustache.html">can.mustache</a> template.</p>
+
+
+	<h3>Parameters</h3>
+
+	<ol class="parameters">
+		
+		<li class="parameter">
+			<h4>TAG
+				<code>{String}</code></h4>
+			<div class="description">
+				<p>An HTML tag name that matches the <a href="can.Component.prototype.tag.html">tag</a>
+property of the component.</p>
+
+			</div>
+			
+			
+			
+		</li>
+		
+		<li class="parameter">
+			<h4>ATTR-NAME
+				<code>{String}</code></h4>
+			<div class="description">
+				<p>An HTML attribute name. Any attribute name is
+valid. Any attributes added to the element are added as properties to the
+component's <a href="can.Component.prototype.viewModel.html">viewModel</a>.</p>
+
+			</div>
+			
+			
+			
+		</li>
+		
+		<li class="parameter">
+			<h4>ATTR-VALUE
+				<code>{<a href="can.mustache.key.html" >key</a>}</code><span class="pull-right optional">Optional</span></h4>
+			<div class="description">
+				<p>Specifies the value of a property passed to
+the component instance's <a href="can.Component.prototype.viewModel.html">viewModel</a>. By default <code>ATTR-VALUE</code>
+values are looked up in the [can.view.viewModel can.mustache viewModel]. If the string value
+of the <code>ATTR-NAME</code> is desired, this can be specified like:</p>
+<pre><code>ATTR-NAME: &quot;@&quot;
+</code></pre>
+
+			</div>
+			
+			
+			
+		</li>
+		
+		<li class="parameter">
+			<h4>KEY
+				<code>{<a href="can.mustache.key.html" >key</a>}</code><span class="pull-right optional">Optional</span></h4>
+			<div class="description">
+				<p>Specifies the value of a property passed to
+the component instance's <a href="can.Component.prototype.viewModel.html">viewModel</a> that will be looked
+up in the <a href="can.view.Scope.html">can.stache scope</a>.</p>
+
+			</div>
+			
+			
+			
+		</li>
+		
+	</ol>
+
+
+
+
+
+
+</div>
+
+				</section>
 			
 				<section class="signature">
 					<h2 id="sig__lt_TAG_ATTR_NAME___34__KEY__ATTR_VALUE__34___gt_">&lt; TAG [ATTR-NAME=&#34;{KEY}|ATTR-VALUE&#34;] &gt;
@@ -513,87 +574,6 @@ up in the <a href="can.view.Scope.html">can.stache scope</a>.</p>
 				<p>If the attribute value is not
 wrapped with <code>{}</code>, the string value of the attribute will be
 set on the component's viewModel.</p>
-
-			</div>
-			
-			
-			
-		</li>
-		
-	</ol>
-
-
-
-
-
-
-</div>
-
-				</section>
-			
-				<section class="signature">
-					<h2 id="sig__lt_TAG_ATTR_NAME_KEY_ATTR_VALUE__gt_">&lt; TAG [ATTR-NAME=KEY|ATTR-VALUE] &gt;
-</h2>
-<div class="signature-wrapper">
-<p>Create an instance of a component on a particular
-tag in a <a href="can.mustache.html">can.mustache</a> template.</p>
-
-
-	<h3>Parameters</h3>
-
-	<ol class="parameters">
-		
-		<li class="parameter">
-			<h4>TAG
-				<code>{String}</code></h4>
-			<div class="description">
-				<p>An HTML tag name that matches the <a href="can.Component.prototype.tag.html">tag</a>
-property of the component.</p>
-
-			</div>
-			
-			
-			
-		</li>
-		
-		<li class="parameter">
-			<h4>ATTR-NAME
-				<code>{String}</code></h4>
-			<div class="description">
-				<p>An HTML attribute name. Any attribute name is
-valid. Any attributes added to the element are added as properties to the
-component's <a href="can.Component.prototype.viewModel.html">viewModel</a>.</p>
-
-			</div>
-			
-			
-			
-		</li>
-		
-		<li class="parameter">
-			<h4>ATTR-VALUE
-				<code>{<a href="can.mustache.key.html" >key</a>}</code><span class="pull-right optional">Optional</span></h4>
-			<div class="description">
-				<p>Specifies the value of a property passed to
-the component instance's <a href="can.Component.prototype.viewModel.html">viewModel</a>. By default <code>ATTR-VALUE</code>
-values are looked up in the [can.view.viewModel can.mustache viewModel]. If the string value
-of the <code>ATTR-NAME</code> is desired, this can be specified like:</p>
-<pre><code>ATTR-NAME: &quot;@&quot;
-</code></pre>
-
-			</div>
-			
-			
-			
-		</li>
-		
-		<li class="parameter">
-			<h4>KEY
-				<code>{<a href="can.mustache.key.html" >key</a>}</code><span class="pull-right optional">Optional</span></h4>
-			<div class="description">
-				<p>Specifies the value of a property passed to
-the component instance's <a href="can.Component.prototype.viewModel.html">viewModel</a> that will be looked
-up in the <a href="can.view.Scope.html">can.stache scope</a>.</p>
 
 			</div>
 			
@@ -979,7 +959,7 @@ in order for your custom tags to work properly.</p>
 	</script>
 	
 	<script type="text/javascript">
-		var docObject = {"type":"constructor","name":"can.Component","src":"component/component.js","description":"Create widgets that use a template, a view-model  and custom tags.","title":"","download":"can/component","test":"can/component/test.html","parent":"canjs","release":"2.0","links":[{"href":"../docco/component/component.html","title":"docco"}],"signatures":[{"code":"< TAG [ATTR-NAME=\"{KEY}|ATTR-VALUE\"] >","description":"Create an instance of a component on a particular \ntag in a [can.stache] template.","params":[{"types":[{"type":"String"}],"name":"TAG","description":"An HTML tag name that matches the [can.Component::tag tag]\nproperty of the component."},{"types":[{"type":"String"}],"name":"ATTR-NAME","description":"An HTML attribute name. Any attribute name is\nvalid. Any attributes added to the element are added as properties to the\ncomponent's [can.Component::viewModel viewModel]. In the DOM, attribute names\nare case insensitive.  To pass a camelCase attribute to the component's viewModel,\nhypenate the attribute name like:\n\n    <tag attr-name=\"{key}\"></tag>\n\nThis will set `attrName` on the component's viewModel."},{"types":[{"type":"can.stache.key"}],"optional":true,"name":"KEY","description":"Specifies the value of a property passed to\nthe component instance's [can.Component::viewModel viewModel] that will be looked\nup in the [can.view.Scope can.stache scope]."},{"types":[{"type":"can.stache.key"}],"optional":true,"name":"ATTR-VALUE","description":"If the attribute value is not\nwrapped with `{}`, the string value of the attribute will be\nset on the component's viewModel."}],"release":"2.1"},{"code":"< TAG [ATTR-NAME=KEY|ATTR-VALUE] >","description":"Create an instance of a component on a particular \ntag in a [can.mustache] template.","params":[{"types":[{"type":"String"}],"name":"TAG","description":"An HTML tag name that matches the [can.Component::tag tag]\nproperty of the component."},{"types":[{"type":"String"}],"name":"ATTR-NAME","description":"An HTML attribute name. Any attribute name is\nvalid. Any attributes added to the element are added as properties to the\ncomponent's [can.Component::viewModel viewModel]."},{"types":[{"type":"can.mustache.key"}],"optional":true,"name":"ATTR-VALUE","description":"Specifies the value of a property passed to\nthe component instance's [can.Component::viewModel viewModel]. By default `ATTR-VALUE`\nvalues are looked up in the [can.view.viewModel can.mustache viewModel]. If the string value\nof the `ATTR-NAME` is desired, this can be specified like: \n\n    ATTR-NAME: \"@\""},{"types":[{"type":"can.mustache.key"}],"optional":true,"name":"KEY","description":"Specifies the value of a property passed to\nthe component instance's [can.Component::viewModel viewModel] that will be looked\nup in the [can.view.Scope can.stache scope]."}]}],"comment":" ","ignoreTemplateRender":true,"templates":"/Users/justin/dev/canjs.com/theme/templates","static":"/Users/justin/dev/canjs.com/theme/static","versionsSelectText":"CanJS v<%= version %>","glob":{"ignore":["guides/*.md","{node_modules,bower_components}/**/*","lib/**/*","test/**/*","util/dojo/dojo.js","**/*_test.js","Gruntfile.js"],"pattern":"**/*.{md,js}","cwd":"/Users/justin/dev/canjs.com/can"},"dest":"/Users/justin/dev/canjs.com/docs","generators":["html"],"urls":{"builderData":"http://bitbuilder.herokuapp.com/canjs","builder":"http://bitbuilder.herokuapp.com/can.custom.js","bithub":"http://bitovi.bithub.com/api/v1/events/","cdn":"//canjs.com/release/","github":"https://github.com/bitovi/canjs.com"},"versions":[{"branch":"master","number":"2.1"},{"number":"2.0"},{"number":"1.1"}],"defaultDownloadVersion":"2.2.4","docConfigDest":"../documentjs.json","project":{"version":"2.2","name":"canjs","source":"git://github.com/bitovi/canjs#master"}};
+		var docObject = {"type":"constructor","name":"can.Component","src":"dist/steal/can/component/component.js","description":"Create widgets that use a template, a view-model  and custom tags.\n\nvalue with `{}`. In 3.0, [can.mustache]\nwill use [can.stache]'s method.","title":"","download":"can/component","test":"can/component/test.html","parent":"canjs","release":"2.0","links":[{"href":"../docco/component/component.html","title":"docco"}],"warning":["{2.1} To pass data from the viewModel","you must wrap your attribute"],"signatures":[{"code":"< TAG [ATTR-NAME=KEY|ATTR-VALUE] >","description":"Create an instance of a component on a particular \ntag in a [can.mustache] template.","params":[{"types":[{"type":"String"}],"name":"TAG","description":"An HTML tag name that matches the [can.Component::tag tag]\nproperty of the component."},{"types":[{"type":"String"}],"name":"ATTR-NAME","description":"An HTML attribute name. Any attribute name is\nvalid. Any attributes added to the element are added as properties to the\ncomponent's [can.Component::viewModel viewModel]."},{"types":[{"type":"can.mustache.key"}],"optional":true,"name":"ATTR-VALUE","description":"Specifies the value of a property passed to\nthe component instance's [can.Component::viewModel viewModel]. By default `ATTR-VALUE`\nvalues are looked up in the [can.view.viewModel can.mustache viewModel]. If the string value\nof the `ATTR-NAME` is desired, this can be specified like: \n\n    ATTR-NAME: \"@\""},{"types":[{"type":"can.mustache.key"}],"optional":true,"name":"KEY","description":"Specifies the value of a property passed to\nthe component instance's [can.Component::viewModel viewModel] that will be looked\nup in the [can.view.Scope can.stache scope]."}]},{"code":"< TAG [ATTR-NAME=\"{KEY}|ATTR-VALUE\"] >","description":"Create an instance of a component on a particular \ntag in a [can.stache] template.","params":[{"types":[{"type":"String"}],"name":"TAG","description":"An HTML tag name that matches the [can.Component::tag tag]\nproperty of the component."},{"types":[{"type":"String"}],"name":"ATTR-NAME","description":"An HTML attribute name. Any attribute name is\nvalid. Any attributes added to the element are added as properties to the\ncomponent's [can.Component::viewModel viewModel]. In the DOM, attribute names\nare case insensitive.  To pass a camelCase attribute to the component's viewModel,\nhypenate the attribute name like:\n\n    <tag attr-name=\"{key}\"></tag>\n\nThis will set `attrName` on the component's viewModel."},{"types":[{"type":"can.stache.key"}],"optional":true,"name":"KEY","description":"Specifies the value of a property passed to\nthe component instance's [can.Component::viewModel viewModel] that will be looked\nup in the [can.view.Scope can.stache scope]."},{"types":[{"type":"can.stache.key"}],"optional":true,"name":"ATTR-VALUE","description":"If the attribute value is not\nwrapped with `{}`, the string value of the attribute will be\nset on the component's viewModel."}],"release":"2.1"}],"comment":" ","ignoreTemplateRender":true,"templates":"/Users/akagomez/Sites/bitovi/canjs.com/theme/templates","static":"/Users/akagomez/Sites/bitovi/canjs.com/theme/static","versionsSelectText":"CanJS v<%= version %>","glob":{"ignore":["guides/*.md","guides/**/*.md","{node_modules,bower_components}/**/*","lib/**/*"],"pattern":"**/*.{md,js}","cwd":"/Users/akagomez/Sites/bitovi/canjs.com/can"},"dest":"/Users/akagomez/Sites/bitovi/canjs.com/docs","generators":["html"],"urls":{"builderData":"http://bitbuilder.herokuapp.com/canjs","builder":"http://bitbuilder.herokuapp.com/can.custom.js","bithub":"http://bitovi.bithub.com/api/v1/events/","cdn":"//canjs.com/release/","github":"https://github.com/bitovi/canjs.com"},"versions":[{"branch":"master","number":"2.1"},{"number":"2.0"},{"number":"1.1"}],"defaultDownloadVersion":"2.2.4","docConfigDest":"../documentjs.json","project":{"version":"2.2","name":"canjs","source":"/Users/akagomez/Sites/bitovi/canjs"}};
 	</script>
 	
 	

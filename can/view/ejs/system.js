@@ -1,4 +1,3 @@
-"format steal";
 steal("can/view/ejs", function(can){
 
 	function translate(load) {

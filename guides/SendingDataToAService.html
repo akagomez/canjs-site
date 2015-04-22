@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+
+<!--[if lt IE 7]>
+<html class="no-js ie lt-ie9 lt-ie8 lt-ie7" lang="en">
+<![endif]-->
+<!--[if IE 7]>
+<html class="no-js ie lt-ie9 lt-ie8" lang="en">
+<![endif]-->
+<!--[if IE 8]>
+<html class="no-js ie lt-ie9" lang="en">
+<![endif]-->
+<!--[if IE 9]>
+<html class="no-js ie ie9" lang="en">
+<![endif]-->
+<!--[if gt IE 9]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<title>CanJS - Sending Data to a Service </title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	
+	<link rel="stylesheet" type="text/css" href="./static/bundles/static.css">
+	
+	<!--[if lt IE 9]>
+   <script type="text/javascript" src="static/html5shiv.js"></script>
+    <!--<![endif]-->
+</head>
+
+<body class="docs ">
+	<header>
+		<nav class="container">
+
+			<div class="logo-menu">
+				<a class="brand" href="../index.html">CanJS</a>
+				<ul class="dropdown-menu">
+		          <li><a href="http://javascriptmvc.com">JavaScriptMVC</a></li>
+		          <li><a href="http://canjs.com" class="active">CanJS</a></li>
+		          <li><a href="http://jquerypp.com">jQuery++</a></li>
+		          <li><a href="http://stealjs.com">StealJS</a></li>
+		          <li><a href="http://funcunit.com">FuncUnit</a></li>
+		          <li><a href="http://documentjs.com">DocumentJS</a></li>
+		        </ul>
+			</div>
+			
+			<ul class="nav">
+		        <li >
+	              <a href="../index.html">Home</a>
+                </li>
+		       <li class='active'><a href='index.html'>guides</a></li>
+		       <li><a href='../docs/index.html'>api</a></li>
+		        <li class=" community-menu">
+		          <a href="../community.html#!forums">Community</a>
+		          <ul class="dropdown-menu">
+		            <li><a href="https://forum.javascriptmvc.com/canjs">Forums</a></li>
+		            <li><a href="http://webchat.freenode.net/?channels=canjs">IRC</a></li>
+		            <li><a href="http://bitovi.bithub.com/canjs/app/">Apps</a></li>
+		            <li><a href="http://bitovi.bithub.com/canjs/plugin/">Plugins</a></li>
+		            <li><a href="http://bitovi.bithub.com/canjs/article/">Articles</a></li>
+		            <li><a href="http://github.com/bitovi/canjs">Github</a></li>
+		            <li><a href="http://twitter.com/canjs">Twitter</a></li>
+		            <li><a href="http://bitovi.github.io/canjsmeetup/">Meetups</a></li>
+		          </ul>
+		        </li>
+		        <li >
+	              <a href="../blog/index.html">Blog</a>
+                </li>
+		        <li >
+	              <a href="../download.html">Download</a>
+                </li>
+	      	</ul>
+			
+			<div class="pull-right">
+				<div class="bitovi-menu">
+					<a href="http://bitovi.com" class="bitovi icon-bits">Bitovi</a>
+					<ul class="dropdown-menu">
+						<li><a href="http://bitovi.com">Bitovi.com</a></li>
+						<li><a href="http://bitovi.com/blog/">Blog</a></li>
+						<li><a href="http://bitovi.com/design/">Design</a></li>
+						<li><a href="http://bitovi.com/development/">Development</a></li>
+						<li><a href="http://bitovi.com/training/">Training</a></li>
+						<li><a href="http://bitovi.com/open-source/">Open Source</a></li>
+						<li><a href="http://bitovi.com/people/">People</a></li>
+						<li><a href="http://bitovi.com/contact/">Contact Us</a></li>
+					</ul>
+				</div>
+			</div>
+			
+		</nav>
+	</header>
+
+	
+<div class="container api">
+
+	
+	<nav class="sidebar">
+		
+		<h2 id="version">
+	<select id='versions'></select>
+</h2>
+<ul class="api">
+	<!-- First Level -->
+	
+	   <li class="search-container">
+	   		<a href="Why.html" data-search="Why CanJS?">
+				Why CanJS?
+			</a>
+			
+	   </li>
+	
+	   <li class="search-container">
+	   		<a href="Using.html" data-search="Setting up CanJS">
+				Setting up CanJS
+			</a>
+			
+	   </li>
+	
+	   <li class="search-container active">
+	   		<a href="Tutorial.html" data-search="Getting Started Tutorial">
+				Getting Started Tutorial
+			</a>
+			
+				
+	<ul class="primary-grouping">
+		
+			
+				
+				
+					<li class="search-container  ">
+						<a 	class="page" 
+							href="Setup.html" 
+							data-search="Setup">
+							Setup
+						</a>
+						
+					</li>
+				
+			
+			
+		
+			
+				
+				
+					<li class="search-container  ">
+						<a 	class="page" 
+							href="ApplicationFoundations.html" 
+							data-search="Application Foundations">
+							Application Foundations
+						</a>
+						
+					</li>
+				
+			
+			
+		
+			
+				
+				
+					<li class="search-container  ">
+						<a 	class="page" 
+							href="Components.html" 
+							data-search="Getting to Know Components">
+							Getting to Know Components
+						</a>
+						
+					</li>
+				
+			
+			
+		
+			
+				
+				
+					<li class="search-container  ">
+						<a 	class="page" 
+							href="MoreOnComponents.html" 
+							data-search="More on Components">
+							More on Components
+						</a>
+						
+					</li>
+				
+			
+			
+		
+			
+				
+				
+					<li class="search-container  ">
+						<a 	class="page" 
+							href="Models.html" 
+							data-search="Models (&amp; Fixtures)">
+							Models (&amp; Fixtures)
+						</a>
+						
+					</li>
+				
+			
+			
+		
+			
+				
+				
+					<li class="search-container active  expanded">
+						<a 	class="page" 
+							href="SendingDataToAService.html" 
+							data-search="Sending Data to a Service">
+							Sending Data to a Service
+						</a>
+						
+							
+						
+					</li>
+				
+			
+			
+		
+			
+				
+				
+					<li class="search-container  ">
+						<a 	class="page" 
+							href="CreatingTheMenuComponent.html" 
+							data-search="Creating the Menu Component">
+							Creating the Menu Component
+						</a>
+						
+					</li>
+				
+			
+			
+		
+			
+				
+				
+					<li class="search-container  ">
+						<a 	class="page" 
+							href="AppState.html" 
+							data-search="App State &amp; Basic Routing">
+							App State &amp; Basic Routing
+						</a>
+						
+					</li>
+				
+			
+			
+		
+			
+				
+				
+					<li class="search-container  ">
+						<a 	class="page" 
+							href="Define.html" 
+							data-search="The Define Plugin">
+							The Define Plugin
+						</a>
+						
+					</li>
+				
+			
+			
+		
+			
+				
+				
+					<li class="search-container  ">
+						<a 	class="page" 
+							href="Routing.html" 
+							data-search="Route Formatting &amp; Serialization">
+							Route Formatting &amp; Serialization
+						</a>
+						
+					</li>
+				
+			
+			
+		
+			
+				
+				
+					<li class="search-container  ">
+						<a 	class="page" 
+							href="Recap.html" 
+							data-search="Recap">
+							Recap
+						</a>
+						
+					</li>
+				
+			
+			
+		
+	</ul>
+
+			
+	   </li>
+	
+	   <li class="search-container">
+	   		<a href="Recipes.html" data-search="Recipes">
+				Recipes
+			</a>
+			
+	   </li>
+	
+	   <li class="search-container">
+	   		<a href="contributing.html" data-search="How to Contribute">
+				How to Contribute
+			</a>
+			
+	   </li>
+	
+	   <li class="search-container">
+	   		<a href="changelog.html" data-search="Changelog">
+				Changelog
+			</a>
+			
+	   </li>
+	
+	   <li class="search-container">
+	   		<a href="license.html" data-search="License">
+				License
+			</a>
+			
+	   </li>
+	
+	   <li class="search-container">
+	   		<a href="migrating.html" data-search="Migrating to 2.0">
+				Migrating to 2.0
+			</a>
+			
+	   </li>
+	
+	   <li class="search-container">
+	   		<a href="roadmap.html" data-search="Roadmap">
+				Roadmap
+			</a>
+			
+	   </li>
+	
+</ul>
+	</nav>
+	
+	
+	
+	<article class="content docs">
+	
+	
+		
+		<section class="title">
+			<div class="heading">
+<h1>Sending Data to a Service</h1>
+	<ul class="tags">
+		<li>page</li>
+	</ul>
+	
+	
+</div>
+
+<div class="sub-heading">
+	
+	
+		<span class="module">SendingDataToAService</span>
+	
+	
+	
+	<span class="inherits">&nbsp;</span>
+</div>
+
+<ul class="links">
+	
+	
+		<li><a href="/Users/akagomez/Sites/bitovi/canjs">source</a></li>
+	
+	
+	
+</ul>
+<br />
+		</section>
+		
+		
+		
+		<section class="contents">
+		</section>
+		
+		
+		
+
+		
+
+		
+			
+		
+		
+		
+		
+
+		
+		<section class="comment">
+			<div class="getting-started">
+<hr />
+<p><strong>In this Chapter</strong></p>
+<ul>
+<li>Saving and Updating a can.Model</li>
+<li>Moving Closer to MVVM</li>
+<li>Working with Non-standard Data Formats</li>
+</ul>
+<p>Get the code for: <a href="https://github.com/bitovi/canjs/blob/guides-overhaul/guides/examples/PlaceMyOrder/ch-5_canjs-getting-started.zip?raw=true">chapter 5</a></p>
+<hr />
+<p>To illustrate sending data to a service, let's create an order menu from which
+people can select items.</p>
+<p>Create a sub folder under components called <code>order_form</code> and add the following files:</p>
+<pre>
+└── components
+    └── order_form
+        ├── order_form.stache
+        └── order_form.js
+</pre>
+<p>Add the following to <code>order_form.stache</code>:</p>
+<pre><code>&lt;h1&gt;{{restaurantName}}&lt;/h1&gt;
+
+{{#each menus}}
+  &lt;h3&gt;{{menuName}}&lt;/h3&gt;
+
+  {{#each items}}
+    &lt;label&gt;
+      &lt;input type=&quot;checkbox&quot; can-value=&quot;selected&quot;&gt; {{name}}, ${{price}}
+    &lt;/label&gt;
+  {{/each}}
+{{/each}}
+
+&lt;h3&gt;Customer Details&lt;/h3&gt;
+
+&lt;div class=&quot;customer-details&quot;&gt;
+  {{#delivery}}
+    &lt;label&gt;
+      Name:
+      &lt;input type=&quot;text&quot; can-value=&quot;name&quot; /&gt;
+    &lt;/label&gt;
+    &lt;label&gt;
+      Address:
+      &lt;input type=&quot;text&quot; can-value=&quot;address&quot; /&gt;
+    &lt;/label&gt;
+    &lt;label&gt;
+      Telephone:
+      &lt;input type=&quot;tel&quot; can-value=&quot;telephone&quot; /&gt;
+    &lt;/label&gt;
+  {{/delivery}}
+
+  &lt;button can-click=&quot;placeOrder&quot;&gt;Place My Order!&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+<p>In the template above, we're binding the properties:</p>
+<ul>
+<li><code>name</code></li>
+<li><code>address</code></li>
+<li><code>telephone</code></li>
+</ul>
+<p>to the <code>delivery</code> object of the View Model. We do that using both the <code>delivery</code>
+section, defined by <code>{{#delivery}} ... {{/delivery}}</code>, and the <code>can-value</code>
+attribute. <code>can-value</code> is a <code>can.view.attr</code> attribute that establishes two-way
+binding between an element in a template and its associated View Model.</p>
+<p>Add the following to <code>order_form.js</code>:</p>
+<pre><code>var OrderFormViewModel = can.Map.extend({
+  delivery: {},
+  order: {},
+
+  createOrder: function(menuItems) {
+    this.attr('menus').each(function(itemSet) {
+      itemSet.attr('items').each(function(item) {
+        if (item.attr('selected')) {
+          menuItems.push(item);
+        }
+      });
+    });
+
+    return new MenuOrderModel({
+      delivery: this.attr('delivery'),
+      menuItems: menuItems
+    });
+  },
+  placeOrder: function() {
+    var menuItems = [];
+    var order;
+
+    order = this.createOrder(menuItems);
+
+    order.save(
+      function() {
+        var total = 0;
+        var message = can.sub('Your order has been placed!\n\n' +
+          'Delivered to:\n' +
+          '    Name: {name}\n' +
+          '    Address: {address}\n' +
+          '    Phone Number: {phone}\n\n' +
+          'Items:\n', {
+            name: order.attr('delivery.name'),
+            address: order.attr('delivery.address'),
+            phone: order.attr('delivery.telephone')
+        });
+
+        order.attr('menuItems').each(function(item) {
+          message += can.sub('    {name} - {price}\n', {
+            name: item.attr('name'),
+            price: item.attr('price')
+          });
+
+          total += item.attr('price');
+        });
+
+        message += '\nTotal: $' + total;
+
+        alert(message);
+
+      }, function(xhr) {
+        alert('Error:', xhr.message);
+      });
+
+    this.attr('order', order);
+  }
+});
+
+can.Component.extend({
+  tag: 'order-form',
+  template: can.view('components/order_form/order_form.stache'),
+  scope: OrderFormViewModel
+});
+</code></pre>
+<h2>Saving and updating a model</h2>
+<p>Let's look at a few items in the code above.
+Notice that we're creating a new instance of a model (<code>MenuOrderModel</code>) in the
+<code>createOrder</code> function. Unlike data access functions (like <code>findAll</code>, <code>findOne</code>),
+which are called statically off of the prototype, the <code>save</code>, <code>update</code>, and
+<code>delete</code> functions are called off of a specific instance of a model. So, if
+we want to create a new order, we will need to work with an instance of the
+<code>MenuOrderModel</code>.</p>
+<p>We assign the value of <code>this.attr('delivery')</code> to the <code>MenuOrderModel</code>'s <code>delivery</code>
+property. If you recall, we bound the values of the <code>name</code>, <code>address</code>, and
+<code>telephone</code> number fields to the <code>delivery</code> object in the <code>order_form.stache</code>
+view template. Now, all we need to do to get the values of those fields is
+reference them off of the View Model's <code>delivery</code> property.</p>
+<p>To provide fixture support for saving our <code>can.Model</code>, open up <code>fixtures.js</code>
+and add the following fixture:</p>
+<pre><code>can.fixture('POST /order', function() {
+  return true;
+});
+</code></pre>
+<h3>Moving from DOM to the model</h3>
+<p>When we created the RestaurantListComponent,
+we used the <code>{{data '...'}}</code> Stache key and jQuery to obtain a reference to the
+<code>restaurant</code> object associated with the choice the user selected in the
+restaurants dropdown. We almost never want to be interacting with the DOM
+directly in our application. We want CanJS to take care of that for us, so we
+can focus on the application itself. In the <code>createOrder</code> function, instead of
+getting our data from the DOM, we get it from our scope.</p>
+<p>While this is a handy way to get data using a reference to a DOM element, CanJS
+provides a better alternative for binding the viewModel to the state. We'll
+cover that in a later chapter.</p>
+<h2>Non-standard Data Sources</h2>
+<p>Staying in <code>fixtures.js</code>, append the following to the bottom of the file:</p>
+<pre><code>can.fixture('GET /menus/{id}', function(request) {
+
+  var id = parseInt(request.data.id, 10) - 1;
+
+  var menuList = [
+    {
+      // Spago
+      'menus': [
+        {
+          'menuName': 'Lunch',
+          'items': [
+            {name: 'Spinach Fennel Watercress Ravioli', price: 35.99, id: 32},
+            {name: 'Herring in Lavender Dill Reduction', price: 45.99, id: 33},
+            {name: 'Garlic Fries', price: 15.99, id: 34}
+          ]
+        },
+        {
+          'menuName': 'Dinner',
+          'items': [
+            {name: 'Crab Pancakes with Sorrel Syrup', price: 35.99, id: 22},
+            {name: 'Chicken with Tomato Carrot Chutney Sauce', price: 45.99, id: 23},
+            {name: 'Onion Fries', price: 15.99, id: 24}
+          ]
+        }
+      ]
+
+    },
+    {
+      // El Bulli
+      'menus': [
+        {
+          'menuName': 'Lunch',
+          'items': [
+            {name: 'Spherified Calf Brains and Lemon Rind Risotto', price: 35.99, id: 32},
+            {name: 'Sweet Bread Bon Bons', price: 45.99, id: 33},
+            {name: 'JoJos', price: 15.99, id: 34}
+          ]
+        },
+        {
+          'menuName': 'Dinner',
+          'items': [
+            {name: 'Goose Liver Arugula Foam with Kale Crackers', price: 35.99, id: 22},
+            {name: 'Monkey Toenails', price: 45.99, id: 23},
+            {name: 'Tater Tots', price: 15.99, id: 24}
+          ]
+        }
+      ]
+
+    },
+    {
+      // The French Kitchen
+      'menus': [
+        {
+          'menuName': 'Lunch',
+          'items': [
+            {name: 'Croque Monsieur', price: 35.99, id: 32},
+            {name: 'Pain Au Chocolat', price: 45.99, id: 33},
+            {name: 'Potato Latkes', price: 15.99, id: 34}
+          ]
+        },
+        {
+          'menuName': 'Dinner',
+          'items': [
+            {name: 'Chateau Briande', price: 35.99, id: 22},
+            {name: 'Veal Almandine', price: 45.99, id: 23},
+            {name: 'Hashbrowns', price: 15.99, id: 24}
+          ]
+        }
+      ]
+
+    }
+  ];
+
+  return menuList[id];
+});
+</code></pre>
+<p>In <code>site_models.js</code>, add the following two models:</p>
+<pre><code>var RestaurantMenusModel = can.Model.extend({
+  findAll: 'GET /menus/{id}',
+  parseModels: 'menus'
+}, {});
+
+var MenuOrderModel = can.Model.extend({
+  create: 'POST /order'
+}, {});
+</code></pre>
+<p>There's a few things to notice in the code above. First, the fixture that we
+defined returned a non-standard data format. That is, it is non-standard for
+CanJS. The <code>can.Model.findAll</code> function expects an array from the service it
+calls&mdash;for example:</p>
+<pre><code>[
+  { menuName: 'Lunch', items: [/*...*/] },
+  { menuName: 'Dinner', items: [/*...*/] }
+];
+</code></pre>
+<p>Our fixture, however, is returning an <em>object</em> that <em>contains</em> an array.
+Our response will look like this:</p>
+<pre><code>{
+  &quot;menus&quot;: [
+    { menuName: 'Lunch', items: [/*...*/] },
+    { menuName: 'Dinner', items: [/*...*/] }
+  ]
+}
+</code></pre>
+<p>Normally, if the <code>findAll</code> function received this data, it would throw an
+error. In this case, it does not. This is because we included the
+<code>parseModels</code> attribute on the <code>MenuOrderModel</code>.</p>
+<p><code>parseModels</code> is used to convert the raw response of a <code>findAll</code> request into an
+object or Array that the model you're defining can use. As you can see, this
+function can be particularly useful if you're consuming data from a service that
+doesn't fit the format expected by <code>findAll</code>.</p>
+<h2>Wiring it all up</h2>
+<p>We can wire all this up easily in a few steps. Edit <code>base_template.stache</code> and add in the custom HTML tag for the
+order_form component:</p>
+<pre><code>&lt;restaurant-list&gt;&lt;/restaurant-list&gt;
+&lt;!--Begin add--&gt;
+&lt;order-form&gt;&lt;/order-form&gt;
+&lt;!--End add--&gt;
+</code></pre>
+<p>Now, edit your <code>index.html</code> file to load the <code>order_form.js</code> file:</p>
+<pre><code>&lt;script src=&quot;models/site_models.js&quot;&gt;&lt;/script&gt;
+&lt;!--Begin add--&gt;
+&lt;script src=&quot;components/order_form/order_form.js&quot;&gt;&lt;/script&gt;
+&lt;!--End add--&gt;
+&lt;script src=&quot;components/restaurant_list/restaurant_list.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>Go out to your app in the browser and reload your page. You should see the following:</p>
+<p><img src="../can/guides/images/5_model_validation/OrderMenuComponentFirstLoad.png" alt="" /></p>
+<p>One thing you might immediately notice is that both the Restaurant List
+component and the Order Component are showing on the page. It might not look the
+prettiest, but don't worry about that for the moment. We'll deal with controlling
+which Components display when we set up our <a href="AppState.html">AppState and Routing</a>.</p>
+<p>In the <a href="CreatingTheMenuComponent.html">next chapter</a>, we'll talk about connecting all of our components
+together using the AppState, Routing, and <code>can.Map</code>'s define plugin.</p>
+<hr />
+<p><span class="pull-left"><a href="Models.html">&lsaquo; Models (&amp; Fixtures)</a></span>
+<span class="pull-right"><a href="CreatingTheMenuComponent.html">Creating the Menu Component &rsaquo;</a></span></p>
+</div>
+
+		</section>
+		
+		
+
+		
+	
+	
+	</article>
+	
+	
+
+</div>
+
+
+
+
+
+	
+	
+	<footer>
+		<nav class="container">
+			<a class="brand" href="index.html"></a>
+			<ul class='nav'>
+				<li >
+	              <a href="../index.html">Home</a>
+	            </li>
+		        <li class='active'><a href='index.html'>guides</a></li>
+		        <li><a href='../docs/index.html'>api</a></li>
+		        <li class="">
+		          <a href="../community.html#!forums">Community</a>
+		        </li>
+		        <li >
+	              <a href="../blog/index.html">Blog</a>
+	            </li>
+		        <li >
+	              <a href="../download.html">Download</a>
+	            </li>
+            </ul>
+		</nav>
+	</footer>
+	
+
+    
+    <script type="text/javascript">
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-2302003-11']);
+	  _gaq.push(['_setDomainName', 'canjs.com']);
+	  _gaq.push(['_setAllowLinker', true]);
+	  _gaq.push(['_trackPageview']);
+	
+	  (function() {
+	  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+	
+	</script>
+	
+	<script type="text/javascript">
+		var docObject = {"type":"page","name":"SendingDataToAService","src":"guides/getting-started-tutorial/sending-data-to-a-service.md","description":"","title":"Sending Data to a Service","parent":"Tutorial","order":6,"disabletableofcontents":true,"comment":" ","ignoreTemplateRender":true,"templates":"/Users/akagomez/Sites/bitovi/canjs.com/theme/templates","static":"/Users/akagomez/Sites/bitovi/canjs.com/theme/static","versionsSelectText":"CanJS v<%= version %>","glob":{"pattern":"{guides/*.md,guides/**/*.md,*.md}","ignore":"{node_modules,bower_components}/**/*","cwd":"/Users/akagomez/Sites/bitovi/canjs.com/can"},"dest":"/Users/akagomez/Sites/bitovi/canjs.com/guides","generators":["html"],"urls":{"builderData":"http://bitbuilder.herokuapp.com/canjs","builder":"http://bitbuilder.herokuapp.com/can.custom.js","bithub":"http://bitovi.bithub.com/api/v1/events/","cdn":"//canjs.com/release/","github":"https://github.com/bitovi/canjs.com"},"versions":[{"branch":"master","number":"2.1"},{"number":"2.0"},{"number":"1.1"}],"defaultDownloadVersion":"2.2.4","docConfigDest":"../documentjs.json","project":{"version":"2.2","name":"canjs","source":"/Users/akagomez/Sites/bitovi/canjs"}};
+	</script>
+	
+	
+		<script>
+		  steal = {
+		    instantiated: {
+		      "bundles/static.css!$css" : null
+		    }
+		  }
+		</script>
+		<script type='text/javascript' 
+				data-main="static"
+				data-config="./static/config.js"
+				src="./static/steal.production.js"
+		    		bundles-path="bundles"></script>
+	
+	
+</body>
+
+</html>

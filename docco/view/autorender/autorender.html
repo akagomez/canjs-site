@@ -71,7 +71,7 @@ steal(<span class="hljs-string">"can/util"</span>,<span class="hljs-function"><s
 		}
 	}
 	<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setupScope</span><span class="hljs-params">(el)</span> </span>{
-		<span class="hljs-keyword">var</span> scope = can.viewModel(el);
+		<span class="hljs-keyword">var</span> scope = can.scope(el);
 		
 		can.each(el.attributes||[], <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(attr)</span> </span>{
 			setAttr(el, attr.name, scope);

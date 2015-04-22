@@ -1,0 +1,26 @@
+{
+  "name": "steal",
+  "main": "steal.js",
+  "ignore": [
+    "test",
+    "src",
+    "core",
+    "docs"
+  ],
+  "devDependencies": {
+    "qunit": "~1.12.0",
+    "systemjs": "git://github.com/bitovi/systemjs.git#1ea63e1d855694aab0ba73e742b2c9cd00388669"
+  },
+  "dependencies": {
+    "traceur": "0.0.45"
+  },
+  "homepage": "https://github.com/bitovi/steal",
+  "_release": "738455bbf1",
+  "_resolution": {
+    "type": "commit",
+    "commit": "738455bbf1eaf28b14ed6c22cb2ae9ade7248c05"
+  },
+  "_source": "git://github.com/bitovi/steal.git",
+  "_target": "738455bbf1eaf28b14ed6c22cb2ae9ade7248c05",
+  "_originalSource": "git://github.com/bitovi/steal"
+}

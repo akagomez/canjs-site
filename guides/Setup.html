@@ -118,8 +118,8 @@
 	   </li>
 	
 	   <li class="search-container active">
-	   		<a href="Tutorial.html" data-search="Getting Started">
-				Getting Started
+	   		<a href="Tutorial.html" data-search="Getting Started Tutorial">
+				Getting Started Tutorial
 			</a>
 			
 				
@@ -147,7 +147,7 @@
 				
 					<li class="search-container  ">
 						<a 	class="page" 
-							href="Foundations.html" 
+							href="ApplicationFoundations.html" 
 							data-search="Application Foundations">
 							Application Foundations
 						</a>
@@ -177,7 +177,7 @@
 				
 					<li class="search-container  ">
 						<a 	class="page" 
-							href="Components2.html" 
+							href="MoreOnComponents.html" 
 							data-search="More on Components">
 							More on Components
 						</a>
@@ -207,7 +207,7 @@
 				
 					<li class="search-container  ">
 						<a 	class="page" 
-							href="Models2.html" 
+							href="SendingDataToAService.html" 
 							data-search="Sending Data to a Service">
 							Sending Data to a Service
 						</a>
@@ -222,7 +222,7 @@
 				
 					<li class="search-container  ">
 						<a 	class="page" 
-							href="Review.html" 
+							href="CreatingTheMenuComponent.html" 
 							data-search="Creating the Menu Component">
 							Creating the Menu Component
 						</a>
@@ -237,7 +237,7 @@
 				
 					<li class="search-container  ">
 						<a 	class="page" 
-							href="State.html" 
+							href="AppState.html" 
 							data-search="App State &amp; Basic Routing">
 							App State &amp; Basic Routing
 						</a>
@@ -267,7 +267,7 @@
 				
 					<li class="search-container  ">
 						<a 	class="page" 
-							href="Routes.html" 
+							href="Routing.html" 
 							data-search="Route Formatting &amp; Serialization">
 							Route Formatting &amp; Serialization
 						</a>
@@ -371,7 +371,7 @@
 <ul class="links">
 	
 	
-		<li><a href="https://github.com/bitovi/canjs/tree/master/guides/setup.md">source</a></li>
+		<li><a href="/Users/akagomez/Sites/bitovi/canjs">source</a></li>
 	
 	
 	
@@ -398,12 +398,15 @@
 
 		
 		<section class="comment">
-			<hr />
+			<div class="getting-started">
+<hr />
 <p><strong>In this Chapter</strong></p>
 <ul>
 <li>Configuring and Downloading CanJS</li>
 <li>Recommended folder structure</li>
+<li>Applicaiton Bootstrap</li>
 </ul>
+<p>Get the code for: <a href="https://github.com/bitovi/canjs/blob/guides-overhaul/guides/examples/PlaceMyOrder/ch-1_canjs-getting-started.zip?raw=true">chapter 1</a></p>
 <hr />
 <p>To begin, we'll make sure we have everything we need to make our application.
 The first thing to do is get CanJS. The easiest way to get CanJS is to use
@@ -417,38 +420,100 @@ jQuery; and that's what we'll be working with here.</p>
 <p>The right side of the page lists all of the plugins. From the list of plugins,
 select the following:</p>
 <p><img src="../can/guides/images/setup/DownloadOptions.png" alt="CanJS plugins to select" /></p>
-<p>At the bottom of the page, click the download button. You'll be promoted to
-download a file called <em>can.custom.js</em>. Save that file to your local machine.</p>
-<p>You can access the custom download page here: <a href="http://canjs.com/download.html" target="_blank">Custom downloader</a></p>
-<p>There is one additional file we need, which we won't download. This file is
+<p>At the bottom of the page, click the download button. You'll be prompted to
+download a file called <code>can.custom.js</code>. Save that file to your local machine.</p>
+<p>You can access the custom download page here: <a href="../download.html" target="_blank">Custom downloader</a></p>
+<p>There is one additional file we need, which we won't download, yet. This file is
 special. You normally wouldn't want it to be a part of your final application,
-but it can be very helpful during development. The file is <em>can.fixture.js</em>.
-<code>can.fixture</code> allows you to simulate RESTful services. We'll cover how to include
-<code>can.fixture</code> in the next chapter.</p>
-<p>In the next step, we'll set up the application's folder structure, and move the
-<em>can.custom.js</em> file into its appropriate folder in the app.</p>
+but it can be very helpful during development. The file is <code>can.fixture.js</code>.
+<a href="../docs/can.fixture.html">can.fixture</a> allows you to simulate RESTful services. We'll cover how to
+include <code>can.fixture</code> in the next chapter.</p>
+<p>In the next step, we'll set up the application's folder structure and move the
+<code>can.custom.js</code> file into its appropriate folder in the app.</p>
 <h2>Folder Structure</h2>
 <p>When building a CanJS app, because our application will be built using
-components, we use a component-based folder structure. This structure makes it easier to both manage the contents of the component---and port the component, should you want to use it in another application.</p>
-<p>Off of a root folder called <em>PlaceMyOrder</em>, create the following subfolders:</p>
+components, we use a component-based folder structure. This structure makes it
+easier to both manage the contents of the component and port the component,
+should you want to use it in another application.</p>
+<p>Off of a root folder called <code>PlaceMyOrder</code>, create the following subfolders:</p>
 <pre>
-| PlaceMyOrder
-    |--app
-        |--components
-        |--libs
-        |--models
-        |--site_css
+└── PlaceMyOrder
+    └── app
+        ├── components
+        ├── libs
+        ├── models
+        └── site_css
 </pre>
-<p>Copy the <a href="https://raw.githubusercontent.com/bitovi/canjs/guides-overhaul/guides/examples/PlaceMyOrder/chapter_9/app/site_css/place_my_order.css" target="_blank">CSS file</a> that accompanies this guide into your <em>site_css</em> folder. We won't be covering any of the CSS here. Next, copy the <em>can.custom.js</em> file you downloaded in the previous step into the <em>libs</em> folder.</p>
+<p>Copy the <a href="https://raw.githubusercontent.com/bitovi/canjs/guides-overhaul/guides/examples/PlaceMyOrder/chapter_9/app/site_css/place_my_order.css" target="_blank">CSS file</a>
+that accompanies this guide into your <code>site_css</code> folder. We won't be covering
+any of the CSS here. Next, copy the <code>can.custom.js</code> file you downloaded in
+the previous step into the <code>libs</code> folder.</p>
 <p>Finally, you'll need to download the supporting libraries. They are:</p>
 <ul>
 <li><a href="http://jquery.com/download/" target="_blank">jQuery 2.x</a></li>
 <li><a href="http://canjs.com/release/2.1.4/can.fixture.js" target="_blank">can.fixture</a></li>
 </ul>
-<p>Once you've downloaded these files, rename the jQuery file to <code>jquery.js</code> and copy both files to the <em>libs</em> directory in your application folder.</p>
+<p>Once you've downloaded these files, rename the jQuery file to <code>jquery.js</code> and
+copy both files to the <code>libs</code> directory in your application folder.</p>
+<h2>index.html <a name="index-file"></a></h2>
+<p>Create a
+file called &quot;index.html&quot; in the <code>app</code> folder.</p>
+<pre>
+└── app
+    └── index.html
+</pre>
+<p>It should look like this:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head lang=&quot;en&quot;&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;site_css/place_my_order.css&quot;/&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+
+    &lt;!-- CanJS application root --&gt;
+    &lt;div id=&quot;can-app&quot;&gt;&lt;/div&gt;
+
+    &lt;script src=&quot;libs/jquery.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;libs/can.custom.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;libs/can.fixture.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;app.js&quot;&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>At the bottom of the page, just before the body tag, are all of the script
+tags. We're using the jQuery edition of CanJS, so the first script tag
+loaded must be jQuery. Following jQuery, we load <code>can.custom.js</code>.</p>
+<p>In the last chapter, we mentioned including <code>can.fixture.js</code>. In a
+normal project, once you connected to the actual REST services, you would
+remove <code>can.fixture.js</code>. In addition, to simplify things, we're provided a CSS
+file for you with all the styles needed for this example.</p>
+<h3>Base Template</h3>
+<p>Create a file in the <code>app</code> folder called <code>base_template.stache</code>. We'll edit the
+contents of that file as we build out our application. For now, you can
+leave it blank.</p>
+<h2>Application Bootstrap</h2>
+<p>The first script we need to create is the script that will bootstrap our
+application. Create a file in the <code>app</code> folder called <code>app.js</code>. Edit the
+file as follows:</p>
+<pre><code>$(function () {
+  $('#can-app').html('The Requisite &quot;Hello World&quot; Message');
+});
+</code></pre>
+<p>If you open up your application in a browser, you should see:</p>
+<blockquote>
+<p>The Requisite &quot;Hello World&quot; Message</p>
+</blockquote>
+<p>At this point, we haven't done much. We aren't using CanJS at all yet.
+We're just using jQuery to set the HTML contents of a DOM element.</p>
+<p>So, how do we get the application to actually <em>do something</em>? Building apps
+with CanJS centers around building <code>can.Component</code>'s. Read on to the next
+chapter to learn more.</p>
 <hr />
-<p><span class="pull-left"><a href="Tutorial.html">&lt; Getting Started</a></span></p>
-<p><span class="pull-right"><a href="Foundations.html">Application Foundations &gt;</a></span></p>
+<p><span class="pull-left"><a href="Tutorial.html">&lsaquo; Getting Started</a></span>
+<span class="pull-right"><a href="ApplicationFoundations.html">Application Foundations &rsaquo;</a></span></p>
+</div>
 
 		</section>
 		
@@ -510,7 +575,7 @@ components, we use a component-based folder structure. This structure makes it e
 	</script>
 	
 	<script type="text/javascript">
-		var docObject = {"type":"page","name":"Setup","src":"guides/setup.md","description":"","title":"Setup","parent":"Tutorial","order":1,"comment":" ","ignoreTemplateRender":true,"templates":"/Users/bitovi/Desktop/Bitovi/github/canjs.com/theme/templates","static":"/Users/bitovi/Desktop/Bitovi/github/canjs.com/theme/static","versionsSelectText":"CanJS v<%= version %>","glob":{"pattern":"{guides/*.md,*.md}","ignore":"{node_modules,bower_components}/**/*","cwd":"/Users/bitovi/Desktop/Bitovi/github/canjs.com/can"},"dest":"/Users/bitovi/Desktop/Bitovi/github/canjs.com/guides","generators":["html"],"urls":{"builderData":"http://bitbuilder.herokuapp.com/canjs","builder":"http://bitbuilder.herokuapp.com/can.custom.js","bithub":"http://bitovi.bithub.com/api/v1/events/","cdn":"//canjs.com/release/","github":"https://github.com/bitovi/canjs.com"},"versions":[{"branch":"master","number":"2.1"},{"number":"2.0"},{"number":"1.1"}],"defaultDownloadVersion":"2.2.0","docConfigDest":"../documentjs.json","project":{"version":"2.2","name":"canjs","source":"git://github.com/bitovi/canjs#master"}};
+		var docObject = {"type":"page","name":"Setup","src":"guides/getting-started-tutorial/setup.md","description":"","title":"Setup","parent":"Tutorial","order":1,"disabletableofcontents":true,"comment":" ","ignoreTemplateRender":true,"templates":"/Users/akagomez/Sites/bitovi/canjs.com/theme/templates","static":"/Users/akagomez/Sites/bitovi/canjs.com/theme/static","versionsSelectText":"CanJS v<%= version %>","glob":{"pattern":"{guides/*.md,guides/**/*.md,*.md}","ignore":"{node_modules,bower_components}/**/*","cwd":"/Users/akagomez/Sites/bitovi/canjs.com/can"},"dest":"/Users/akagomez/Sites/bitovi/canjs.com/guides","generators":["html"],"urls":{"builderData":"http://bitbuilder.herokuapp.com/canjs","builder":"http://bitbuilder.herokuapp.com/can.custom.js","bithub":"http://bitovi.bithub.com/api/v1/events/","cdn":"//canjs.com/release/","github":"https://github.com/bitovi/canjs.com"},"versions":[{"branch":"master","number":"2.1"},{"number":"2.0"},{"number":"1.1"}],"defaultDownloadVersion":"2.2.4","docConfigDest":"../documentjs.json","project":{"version":"2.2","name":"canjs","source":"/Users/akagomez/Sites/bitovi/canjs"}};
 	</script>
 	
 	

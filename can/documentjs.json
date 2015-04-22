@@ -2,20 +2,13 @@
 	"sites": {
 		"docs": {
 			"glob": {
-				"ignore": [
-					"guides/*.md", 
-					"{node_modules,bower_components}/**/*", 
-					"lib/**/*",
-					"test/**/*",
-					"util/dojo/dojo.js",
-					"**/*_test.js",
-					"Gruntfile.js"]
+				"ignore": ["guides/*.md", "guides/**/*.md", "{node_modules,bower_components}/**/*", "lib/**/*"]
 			},
 			"parent" : "canjs"
 		},
 		"guides": {
 			"glob": {
-				"pattern": "{guides/*.md,*.md}"
+				"pattern": "{guides/*.md,guides/**/*.md,*.md}"
 			},
 			"parent": "guides"
 		}

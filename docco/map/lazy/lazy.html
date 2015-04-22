@@ -437,8 +437,8 @@ instead remove all references, do not unbind as _addChild does</p>
 					<span class="hljs-keyword">var</span> List = can.LazyList;
 					<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> List(value);
 				} <span class="hljs-keyword">else</span> {
-					<span class="hljs-keyword">var</span> Map = <span class="hljs-keyword">this</span>.constructor.Map || can.LazyMap;
-					<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Map(value);
+					<span class="hljs-keyword">var</span> <span class="hljs-built_in">Map</span> = <span class="hljs-keyword">this</span>.constructor.Map || can.LazyMap;
+					<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>(value);
 				}
 			}
 			<span class="hljs-keyword">return</span> value;
@@ -1037,7 +1037,7 @@ Check if its on the <code>prototype</code> so we don’t overwrite methods like 
 	});
 
 	can.LazyList = can.List.extend({
-		Map: can.LazyMap
+		<span class="hljs-built_in">Map</span>: can.LazyMap
 	}, {
 		setup: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
 			can.List.prototype.setup.apply(<span class="hljs-keyword">this</span>, <span class="hljs-built_in">arguments</span>);

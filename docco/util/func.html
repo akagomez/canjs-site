@@ -225,7 +225,7 @@ is passed an array-like object, it will return `false`.
 @signature `can.each(collection, callback)`
 @param {Object} collection The object to iterate through.
 @param {Function} callback A function to call for each item in __collection__.
-__callback__ will receive the item's value first and its key second.
+__callback__ will recieve the item's value first and its key second.
 
 @body
 `can.each(collection, callback)` iterates through an array or object like
@@ -696,7 +696,11 @@ CanJS; however, if you are making libraries or extensions, use
 
 __Delegate binding to an HTMLElement__
 
-</span></pre></div></div>
+    var el = document.getElementById('foo')
+    can.delegate.call(el, ".selector", "click", function(ev){
+        this // el
+    })
+*/</span></pre></div></div>
             
         </li>
         
@@ -706,29 +710,6 @@ __Delegate binding to an HTMLElement__
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-18">&#182;</a>
-              </div>
-              <p>Assuming an HTML body like the following:</p>
-<div id="parent">
-    <div class="child">Hello</div>
-</div>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>
-    var el = document.getElementById('parent');
-    can.delegate.call(el, ".child", "click", function(ev) {
-        return this; //-&gt; el
-    });
-*/</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-19">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-19">&#182;</a>
               </div>
               
             </div>
@@ -753,45 +734,26 @@ The idea is that undelegate can be used on anything that produces delegate event
 and it will figure out the appropriate way to
 bind to it.  Typically, `can.undelegate` is only used internally to
 CanJS; however, if you are making libraries or extensions, use
-`can.undelegate` to stop listening to events independent of the underlying library.
+`can.undelegate` to listen to events independent of the underlying library.
 
 __Delegate/undelegate binding to an HTMLElement__
 
-</span></pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-20">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-20">&#182;</a>
-              </div>
-              <p>Assuming an HTML body like the following:</p>
-<div id="parent">
-    <div class="child">Hello</div>
-</div>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>
-    var el = document.getElementById('parent');
-    var handler = function(ev) {
-        return this; //-&gt; el
+    var el = document.getElementById('foo'),
+    handler = function(ev){
+        this // el
     };
-    can.delegate.call(el, ".child", "click", handler);
-    can.undelegate.call(el, ".child", "click", handler);
-*/</pre></div></div>
+    can.delegate.call(el, ".selector", "click", handler)
+    can.undelegate.call(el, ".selector", "click", handler)
+*/</span></pre></div></div>
             
         </li>
         
         
-        <li id="section-21">
+        <li id="section-19">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-21">&#182;</a>
+                <a class="pilcrow" href="#section-19">&#182;</a>
               </div>
               
             </div>
@@ -823,11 +785,11 @@ for simulating events. Such as the following:
         </li>
         
         
-        <li id="section-22">
+        <li id="section-20">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-22">&#182;</a>
+                <a class="pilcrow" href="#section-20">&#182;</a>
               </div>
               
             </div>
@@ -838,31 +800,30 @@ for simulating events. Such as the following:
 @parent can.util
 @signature `can.ajax(settings)`
 @param {Object} settings Configuration options for the AJAX request.
-The list of configuration options is the same as for [jQuery.ajax](http://api.jquery.com/jQuery.ajax/#jQuery-ajax-settings).
-@return {can.Deferred} A [can.Deferred](http://canjs.com/docs/can.Deferred.html) that resolves to the data.
+The list of configuration options is the same as for [jQuery.ajax()](http://api.jquery.com/jQuery.ajax/#jQuery-ajax-settings).
+@return {can.Deferred} A can.Deferred that resolves to the data.
 
 @body
-`can.ajax( settings )` is used to make an asynchronous HTTP (AJAX) request
-similar to [http://api.jquery.com/jQuery.ajax/jQuery.ajax]. The example below
-makes use of (can.frag)[http://canjs.com/docs/can.frag.html].
+`can.ajax( settings )` is used to make an asynchronous HTTP (Ajax) request
+similar to [http://api.jquery.com/jQuery.ajax/ jQuery.ajax].
 
-	can.ajax({
-		url: 'http://canjs.com/docs/can.ajax.html',
-		success: function(document) {
-			var frag = can.frag(document);
-			return frag.querySelector(".heading h1").innerText; //-&gt; can.ajax
-		}
-	});
+
+    can.ajax({
+        url: 'ajax/farm/animals',
+        success: function(animals) {
+            can.$('.farm').html(animals);
+        }
+    });
 */</span></pre></div></div>
             
         </li>
         
         
-        <li id="section-23">
+        <li id="section-21">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-23">&#182;</a>
+                <a class="pilcrow" href="#section-21">&#182;</a>
               </div>
               
             </div>
@@ -893,11 +854,11 @@ The following lists how the NodeList is created by each library:
         </li>
         
         
-        <li id="section-24">
+        <li id="section-22">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-24">&#182;</a>
+                <a class="pilcrow" href="#section-22">&#182;</a>
               </div>
               
             </div>
@@ -918,11 +879,11 @@ The following lists how the NodeList is created by each library:
         </li>
         
         
-        <li id="section-25">
+        <li id="section-23">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-25">&#182;</a>
+                <a class="pilcrow" href="#section-23">&#182;</a>
               </div>
               
             </div>
@@ -937,19 +898,17 @@ The following lists how the NodeList is created by each library:
 
 @body
 `can.append( wrappedNodeList, html )` inserts content to the end of each wrapped node list item(s) passed.
-This is a wrapper API for the underlying library being used. If you're using jQuery, this is a wrapper API 
-for [.append](http://api.jquery.com/append/).
 
 </span></pre></div></div>
             
         </li>
         
         
-        <li id="section-26">
+        <li id="section-24">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-26">&#182;</a>
+                <a class="pilcrow" href="#section-24">&#182;</a>
               </div>
               <p>Before</p>
 
@@ -957,16 +916,16 @@ for [.append](http://api.jquery.com/append/).
             
             <div class="content"><div class='highlight'><pre>    &lt;div id=<span class="hljs-string">"demo"</span> /&gt;
 
-    can.append(can.$(<span class="hljs-string">'#demo'</span>), <span class="hljs-string">'Demos are fun!'</span>);</pre></div></div>
+    can.append( can.$(<span class="hljs-string">'#demo'</span>), <span class="hljs-string">'Demos are fun!'</span> );</pre></div></div>
             
         </li>
         
         
-        <li id="section-27">
+        <li id="section-25">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-27">&#182;</a>
+                <a class="pilcrow" href="#section-25">&#182;</a>
               </div>
               <p>After</p>
 
@@ -979,11 +938,11 @@ for [.append](http://api.jquery.com/append/).
         </li>
         
         
-        <li id="section-28">
+        <li id="section-26">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-28">&#182;</a>
+                <a class="pilcrow" href="#section-26">&#182;</a>
               </div>
               
             </div>
@@ -1005,11 +964,11 @@ for [.append](http://api.jquery.com/append/).
         </li>
         
         
-        <li id="section-29">
+        <li id="section-27">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-29">&#182;</a>
+                <a class="pilcrow" href="#section-27">&#182;</a>
               </div>
               
             </div>
@@ -1053,11 +1012,11 @@ the _data_ method cannot be used on `object` (unless it's a Flash plugin), `appl
         </li>
         
         
-        <li id="section-30">
+        <li id="section-28">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-30">&#182;</a>
+                <a class="pilcrow" href="#section-28">&#182;</a>
               </div>
               
             </div>
@@ -1080,6 +1039,43 @@ already defined.
         </li>
         
         
+        <li id="section-29">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-29">&#182;</a>
+              </div>
+              <p>Before</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    &lt;div id=<span class="hljs-string">"foo"</span> <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">"monkey"</span> /&gt;
+
+    can.addClass(can.$(<span class="hljs-string">"#foo"</span>),<span class="hljs-string">"bar"</span>)</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-30">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-30">&#182;</a>
+              </div>
+              <p>After</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    &lt;div id=<span class="hljs-string">"foo"</span> <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">"monkey bar"</span> /&gt;
+
+You can also pass multiple <span class="hljs-class"><span class="hljs-keyword">class</span>(<span class="hljs-title">es</span>) <span class="hljs-title">and</span> <span class="hljs-title">it</span> <span class="hljs-title">will</span> <span class="hljs-title">add</span> <span class="hljs-title">them</span> <span class="hljs-title">to</span> <span class="hljs-title">the</span> <span class="hljs-title">existing</span>
+<span class="hljs-title">set</span> <span class="hljs-title">also</span>.
+
+</span></pre></div></div>
+            
+        </li>
+        
+        
         <li id="section-31">
             <div class="annotation">
               
@@ -1090,9 +1086,9 @@ already defined.
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    &lt;div id=<span class="hljs-string">"foo"</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">"monkey"</span> /&gt;
+            <div class="content"><div class='highlight'><pre>    &lt;div id=<span class="hljs-string">"foo"</span> <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">"monkey"</span> /&gt;
 
-    can.addClass(can.$(<span class="hljs-string">"#foo"</span>),<span class="hljs-string">"bar"</span>)</pre></div></div>
+    can.addClass(can.$(<span class="hljs-string">"#foo"</span>),<span class="hljs-string">"bar man"</span>)</pre></div></div>
             
         </li>
         
@@ -1107,10 +1103,10 @@ already defined.
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    &lt;div id=<span class="hljs-string">"foo"</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">"monkey bar"</span> /&gt;
+            <div class="content"><div class='highlight'><pre>    &lt;div id="foo" class="monkey bar man" /&gt;
 
-You can also pass multiple <span class="hljs-keyword">class</span>(es) and it will add them to the existing
-set also.</pre></div></div>
+This works similarly to [http://api.jquery.com/addClass/ jQuery.fn.addClass].
+*/</pre></div></div>
             
         </li>
         
@@ -1120,41 +1116,6 @@ set also.</pre></div></div>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-33">&#182;</a>
-              </div>
-              <p>Before</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    &lt;div id=<span class="hljs-string">"foo"</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">"monkey"</span> /&gt;
-
-    can.addClass(can.$(<span class="hljs-string">"#foo"</span>),<span class="hljs-string">"bar man"</span>)</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-34">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-34">&#182;</a>
-              </div>
-              <p>After</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    &lt;div id="foo" class="monkey bar man" /&gt;
-
-This works similarly to [http://api.jquery.com/addClass/ jQuery.fn.addClass].
-*/</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-35">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-35">&#182;</a>
               </div>
               
             </div>
@@ -1187,11 +1148,11 @@ You can also use this to wait for the results of multiple deferreds.
         </li>
         
         
-        <li id="section-36">
+        <li id="section-34">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-36">&#182;</a>
+                <a class="pilcrow" href="#section-34">&#182;</a>
               </div>
               <p>perform some logic using both the animals and beacons data</p>
 
@@ -1201,19 +1162,19 @@ You can also use this to wait for the results of multiple deferreds.
 
 You can also use this for regular JavaScript objects.
 
-    $.when({ animals: [ 'cat' ] }).done(function(value){
-        alert(value.animals[0]); //-&gt; alerts 'cat'
+    $.when( { animals: [ 'cat' ] } ).done(function(animals){
+        alert(animals[0]); //-&gt; alerts 'cat'
     });
 */</pre></div></div>
             
         </li>
         
         
-        <li id="section-37">
+        <li id="section-35">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-37">&#182;</a>
+                <a class="pilcrow" href="#section-35">&#182;</a>
               </div>
               
             </div>
@@ -1232,11 +1193,11 @@ function(s) for the success or failure state of both asynchronous and synchronou
         </li>
         
         
-        <li id="section-38">
+        <li id="section-36">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-38">&#182;</a>
+                <a class="pilcrow" href="#section-36">&#182;</a>
               </div>
               
             </div>
@@ -1248,11 +1209,11 @@ function(s) for the success or failure state of both asynchronous and synchronou
         </li>
         
         
-        <li id="section-39">
+        <li id="section-37">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-39">&#182;</a>
+                <a class="pilcrow" href="#section-37">&#182;</a>
               </div>
               
             </div>
@@ -1282,11 +1243,11 @@ function(s) for the success or failure state of both asynchronous and synchronou
         </li>
         
         
-        <li id="section-40">
+        <li id="section-38">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-40">&#182;</a>
+                <a class="pilcrow" href="#section-38">&#182;</a>
               </div>
               
             </div>
@@ -1297,32 +1258,23 @@ function(s) for the success or failure state of both asynchronous and synchronou
 @parent can.Deferred.prototype
 @signature `deferred.resolveWith(context[, arguments])`
 @param {Object} context Context passed to the `doneCallbacks` as the `this` object.
-@param {Array} [arguments] Array of arguments that are passed to the `doneCallbacks`.
+@param {Object} [arguments] Array of arguments that are passed to the `doneCallbacks`.
 
 @body
 `deferred.resolveWith(context, arguments)` resolves a Deferred and calls the `doneCallbacks` with the given arguments.
 
-	var def = can.Deferred();
-	def.done(function(success) {
-		this.logSuccess(success); //-&gt; "Can rocks!"
-	});
-
-	var context = {
-		logSuccess: function(sucess) {
-			console.log(sucess);
-		}
-	};
-	def.resolveWith(context, ["Can rocks!"]);
+    var def = can.Deferred();
+    def.resolveWith(this, { animals: [ 'cows', 'monkey', 'panda' ] })
 */</span></pre></div></div>
             
         </li>
         
         
-        <li id="section-41">
+        <li id="section-39">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-41">&#182;</a>
+                <a class="pilcrow" href="#section-39">&#182;</a>
               </div>
               
             </div>
@@ -1333,23 +1285,58 @@ function(s) for the success or failure state of both asynchronous and synchronou
 @parent can.Deferred.prototype
 @signature `deferred.rejectWith(context[, arguments])`
 @param {Object} context Context passed to the `failCallbacks` as the `this` object.
-@param {Array} [arguments] Array of arguments that are passed to the `failCallback(s)`.
+@param {Object} [arguments] Array of arguments that are passed to the `failCallbacks`.
 
 @body
 `deferred.rejectWith(context, arguments)` rejects a Deferred and calls the `failCallbacks` with the given arguments.
 
-	var def = can.Deferred();
-	def.fail(function(error) {
-		this.logError(error); //-&gt; "Oh no!"
-	});
-
-	var context = {
-		logError: function(error) {
-			console.error(error);
-		}
-	};
-	def.rejectWith(context, ["Oh no!"]);
+    var def = can.Deferred();
+    def.rejectWith(this, { error: "Animals are gone." })
 */</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-40">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-40">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/**
+@description Add one or more callbacks to be called when a Deferred is resolved.
+@function can.Deferred.prototype.done done
+@parent can.Deferred.prototype
+@signature `deferred.done(doneCallbacks)`
+@param {Function} doneCallbacks A function, or an array of functions, to be called when the Deferred is resolved.
+
+@body
+`deferred.done(doneCallbacks)` adds one or more functions to be called when the Deferred object is resolved.
+
+    var def = can.Deferred();
+    def.done(function(){
+</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-41">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-41">&#182;</a>
+              </div>
+              <ul>
+<li>Deferred is done.</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    });
+*/</pre></div></div>
             
         </li>
         
@@ -1364,17 +1351,17 @@ function(s) for the success or failure state of both asynchronous and synchronou
             </div>
             
             <div class="content"><div class='highlight'><pre><span class="hljs-comment">/**
-@description Add one or more callbacks to be called when a Deferred is resolved.
-@function can.Deferred.prototype.done done
+@description Add a callback to be called when a Deferred is rejected.
+@function can.Deferred.prototype.fail fail
 @parent can.Deferred.prototype
-@signature `deferred.done(doneCallbacks)`
-@param {Function|Array} doneCallbacks A function, or an array of functions, to be called when the Deferred is resolved.
+@signature `deferred.fail(failCallbacks)`
+@param {Function} failCallbacks A function, or an array of functions, to be called when the Deferred is rejected.
 
 @body
-`deferred.done(doneCallbacks)` adds one or more functions to be called when the Deferred object is resolved.
+`deferred.fail(failCallbacks)` adds one or more functions to be called when the Deferred object is rejected.
 
     var def = can.Deferred();
-    def.done(function(){
+    def.fail(function(){
 </span></pre></div></div>
             
         </li>
@@ -1387,7 +1374,7 @@ function(s) for the success or failure state of both asynchronous and synchronou
                 <a class="pilcrow" href="#section-43">&#182;</a>
               </div>
               <ul>
-<li>Deferred is done.</li>
+<li>Deferred got rejected.</li>
 </ul>
 
             </div>
@@ -1408,17 +1395,17 @@ function(s) for the success or failure state of both asynchronous and synchronou
             </div>
             
             <div class="content"><div class='highlight'><pre><span class="hljs-comment">/**
-@description Add a callback to be called when a Deferred is rejected.
-@function can.Deferred.prototype.fail fail
+@description Add one or more callbacks to be unconditionally called when a Deferred is resolved or rejected.
+@function can.Deferred.prototype.always always
 @parent can.Deferred.prototype
-@signature `deferred.fail(failCallbacks)`
-@param {Function|Array} failCallbacks A function, or an array of functions, to be called when the Deferred is rejected.
+@signature `deferred.always(alwaysCallbacks)`
+@param {Function} alwaysCallbacks A function, or an array of functions, to be called whether the Deferred is resolved or rejected.
 
 @body
-`deferred.fail(failCallbacks)` adds one or more functions to be called when the Deferred object is rejected.
+`deferred.always( alwaysCallbacks )` adds one or more functions to be called when the Deferred object is either resolved or rejected.
 
     var def = can.Deferred();
-    def.fail(function(){
+    def.always( function(){
 </span></pre></div></div>
             
         </li>
@@ -1431,7 +1418,7 @@ function(s) for the success or failure state of both asynchronous and synchronou
                 <a class="pilcrow" href="#section-45">&#182;</a>
               </div>
               <ul>
-<li>Deferred got rejected.</li>
+<li>Called whether the handler fails or is success.</li>
 </ul>
 
             </div>
@@ -1452,17 +1439,18 @@ function(s) for the success or failure state of both asynchronous and synchronou
             </div>
             
             <div class="content"><div class='highlight'><pre><span class="hljs-comment">/**
-@description Add one or more callbacks to be unconditionally called when a Deferred is resolved or rejected.
-@function can.Deferred.prototype.always always
+@description Add callbacks to a Deferred.
+@function can.Deferred.prototype.then then
 @parent can.Deferred.prototype
-@signature `deferred.always(alwaysCallbacks)`
-@param {Function|Array} alwaysCallbacks A function, or an array of functions, to be called whether the Deferred is resolved or rejected.
+@signature `deferred.then(doneCallback[, failCallback])`
+@param {Function} doneCallback A function called when the Deferred is resolved.
+@param {Function} [failCallback] A function called when the Deferred is rejected.
 
 @body
-`deferred.always(alwaysCallbacks)` adds one or more functions to be called when the Deferred object is either resolved or rejected.
+`deferred.then( doneCallback, failCallback )` adds handler(s) to be called when the Deferred object to be called after its resolved.
 
     var def = can.Deferred();
-    def.always(function(){
+    def.then(function(){
 </span></pre></div></div>
             
         </li>
@@ -1475,13 +1463,12 @@ function(s) for the success or failure state of both asynchronous and synchronou
                 <a class="pilcrow" href="#section-47">&#182;</a>
               </div>
               <ul>
-<li>Called whether the handler fails or is success.</li>
+<li>Called when the deferred is resolved.</li>
 </ul>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    });
-*/</pre></div></div>
+            <div class="content"><div class='highlight'><pre>    }, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{</pre></div></div>
             
         </li>
         
@@ -1492,29 +1479,14 @@ function(s) for the success or failure state of both asynchronous and synchronou
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-48">&#182;</a>
               </div>
-              
+              <ul>
+<li>Called when the deferred fails.</li>
+</ul>
+
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/**
-@description Add callbacks to a Deferred.
-@function can.Deferred.prototype.then then
-@parent can.Deferred.prototype
-@signature `deferred.then(doneCallback[, failCallback])`
-@param {Function} doneCallback A function called when the Deferred is resolved.
-@param {Function} [failCallback] A function called when the Deferred is rejected.
-
-@body
-`deferred.then(doneCallback, failCallback)` adds handler(s) to be called when the Deferred object to be called after its resolved.
-
-	var def = can.Deferred();
-	def.then(function(success) {
-		console.log(success);
-	}, function(reason) {
-		console.error(reason); //-&gt; "Oh no! So sad."
-	});
-
-	def.reject("Oh no! So sad.");
-*/</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>    })
+*/</pre></div></div>
             
         </li>
         
@@ -1575,14 +1547,10 @@ function(s) for the success or failure state of both asynchronous and synchronou
 @param {Object} [argument] The argument to call the `failCallback` with.
 
 @body
-`deferred.reject(args)` rejects the Deferred object and calls the fail callbacks with the given arguments.
+`deferred.reject( args )` rejects the Deferred object and calls the fail callbacks with the given arguments.
 
-	var def = can.Deferred();
-
-	def.done(function(reason) {
-	  console.log("Success! " + reason); //-&gt; Success! Woohoo!
-	});
-	def.resolve("Woohoo!");
+    var def = can.Deferred();
+    def.reject({ error: 'Thats not an animal.' })
 */</span></pre></div></div>
             
         </li>

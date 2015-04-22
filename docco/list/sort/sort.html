@@ -459,24 +459,13 @@ converts to an array of arguments</p>
 			 * @return {Number} the length of the array.
 			 */</span>
 			unshift: <span class="hljs-number">0</span>
-		},</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-19">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-19">&#182;</a>
-              </div>
-              <p>adds a method where
-@param where items in the array should be added
-@param name method name</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>		<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(where, name)</span> </span>{
+		},
+		<span class="hljs-comment">/**
+		 * adds a method where
+		 * @param where items in the array should be added
+		 * @param name method name
+		 */</span>
+		<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(where, name)</span> </span>{
 			<span class="hljs-keyword">var</span> proto = can.List.prototype,
 				old = proto[name];
 			proto[name] = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
@@ -486,11 +475,11 @@ converts to an array of arguments</p>
         </li>
         
         
-        <li id="section-20">
+        <li id="section-19">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-20">&#182;</a>
+                <a class="pilcrow" href="#section-19">&#182;</a>
               </div>
               <p>get the items being added</p>
 
@@ -504,11 +493,11 @@ converts to an array of arguments</p>
         </li>
         
         
-        <li id="section-21">
+        <li id="section-20">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-21">&#182;</a>
+                <a class="pilcrow" href="#section-20">&#182;</a>
               </div>
               <p>Go through and convert anything to an <code>map</code> that needs
 to be converted.</p>
@@ -520,11 +509,11 @@ to be converted.</p>
         </li>
         
         
-        <li id="section-22">
+        <li id="section-21">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-22">&#182;</a>
+                <a class="pilcrow" href="#section-21">&#182;</a>
               </div>
               <p>Insert this item at the correct index</p>
 
@@ -544,11 +533,11 @@ to be converted.</p>
         </li>
         
         
-        <li id="section-23">
+        <li id="section-22">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-23">&#182;</a>
+                <a class="pilcrow" href="#section-22">&#182;</a>
               </div>
               <p>call the original method</p>
 
@@ -565,11 +554,11 @@ to be converted.</p>
         </li>
         
         
-        <li id="section-24">
+        <li id="section-23">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-24">&#182;</a>
+                <a class="pilcrow" href="#section-23">&#182;</a>
               </div>
               <p>Overwrite .splice so that items added to the list (no matter what the
 defined index) are inserted at the correct index, while preserving the
@@ -590,11 +579,11 @@ ability to remove items from a list.</p>
         </li>
         
         
-        <li id="section-25">
+        <li id="section-24">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-25">&#182;</a>
+                <a class="pilcrow" href="#section-24">&#182;</a>
               </div>
               <p>Don’t use this “sort” oriented splice unless this list has a
 comparator</p>
@@ -608,11 +597,11 @@ comparator</p>
         </li>
         
         
-        <li id="section-26">
+        <li id="section-25">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-26">&#182;</a>
+                <a class="pilcrow" href="#section-25">&#182;</a>
               </div>
               <p>Get the list of new items intended to be added to the list</p>
 
@@ -626,11 +615,11 @@ comparator</p>
         </li>
         
         
-        <li id="section-27">
+        <li id="section-26">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-27">&#182;</a>
+                <a class="pilcrow" href="#section-26">&#182;</a>
               </div>
               <p>Remove items using the original splice method</p>
 
@@ -641,11 +630,11 @@ comparator</p>
         </li>
         
         
-        <li id="section-28">
+        <li id="section-27">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-28">&#182;</a>
+                <a class="pilcrow" href="#section-27">&#182;</a>
               </div>
               <p>Add items by way of push so that they’re sorted into
 the correct position</p>
@@ -659,11 +648,11 @@ the correct position</p>
         </li>
         
         
-        <li id="section-29">
+        <li id="section-28">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-29">&#182;</a>
+                <a class="pilcrow" href="#section-28">&#182;</a>
               </div>
               <ul>
 <li>override changes for sorting</li>
@@ -676,11 +665,11 @@ the correct position</p>
         </li>
         
         
-        <li id="section-30">
+        <li id="section-29">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-30">&#182;</a>
+                <a class="pilcrow" href="#section-29">&#182;</a>
               </div>
               <p>If a comparator is defined and the change was to a
 list item, consider moving the item.</p>
@@ -698,11 +687,11 @@ list item, consider moving the item.</p>
         </li>
         
         
-        <li id="section-31">
+        <li id="section-30">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-31">&#182;</a>
+                <a class="pilcrow" href="#section-30">&#182;</a>
               </div>
               <p>get the index</p>
 
@@ -713,11 +702,11 @@ list item, consider moving the item.</p>
         </li>
         
         
-        <li id="section-32">
+        <li id="section-31">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-32">&#182;</a>
+                <a class="pilcrow" href="#section-31">&#182;</a>
               </div>
               <p>and item</p>
 
@@ -730,11 +719,11 @@ list item, consider moving the item.</p>
         </li>
         
         
-        <li id="section-33">
+        <li id="section-32">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-33">&#182;</a>
+                <a class="pilcrow" href="#section-32">&#182;</a>
               </div>
               <p>Determine where this item should reside as a result
 of the change</p>
@@ -749,11 +738,11 @@ of the change</p>
         </li>
         
         
-        <li id="section-34">
+        <li id="section-33">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-34">&#182;</a>
+                <a class="pilcrow" href="#section-33">&#182;</a>
               </div>
               <p>Trigger length change so that {{#block}} helper can re-render</p>
 
@@ -772,11 +761,11 @@ of the change</p>
         </li>
         
         
-        <li id="section-35">
+        <li id="section-34">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-35">&#182;</a>
+                <a class="pilcrow" href="#section-34">&#182;</a>
               </div>
               <ul>
 <li>override setup for sorting</li>

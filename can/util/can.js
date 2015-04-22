@@ -36,10 +36,6 @@ steal(function () {
 		}
 		return d;
 	};
-	
-	can.last = function(arr){
-		return arr && arr[arr.length - 1];
-	};
 
 
 	can.frag = function(item){
@@ -74,30 +70,28 @@ steal(function () {
 	};
 	
 	// Define the `can.scope` function that can be used to retrieve the `scope` from the element
-	can.scope = can.viewModel = function (el, attr, val) {
+	can.scope = function (el, attr) {
 		el = can.$(el);
-		var scope = can.data(el, "scope") || can.data(el, "viewModel");
+		// if scope doesn't exist, create it
+		var scope = can.data(el, "scope");
 		if(!scope) {
-			scope = new can.Map();
+			scope = can.Map ? new can.Map() : {};
 			can.data(el, "scope", scope);
-			can.data(el, "viewModel", scope);
 		}
-		switch (arguments.length) {
-			case 0:
-			case 1:
-				return scope;
-			case 2:
-				return scope.attr(attr);
-			default:
-				scope.attr(attr, val);
-				return el;
+		
+		// If `attr` is passed to the `can.scope` function return the value of that
+		// attribute on the `scope` object otherwise return the whole scope
+		if (attr) {
+			return scope.attr(attr);
+		} else {
+			return scope;
 		}
 	};
 	
 	can["import"] = function(moduleName) {
 		var deferred = new can.Deferred();
 		
-		if(typeof window.System === "object" && can.isFunction(window.System["import"])) {
+		if(typeof window.System === "object") {
 			window.System["import"](moduleName).then(can.proxy(deferred.resolve, deferred),
 				can.proxy(deferred.reject, deferred));
 		} else if(window.define && window.define.amd){
@@ -131,9 +125,9 @@ steal(function () {
 		logLevel: 0,
 		/**
 		 * Adds a warning message to the console.
-		 * ```
+		 * @codestart
 		 * can.dev.warn("something evil");
-		 * ```
+		 * @codeend
 		 * @param {String} out the message
 		 */
 		warn: function (out) {
@@ -151,9 +145,9 @@ steal(function () {
 		},
 		/**
 		 * Adds a message to the console.
-		 * ```
+		 * @codestart
 		 * can.dev.log("hi");
-		 * ```
+		 * @codeend
 		 * @param {String} out the message
 		 */
 		log: function (out) {

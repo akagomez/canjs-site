@@ -334,15 +334,15 @@ all live-bound elments are registered and updated when they change.</p>
     <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">data-view-id</span>=<span class="hljs-value">'5'</span>/&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></span>
 </code></pre><p>When the <code>5</code> callback is called, this will register the <code>&lt;span&gt;</code> like:</p>
-<pre><code><span class="hljs-keyword">var</span> ifsNodes = [<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">5</span>&gt;</span>]
-nodeLists.register(ifsNodes);</span>
+<pre><code><span class="hljs-keyword">var</span> ifsNodes = [<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">5</span>&gt;</span>]</span>
+nodeLists.register(ifsNodes);
 </code></pre><p>And then render <code>{{if}}</code>‘s contents and update <code>ifsNodes</code> with it:</p>
-<pre><code>nodeLists.update( ifsNodes, [<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">"\nItems:\n"</span>&gt;</span>, <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">data-view-id</span>=<span class="hljs-value">"6"</span>&gt;</span>] );</span>
+<pre><code>nodeLists.update( ifsNodes, [<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">"\nItems:\n"</span>&gt;</span>, <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">data-view-id</span>=<span class="hljs-value">"6"</span>&gt;</span>]</span> );
 </code></pre><p>Next, hookup <code>6</code> is called which will regsiter the <code>&lt;span&gt;</code> like:</p>
-<pre><code><span class="hljs-keyword">var</span> eachsNodes = [<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">6</span>&gt;</span>];
-nodeLists.register(eachsNodes);</span>
+<pre><code><span class="hljs-keyword">var</span> eachsNodes = [<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">6</span>&gt;</span>]</span>;
+nodeLists.register(eachsNodes);
 </code></pre><p>And then it will render <code>{{#each}}</code>‘s content and update <code>eachsNodes</code> with it:</p>
-<pre><code>nodeLists.update(eachsNodes, [<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">label</span>&gt;</span>,<span class="hljs-tag">&lt;<span class="hljs-title">label</span>&gt;</span>]);</span>
+<pre><code>nodeLists.update(eachsNodes, [<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">label</span>&gt;</span>,<span class="hljs-tag">&lt;<span class="hljs-title">label</span>&gt;</span>]</span>);
 </code></pre><p>As <code>nodeLists</code> knows that <code>eachsNodes</code> is inside <code>ifsNodes</code>, it also updates
 <code>ifsNodes</code>‘s nodes to look like:</p>
 <pre><code>[<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">"\nItems:\n"</span>&gt;</span>,<span class="hljs-tag">&lt;<span class="hljs-title">label</span>&gt;</span>,<span class="hljs-tag">&lt;<span class="hljs-title">label</span>&gt;</span>]</span>
@@ -590,18 +590,6 @@ it is a nodeList so call <code>first</code> again. </p>
 			} <span class="hljs-keyword">else</span> {
 				<span class="hljs-keyword">return</span> nodeLists.first(first);
 			}
-		},
-		flatten: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(nodeList)</span></span>{
-			<span class="hljs-keyword">var</span> items = [];
-			<span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span> ; i &lt; nodeList.length; i++) {
-				<span class="hljs-keyword">var</span> item = nodeList[i];
-				<span class="hljs-keyword">if</span>(item.nodeType) {
-					items.push(item);
-				} <span class="hljs-keyword">else</span> {
-					items.push.apply(items, nodeLists.flatten(item));
-				}
-			}
-			<span class="hljs-keyword">return</span> items;
 		},</pre></div></div>
             
         </li>

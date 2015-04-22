@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+
+<!--[if lt IE 7]>
+<html class="no-js ie lt-ie9 lt-ie8 lt-ie7" lang="en">
+<![endif]-->
+<!--[if IE 7]>
+<html class="no-js ie lt-ie9 lt-ie8" lang="en">
+<![endif]-->
+<!--[if IE 8]>
+<html class="no-js ie lt-ie9" lang="en">
+<![endif]-->
+<!--[if IE 9]>
+<html class="no-js ie ie9" lang="en">
+<![endif]-->
+<!--[if gt IE 9]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<title>CanJS - App State &amp; Basic Routing </title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	
+	<link rel="stylesheet" type="text/css" href="./static/bundles/static.css">
+	
+	<!--[if lt IE 9]>
+   <script type="text/javascript" src="static/html5shiv.js"></script>
+    <!--<![endif]-->
+</head>
+
+<body class="docs ">
+	<header>
+		<nav class="container">
+
+			<div class="logo-menu">
+				<a class="brand" href="../index.html">CanJS</a>
+				<ul class="dropdown-menu">
+		          <li><a href="http://javascriptmvc.com">JavaScriptMVC</a></li>
+		          <li><a href="http://canjs.com" class="active">CanJS</a></li>
+		          <li><a href="http://jquerypp.com">jQuery++</a></li>
+		          <li><a href="http://stealjs.com">StealJS</a></li>
+		          <li><a href="http://funcunit.com">FuncUnit</a></li>
+		          <li><a href="http://documentjs.com">DocumentJS</a></li>
+		        </ul>
+			</div>
+			
+			<ul class="nav">
+		        <li >
+	              <a href="../index.html">Home</a>
+                </li>
+		       <li class='active'><a href='index.html'>guides</a></li>
+		       <li><a href='../docs/index.html'>api</a></li>
+		        <li class=" community-menu">
+		          <a href="../community.html#!forums">Community</a>
+		          <ul class="dropdown-menu">
+		            <li><a href="https://forum.javascriptmvc.com/canjs">Forums</a></li>
+		            <li><a href="http://webchat.freenode.net/?channels=canjs">IRC</a></li>
+		            <li><a href="http://bitovi.bithub.com/canjs/app/">Apps</a></li>
+		            <li><a href="http://bitovi.bithub.com/canjs/plugin/">Plugins</a></li>
+		            <li><a href="http://bitovi.bithub.com/canjs/article/">Articles</a></li>
+		            <li><a href="http://github.com/bitovi/canjs">Github</a></li>
+		            <li><a href="http://twitter.com/canjs">Twitter</a></li>
+		            <li><a href="http://bitovi.github.io/canjsmeetup/">Meetups</a></li>
+		          </ul>
+		        </li>
+		        <li >
+	              <a href="../blog/index.html">Blog</a>
+                </li>
+		        <li >
+	              <a href="../download.html">Download</a>
+                </li>
+	      	</ul>
+			
+			<div class="pull-right">
+				<div class="bitovi-menu">
+					<a href="http://bitovi.com" class="bitovi icon-bits">Bitovi</a>
+					<ul class="dropdown-menu">
+						<li><a href="http://bitovi.com">Bitovi.com</a></li>
+						<li><a href="http://bitovi.com/blog/">Blog</a></li>
+						<li><a href="http://bitovi.com/design/">Design</a></li>
+						<li><a href="http://bitovi.com/development/">Development</a></li>
+						<li><a href="http://bitovi.com/training/">Training</a></li>
+						<li><a href="http://bitovi.com/open-source/">Open Source</a></li>
+						<li><a href="http://bitovi.com/people/">People</a></li>
+						<li><a href="http://bitovi.com/contact/">Contact Us</a></li>
+					</ul>
+				</div>
+			</div>
+			
+		</nav>
+	</header>
+
+	
+<div class="container api">
+
+	
+	<nav class="sidebar">
+		
+		<h2 id="version">
+	<select id='versions'></select>
+</h2>
+<ul class="api">
+	<!-- First Level -->
+	
+	   <li class="search-container">
+	   		<a href="Why.html" data-search="Why CanJS?">
+				Why CanJS?
+			</a>
+			
+	   </li>
+	
+	   <li class="search-container">
+	   		<a href="Using.html" data-search="Setting up CanJS">
+				Setting up CanJS
+			</a>
+			
+	   </li>
+	
+	   <li class="search-container active">
+	   		<a href="Tutorial.html" data-search="Getting Started Tutorial">
+				Getting Started Tutorial
+			</a>
+			
+				
+	<ul class="primary-grouping">
+		
+			
+				
+				
+					<li class="search-container  ">
+						<a 	class="page" 
+							href="Setup.html" 
+							data-search="Setup">
+							Setup
+						</a>
+						
+					</li>
+				
+			
+			
+		
+			
+				
+				
+					<li class="search-container  ">
+						<a 	class="page" 
+							href="ApplicationFoundations.html" 
+							data-search="Application Foundations">
+							Application Foundations
+						</a>
+						
+					</li>
+				
+			
+			
+		
+			
+				
+				
+					<li class="search-container  ">
+						<a 	class="page" 
+							href="Components.html" 
+							data-search="Getting to Know Components">
+							Getting to Know Components
+						</a>
+						
+					</li>
+				
+			
+			
+		
+			
+				
+				
+					<li class="search-container  ">
+						<a 	class="page" 
+							href="MoreOnComponents.html" 
+							data-search="More on Components">
+							More on Components
+						</a>
+						
+					</li>
+				
+			
+			
+		
+			
+				
+				
+					<li class="search-container  ">
+						<a 	class="page" 
+							href="Models.html" 
+							data-search="Models (&amp; Fixtures)">
+							Models (&amp; Fixtures)
+						</a>
+						
+					</li>
+				
+			
+			
+		
+			
+				
+				
+					<li class="search-container  ">
+						<a 	class="page" 
+							href="SendingDataToAService.html" 
+							data-search="Sending Data to a Service">
+							Sending Data to a Service
+						</a>
+						
+					</li>
+				
+			
+			
+		
+			
+				
+				
+					<li class="search-container  ">
+						<a 	class="page" 
+							href="CreatingTheMenuComponent.html" 
+							data-search="Creating the Menu Component">
+							Creating the Menu Component
+						</a>
+						
+					</li>
+				
+			
+			
+		
+			
+				
+				
+					<li class="search-container active  expanded">
+						<a 	class="page" 
+							href="AppState.html" 
+							data-search="App State &amp; Basic Routing">
+							App State &amp; Basic Routing
+						</a>
+						
+							
+						
+					</li>
+				
+			
+			
+		
+			
+				
+				
+					<li class="search-container  ">
+						<a 	class="page" 
+							href="Define.html" 
+							data-search="The Define Plugin">
+							The Define Plugin
+						</a>
+						
+					</li>
+				
+			
+			
+		
+			
+				
+				
+					<li class="search-container  ">
+						<a 	class="page" 
+							href="Routing.html" 
+							data-search="Route Formatting &amp; Serialization">
+							Route Formatting &amp; Serialization
+						</a>
+						
+					</li>
+				
+			
+			
+		
+			
+				
+				
+					<li class="search-container  ">
+						<a 	class="page" 
+							href="Recap.html" 
+							data-search="Recap">
+							Recap
+						</a>
+						
+					</li>
+				
+			
+			
+		
+	</ul>
+
+			
+	   </li>
+	
+	   <li class="search-container">
+	   		<a href="Recipes.html" data-search="Recipes">
+				Recipes
+			</a>
+			
+	   </li>
+	
+	   <li class="search-container">
+	   		<a href="contributing.html" data-search="How to Contribute">
+				How to Contribute
+			</a>
+			
+	   </li>
+	
+	   <li class="search-container">
+	   		<a href="changelog.html" data-search="Changelog">
+				Changelog
+			</a>
+			
+	   </li>
+	
+	   <li class="search-container">
+	   		<a href="license.html" data-search="License">
+				License
+			</a>
+			
+	   </li>
+	
+	   <li class="search-container">
+	   		<a href="migrating.html" data-search="Migrating to 2.0">
+				Migrating to 2.0
+			</a>
+			
+	   </li>
+	
+	   <li class="search-container">
+	   		<a href="roadmap.html" data-search="Roadmap">
+				Roadmap
+			</a>
+			
+	   </li>
+	
+</ul>
+	</nav>
+	
+	
+	
+	<article class="content docs">
+	
+	
+		
+		<section class="title">
+			<div class="heading">
+<h1>App State &amp; Basic Routing</h1>
+	<ul class="tags">
+		<li>page</li>
+	</ul>
+	
+	
+</div>
+
+<div class="sub-heading">
+	
+	
+		<span class="module">AppState</span>
+	
+	
+	
+	<span class="inherits">&nbsp;</span>
+</div>
+
+<ul class="links">
+	
+	
+		<li><a href="/Users/akagomez/Sites/bitovi/canjs">source</a></li>
+	
+	
+	
+</ul>
+<br />
+		</section>
+		
+		
+		
+		<section class="contents">
+		</section>
+		
+		
+		
+
+		
+
+		
+			
+		
+		
+		
+		
+
+		
+		<section class="comment">
+			<div class="getting-started">
+<hr />
+<p><strong>In this Chapter</strong></p>
+<ul>
+<li>AppState</li>
+<li>Basic Routing</li>
+<li>Binding the AppState Object to the Application and Routes</li>
+</ul>
+<p>Get the code for: <a href="https://github.com/bitovi/canjs/blob/guides-overhaul/guides/examples/PlaceMyOrder/ch-7_canjs-getting-started.zip?raw=true">chapter 7</a></p>
+<hr />
+<p>As mentioned in the <a href="Tutorial.html">introduction</a>, CanJS suggests using a global
+AppState object to manage the state of your application. The AppState object
+is bound to two things:</p>
+<ol>
+<li>The application's base template</li>
+<li>The application's routing</li>
+</ol>
+<p>Since you already know about creating instances of <code>can.Map</code>, creating an
+AppState object, which is a <code>can.Map</code>, will be easy. Let's see how this works.
+Open up your <code>app.js</code> file, and update it as shown below. Note that the
+AppState object is a <code>can.Map</code>—i.e., it is observable. You should also notice
+that we're creating our <code>can.Map</code> in a new way—using the define plugin, which
+we'll discuss more below:</p>
+<pre><code>$(function () {
+
+   var AppState = can.Map.extend({
+    define: {
+      restaurant: {
+        value: {}
+      },
+      menus: {
+        value: null
+      },
+      confirmation: {
+        value: {}
+      }
+    }
+  });
+
+  var appState = new AppState();
+
+  // Bind the application state to the root of the application
+  $('#can-app').html(can.view('base_template.stache', appState));
+
+  can.route.map(appState);
+
+  can.route.ready();
+
+});
+</code></pre>
+<h2>Routing</h2>
+<p>Before we dive into the details of the AppState object,
+let's quickly discuss routing. Routing in CanJS allows
+us to manage browser history and client state by synchronizing the
+<code>window.location.hash</code> with a <code>can.Map</code>. In other words, we can use routing to
+reflect the state of our application, or set the state of our application. One
+of the things that makes routing powerful is that it records the state of the
+application in the browser's history. We'll see some specific examples of this
+as we proceed.</p>
+<p>In our application, we setup routing by:</p>
+<ul>
+<li>defining the properties of our AppState object,</li>
+<li>binding that object to the route with a call to <code>can.route.map</code>, and</li>
+<li>calling <code>can.route.ready()</code>, which sets up two-way binding between the
+browser's <code>window.location.hash</code> and the <code>can.route</code>'s internal <code>can.Map</code>.</li>
+</ul>
+<p>Unless we specify otherwise, which we'll see how to do below, <em>each property
+we define on our  AppState will map to a potential route</em>. In the
+AppState we've defined, we will, by default, have the following
+<em>potential</em> routes:</p>
+<ul>
+<li>restaurant</li>
+<li>menus, and</li>
+<li>confirmation</li>
+</ul>
+<p>Let's take a moment, now, to see how that works.</p>
+<p>Add the following line of code to <code>app.js</code>:</p>
+<pre><code>can.route.ready();
+
+//--&gt; Add this line, below the line above:
+appState.attr('restaurant', 'Spago');
+</code></pre>
+<p>Now, refresh your app in the browser. The URL bar should look something like
+this:</p>
+<p><img src="../can/guides/images/7_application_state_routing/DefaultRouteExample_1.png" alt="" /></p>
+<p>Note that, after we initialized our routes, updating the value of our
+AppState's restaurant property caused the route to update as well.
+The value of the restaurant and menus properties were serialized and appended
+to the <code>window.location.hash</code>.</p>
+<p>Let's see what happens if we adjust the value of the hash. To monitor this
+change, we'll need to make a slight adjustment to our AppState object. Modify
+the restaurant property as follows:</p>
+<pre><code>restaurant: {
+  value: {},
+  set: function(newValue) {
+    if (typeof newValue === 'string') {
+      alert(newValue);
+    }
+    return newValue;
+  }
+},
+</code></pre>
+<p>Refresh your app in the browser. The first thing you should notice is that you
+get an alert box (or two) with the word &quot;Spago&quot; in it. By adding the set
+function above, we're controlling what happens when the AppState's
+restaurant property is set. More on that later. Click OK on the alert, go to
+the browser's URL bar, change the URL as follows:</p>
+<p><img src="../can/guides/images/7_application_state_routing/DefaultRouteExample_2.png" alt="" /></p>
+<p>Once you submit that URL, you should see an alert box that reads:</p>
+<p><img src="../can/guides/images/7_application_state_routing/DefaultRouteChangeAlert.png" alt="" /></p>
+<h2>Application Binding</h2>
+<p>It was mentioned earlier that we bound our AppState to the
+application's <code>base_template.stache</code>. This is the key to connecting the
+AppState to our components. We do that by passing AppState
+attributes to the components through their custom HTML tags in
+<code>base_template.stache</code>.</p>
+<p>Open up <code>base_template.stache</code> and make the following changes:</p>
+<pre><code>&lt;site-menu menus=&quot;{menus}&quot; restaurant=&quot;{restaurant}&quot;&gt;&lt;/site-menu&gt;
+&lt;order-form menus=&quot;{menus}&quot; confirmation=&quot;{confirmation}&quot;&gt;&lt;/order-form&gt;
+&lt;restaurant-list restaurant=&quot;{restaurant}&quot;&gt;&lt;/restaurant-list&gt;
+</code></pre>
+<p>In the code above, we passed the <code>menus</code> and <code>restaurant</code> attributes to our
+Site Menu component, <code>menus</code> and <code>confirmation</code> to the Order Form components,
+and the <code>restaurant</code> attribute to the Restaurant List component. <em>These
+attributes will automatically be included in the scope of the components</em>.</p>
+<p>Below is a diagram detailing how the connections work for connecting the
+restaurant property of the AppState to the Restaurant List component:</p>
+<p><img src="../can/guides/images/7_application_state_routing/AppStateBindingMap.png" alt="" /></p>
+<p>Let's update our components to communicate with our AppState.</p>
+<p>Open up the <code>restaurant_list</code> file and edit it as follows;</p>
+<pre><code>var RestaurantListViewModel = can.Map.extend({
+  define: {
+    currentRestaurant: {
+      value: {}
+    },
+    currentRestaurantIndex: {
+      value: {},
+      type: 'number',
+      set: function(newValue) {
+        if(!isNaN(newValue)) {
+          this.attr('currentRestaurant', this.attr('restaurants')[newValue]);
+        }
+        else {
+          this.removeAttr('currentRestaurant');
+        }
+        return newValue;
+      }
+    },
+    visible: {
+      value: true,
+      type: 'boolean'
+    },
+    selected: {
+      value: {}
+    },
+    restaurants: {
+      value: function() {
+        return new RestaurantModel.List({})
+      }
+    }
+  },
+  showMenu: function () {
+    // Sets the restaurant value on the parent scope (AppState)
+    this.attr('restaurant', this.attr('currentRestaurant'));
+    alert(this.attr('currentRestaurant.name'));
+  }
+
+});
+
+can.Component.extend({
+  tag: 'restaurant-list',
+  template: can.view('components/restaurant_list/restaurant_list.stache'),
+  scope: RestaurantListViewModel
+});
+</code></pre>
+<p>Note the <code>showMenu</code> function. From this function we update the <code>restaurant</code>
+value that was passed in to the <code>can.Component</code>'s custom HTML tag. Additionally,
+we've added a <code>define</code> attribute. The <code>define</code> attribute is used to control the
+behavior of attributes on a <code>can.Component</code>. We'll go into detail on <code>define</code> in
+the <a href="Define.html">next chapter</a>.</p>
+<p>Next, open up <code>restaurant_list.stache</code> and link the PlaceOrder button with the
+<code>showMenu</code> function we've defined, as follows:</p>
+<pre><code>&lt;button can-click=&quot;showMenu&quot;&gt;
+  View Order Form
+&lt;/button&gt;
+</code></pre>
+<p>We've removed the DOM code from our View Model, and are now working directly
+with the application. In addition, we added code that would show and hide the content
+of the <code>can.Component</code> to our ViewModel. We need to update our view template to reflect these
+changes. In the same file (<code>restaurant_list.stache</code>), update the select dropdown
+in the template as follows:</p>
+<pre><code>{{#if visible}}
+  &lt;header&gt;
+    &lt;label&gt;Select a Restaurant:&lt;/label&gt;
+
+    &lt;select class=&quot;form-control&quot; can-value=&quot;currentRestaurantIndex&quot;&gt;
+      &lt;option value=&quot;-1&quot;&gt;&lt;/option&gt;
+      {{#each restaurants}}
+        &lt;option value=&quot;{{@index}}&quot;&gt;{{name}}&lt;/option&gt;
+      {{/each}}
+    &lt;/select&gt;
+  &lt;/header&gt;
+
+  {{#currentRestaurant}}
+  &lt;!-- Code removed for brevity --&gt;
+  {{/currentRestaurant}}
+{{/if}}
+
+</code></pre>
+<p>What we've done above is to make a connection between the index of the select
+dropdown and the index of the restaurants list in the <code>can.Component</code>'s scope.
+Whenever the <code>currentRestaurantIndex</code> is updated, its <code>set</code> function is called,
+which updates the <code>currentRestaurant</code> property.</p>
+<p><img src="../can/guides/images/7_application_state_routing/SelectMapping.png" alt="" /></p>
+<p>Now, refresh your application, select a restaurant from the list, then click
+the place order button. You should see something like the following:</p>
+<p><img src="../can/guides/images/7_application_state_routing/FirstComponentToAppStateCommunication.png" alt="" /></p>
+<p>Next, let's remove the code in <code>app.js</code> that sets the restaurant to &quot;Spago&quot; by default:</p>
+<pre><code>//--&gt; Remove this line:
+appState.attr('restaurant', 'Spago');
+</code></pre>
+<p>Now that we can see the connection between the component and the AppState,
+let's make the code a little more useful. Update your AppState object, as follows:</p>
+<pre><code>define: {
+  restaurant: {
+    value: {},
+    set: function (restaurant) {
+      if (restaurant.restaurantId) {
+        this.attr('menus', new RestaurantMenusModel.List({id: restaurant.restaurantId}));
+        this.attr('restaurantName', restaurant.name);
+      }
+      return restaurant;
+    }
+  },
+  ...
+}
+</code></pre>
+<p>This will be a very common pattern in your applications. This setter is our
+event handler. Any time a restaurant is selected (i.e., the AppState's
+restaurant property is updated), we obtain its menus from our service,
+and then update the AppState's menus attribute.</p>
+<p>To make the <code>&lt;order-form&gt;</code> component show and the <code>&lt;restaurant-list&gt;</code> component
+hide, we use conditional stache tags in <code>base_template.stache</code>, as shown below:</p>
+<pre><code>&lt;site-menu menus=&quot;{menus}&quot; restaurant=&quot;{restaurant}&quot;&gt;&lt;/site-menu&gt;
+{{#if menus}}
+  &lt;order-form menus=&quot;{menus}&quot; restaurant-name=&quot;{restaurant.name}&quot;&gt;&lt;/order-form&gt;
+{{else}}
+  &lt;restaurant-list restaurant=&quot;{restaurant}&quot;&gt;&lt;/restaurant-list&gt;
+{{/if}}
+</code></pre>
+<p>When the AppState's <code>menus</code> attribute has a value, the order form is
+displayed. Otherwise, the restaurant list is displayed. To see this in action,
+select a restaurant from the list and click the &quot;Place My Order!&quot;
+button. You should see something like this:</p>
+<p><img src="../can/guides/images/7_application_state_routing/OrderFormDisplayed.png" alt="" /></p>
+<hr />
+<p><span class="pull-left"><a href="CreatingTheMenuComponent.html">&lsaquo; Creating the Menu Component</a></span>
+<span class="pull-right"><a href="Define.html">The Define Plugin &rsaquo;</a></span></p>
+</div>
+
+		</section>
+		
+		
+
+		
+	
+	
+	</article>
+	
+	
+
+</div>
+
+
+
+
+
+	
+	
+	<footer>
+		<nav class="container">
+			<a class="brand" href="index.html"></a>
+			<ul class='nav'>
+				<li >
+	              <a href="../index.html">Home</a>
+	            </li>
+		        <li class='active'><a href='index.html'>guides</a></li>
+		        <li><a href='../docs/index.html'>api</a></li>
+		        <li class="">
+		          <a href="../community.html#!forums">Community</a>
+		        </li>
+		        <li >
+	              <a href="../blog/index.html">Blog</a>
+	            </li>
+		        <li >
+	              <a href="../download.html">Download</a>
+	            </li>
+            </ul>
+		</nav>
+	</footer>
+	
+
+    
+    <script type="text/javascript">
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-2302003-11']);
+	  _gaq.push(['_setDomainName', 'canjs.com']);
+	  _gaq.push(['_setAllowLinker', true]);
+	  _gaq.push(['_trackPageview']);
+	
+	  (function() {
+	  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+	
+	</script>
+	
+	<script type="text/javascript">
+		var docObject = {"type":"page","name":"AppState","src":"guides/getting-started-tutorial/app-state.md","description":"","title":"App State & Basic Routing","parent":"Tutorial","order":8,"disabletableofcontents":true,"comment":" ","ignoreTemplateRender":true,"templates":"/Users/akagomez/Sites/bitovi/canjs.com/theme/templates","static":"/Users/akagomez/Sites/bitovi/canjs.com/theme/static","versionsSelectText":"CanJS v<%= version %>","glob":{"pattern":"{guides/*.md,guides/**/*.md,*.md}","ignore":"{node_modules,bower_components}/**/*","cwd":"/Users/akagomez/Sites/bitovi/canjs.com/can"},"dest":"/Users/akagomez/Sites/bitovi/canjs.com/guides","generators":["html"],"urls":{"builderData":"http://bitbuilder.herokuapp.com/canjs","builder":"http://bitbuilder.herokuapp.com/can.custom.js","bithub":"http://bitovi.bithub.com/api/v1/events/","cdn":"//canjs.com/release/","github":"https://github.com/bitovi/canjs.com"},"versions":[{"branch":"master","number":"2.1"},{"number":"2.0"},{"number":"1.1"}],"defaultDownloadVersion":"2.2.4","docConfigDest":"../documentjs.json","project":{"version":"2.2","name":"canjs","source":"/Users/akagomez/Sites/bitovi/canjs"}};
+	</script>
+	
+	
+		<script>
+		  steal = {
+		    instantiated: {
+		      "bundles/static.css!$css" : null
+		    }
+		  }
+		</script>
+		<script type='text/javascript' 
+				data-main="static"
+				data-config="./static/config.js"
+				src="./static/steal.production.js"
+		    		bundles-path="bundles"></script>
+	
+	
+</body>
+
+</html>

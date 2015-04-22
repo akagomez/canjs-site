@@ -1135,31 +1135,8 @@ anyway. This is for when foo is a helper in <code>{{foo}}</code>.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>				<span class="hljs-keyword">var</span> valueAndLength = <span class="hljs-keyword">new</span> can.Compute(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
-					<span class="hljs-keyword">var</span> value;
-					<span class="hljs-keyword">if</span> (can.isFunction(name) &amp;&amp; name.isComputed) {
-						value = name();
-					} <span class="hljs-keyword">else</span> {
-						value = name;
-					}
-					<span class="hljs-keyword">var</span> len,
-						arrayLike = utils.isArrayLike(value),
-						isObserveList;
-					<span class="hljs-keyword">if</span> ( arrayLike ) {
-						isObserveList = utils.isObserveLike(value);
-						len = isObserveList ? value.attr(<span class="hljs-string">"length"</span>) : value.length;
-					}
-					<span class="hljs-keyword">return</span> {
-						
-						value: value,
-						length: len,
-						isObserveList: isObserveList,
-						isArrayLike: arrayLike
-					};
-				});
-				convertToScopes(helperOptions, scope, options, nodeList, truthyRenderer, falseyRenderer);
-				<span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
-					<span class="hljs-keyword">var</span> data = valueAndLength.get();</pre></div></div>
+            <div class="content"><div class='highlight'><pre>				convertToScopes(helperOptions, scope, options, nodeList, truthyRenderer, falseyRenderer);
+				<span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{</pre></div></div>
             
         </li>
         
@@ -1174,7 +1151,12 @@ anyway. This is for when foo is a helper in <code>{{foo}}</code>.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>					<span class="hljs-keyword">var</span> value = data.value;</pre></div></div>
+            <div class="content"><div class='highlight'><pre>					<span class="hljs-keyword">var</span> value;
+					<span class="hljs-keyword">if</span> (can.isFunction(name) &amp;&amp; name.isComputed) {
+						value = name();
+					} <span class="hljs-keyword">else</span> {
+						value = name;
+					}</pre></div></div>
             
         </li>
         
@@ -1189,10 +1171,10 @@ anyway. This is for when foo is a helper in <code>{{foo}}</code>.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>					<span class="hljs-keyword">if</span> (data.isArrayLike ) {
-						<span class="hljs-keyword">var</span> isObserveList = data.isObserveList;
+            <div class="content"><div class='highlight'><pre>					<span class="hljs-keyword">if</span> (utils.isArrayLike(value) ) {
+						<span class="hljs-keyword">var</span> isObserveList = utils.isObserveLike(value);
 						
-						<span class="hljs-keyword">if</span>(data.length) {
+						<span class="hljs-keyword">if</span>(isObserveList ? value.attr(<span class="hljs-string">"length"</span>) : value.length) {
 							<span class="hljs-keyword">return</span> (stringOnly ? getItemsStringContent: getItemsFragContent  )
 								(value, isObserveList, helperOptions, options);
 						} <span class="hljs-keyword">else</span> {

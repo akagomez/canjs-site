@@ -545,7 +545,7 @@ anywhere.</p>
 					<span class="hljs-string">"@element"</span>: $el,
 					<span class="hljs-string">"@event"</span>: ev,
 					<span class="hljs-string">"@viewModel"</span>: viewModel,
-					<span class="hljs-string">"@scope"</span>: data.scope,
+					<span class="hljs-string">"@scope"</span>: viewModel,
 					<span class="hljs-string">"@context"</span>: data.scope._context
 				});</pre></div></div>
             
@@ -570,7 +570,9 @@ from our method arguments.</p>
 					can.each(attrInfo.hash, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(val, key)</span> </span>{
 						<span class="hljs-keyword">if</span> (val &amp;&amp; val.hasOwnProperty(<span class="hljs-string">"get"</span>)) {
 							<span class="hljs-keyword">var</span> s = !val.get.indexOf(<span class="hljs-string">"@"</span>) ? localScope : data.scope;
-							hash[key] = s.read(val.get, {}).value;
+							hash[key] = s.read(val.get, {
+								isArgument: <span class="hljs-literal">true</span>
+							}).value;
 						} <span class="hljs-keyword">else</span> {
 							hash[key] = val;
 						}
@@ -598,7 +600,9 @@ prepend it to our argument list.</p>
 						arg = attrInfo.args[i];
 						<span class="hljs-keyword">if</span> (arg &amp;&amp; arg.hasOwnProperty(<span class="hljs-string">"get"</span>)) {
 							<span class="hljs-keyword">var</span> s = !arg.get.indexOf(<span class="hljs-string">"@"</span>) ? localScope : data.scope;
-							args.unshift(s.read(arg.get, {}).value);
+							args.unshift(s.read(arg.get, {
+								isArgument: <span class="hljs-literal">true</span>
+							}).value);
 						} <span class="hljs-keyword">else</span> {
 							args.unshift(arg);
 						}

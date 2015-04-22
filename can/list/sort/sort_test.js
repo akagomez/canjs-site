@@ -11,7 +11,8 @@ steal("can/list/sort", "can/test", "can/view/mustache", "can/view/stache", "can/
 		}, {
 			name: 'Mihael'
 		}]);
-		list.attr('comparator','name');
+		list.comparator = 'name';
+		list.sort();
 		// events on a list
 		// - move - item from one position to another
 		//          due to changes in elements that change the sort order
@@ -110,7 +111,8 @@ steal("can/list/sort", "can/test", "can/view/mustache", "can/view/stache", "can/
 			priority: 3,
 			name: 'mid'
 		}]);
-		list.attr('comparator','priority');
+		list.comparator = 'priority';
+		list.sort();
 		equal(list[0].name, 'high');
 	});
 
@@ -141,8 +143,8 @@ steal("can/list/sort", "can/test", "can/view/mustache", "can/view/stache", "can/
 				})
 			})
 		]);
-		list.attr('comparator','func');
-
+		list.comparator = 'func';
+		list.sort();
 		equal(list.attr()[0].text, 'Aaa');
 		equal(list.attr()[1].text, 'abb');
 		equal(list.attr()[2].text, 'baa');
@@ -165,7 +167,7 @@ steal("can/list/sort", "can/test", "can/view/mustache", "can/view/stache", "can/
 			var items = new can.List([{
 				id: 'b'
 			}]);
-			items.attr('comparator', 'id');
+			items.comparator = 'id';
 
 			// Render the template and place inside the <div>
 			el.appendChild(renderer({
@@ -201,7 +203,7 @@ steal("can/list/sort", "can/test", "can/view/mustache", "can/view/stache", "can/
 				{ id: 'a' },
 				{ id: 'c' }
 			]);
-			items.attr('comparator', 'id');
+			items.comparator = 'id';
 
 			// Render the template and place inside the <div>
 			el.appendChild(renderer({
@@ -234,7 +236,7 @@ steal("can/list/sort", "can/test", "can/view/mustache", "can/view/stache", "can/
 				{ id: 'b' },
 				{ id: 'c' }
 			]);
-			items.attr('comparator','id');
+			items.comparator = 'id';
 
 			// Render the template and place inside the <div>
 			el.appendChild(renderer({
@@ -273,7 +275,7 @@ steal("can/list/sort", "can/test", "can/view/mustache", "can/view/stache", "can/
 				{ id: 'y' },
 				{ id: 'z' }
 			]);
-			items.attr('comparator', 'id');
+			items.comparator = 'id';
 
 			// Render the template and place inside the <div>
 			el.appendChild(renderer({
@@ -325,7 +327,8 @@ steal("can/list/sort", "can/test", "can/view/mustache", "can/view/stache", "can/
 			equal(firstElText, 4, 'First LI is a "4"');
 
 			// Sort the list in-place
-			items.attr('comparator' , 'id');
+			items.comparator = 'id';
+			items.sort();
 
 			firstElText = el.getElementsByTagName('li')[0].innerText;
 
@@ -334,7 +337,7 @@ steal("can/list/sort", "can/test", "can/view/mustache", "can/view/stache", "can/
 
 		});
 
-		/*test('Supress events during sort with ' + templateEngine + ' using the ' + helperType +' helper', function () {
+		test('Supress events during sort with ' + templateEngine + ' using the ' + helperType +' helper', function () {
 			var el = document.createElement('div');
 
 			var items = new can.List([
@@ -361,7 +364,7 @@ steal("can/list/sort", "can/test", "can/view/mustache", "can/view/stache", "can/
 			equal(firstElText, 4, 'First LI is a "4"');
 
 			// Sort the list in-place
-			items.attr('comparator' , 'id');
+			items.comparator = 'id';
 
 			// Use the default comparator, but don't fire events
 			items.sort(undefined, true);
@@ -371,13 +374,13 @@ steal("can/list/sort", "can/test", "can/view/mustache", "can/view/stache", "can/
 			// Check that the "4" is at the beginning of the list
 			equal(firstElText, 4, 'The first LI has not changed as a result of the sort');
 
-		});*/
+		});
 
 		test('Push multiple items with ' + templateEngine + ' using the ' + helperType +' helper (#1509)', function () {
 			var el = document.createElement('div');
 
 			var items = new can.List();
-			items.attr('comparator' , 'id');
+			items.comparator = 'id';
 
 			// Render the template and place inside the <div>
 			el.appendChild(renderer({
@@ -405,9 +408,9 @@ steal("can/list/sort", "can/test", "can/view/mustache", "can/view/stache", "can/
 	var blockHelperTemplate = '<ul>{{#items}}<li>{{id}}</li>{{/items}}';
 	var eachHelperTemplate = '<ul>{{#each items}}<li>{{id}}</li>{{/each}}';
 
-	renderedTests('Mustache', '{{#block}}', can.mustache(blockHelperTemplate));
+	renderedTests('Mustache', '{{#block}}', can.view.mustache(blockHelperTemplate));
 	renderedTests('Stache', '{{#block}}', can.stache(blockHelperTemplate));
-	renderedTests('Mustache', '{{#each}}', can.mustache(eachHelperTemplate));
+	renderedTests('Mustache', '{{#each}}', can.view.mustache(eachHelperTemplate));
 	renderedTests('Stache', '{{#each}}', can.stache(eachHelperTemplate));
 
 
@@ -419,9 +422,10 @@ steal("can/list/sort", "can/test", "can/view/mustache", "can/view/stache", "can/
 
 	test('Sort primitive values with a comparator function defined', function () {
 		var list = new can.List([8,5,2,1,5,9,3,5]);
-		list.attr('comparator' , function (a, b) {
+		list.comparator = function (a, b) {
 			return a === b ? 0 : a < b ? 1 : -1;
-		});
+		};
+		list.sort();
 		equal(list[0], 9, 'Sorted the list in descending order');
 	});
 
@@ -433,7 +437,7 @@ steal("can/list/sort", "can/test", "can/view/mustache", "can/view/stache", "can/
 			new can.Model({ name: 'Pim' })
 		]);
 
-		list.attr('comparator' , 'name');
+		list.comparator = 'name';
 
 		list.bind('destroyed', function (ev) {
 			ok(true, '"destroyed" event triggered');
@@ -442,74 +446,6 @@ steal("can/list/sort", "can/test", "can/view/mustache", "can/view/stache", "can/
 		list.attr(0).destroy();
 
 		equal(list.attr('length'), 2, 'item removed');
-	});
-	
-	test("sorting works with #each (#1566)", function(){
-		
-		var heroes = new can.List([ { id: 1, name: 'Superman'}, { id: 2, name: 'Batman'} ]);
-		
-		heroes.attr('comparator', 'name');
-		
-		var template = can.stache("<ul>\n{{#each heroes}}\n<li>{{id}}-{{name}}</li>\n{{/each}}</ul>");
-		
-		var frag = template({
-			heroes: heroes
-		});
-		
-		var lis = frag.childNodes[0].getElementsByTagName("li");
-		
-		equal(lis[0].innerHTML, "2-Batman");
-		equal(lis[1].innerHTML, "1-Superman");
-		
-		heroes.attr('comparator', 'id');
-		
-		equal(lis[0].innerHTML, "1-Superman");
-		equal(lis[1].innerHTML, "2-Batman");
-	});
-	
-	test("sorting works with comparator added after a binding", function(){
-		var heroes = new can.List([ { id: 1, name: 'Superman'}, { id: 2, name: 'Batman'} ]);
-		
-		var template = can.stache("<ul>\n{{#each heroes}}\n<li>{{id}}-{{name}}</li>\n{{/each}}</ul>");
-		
-		var frag = template({
-			heroes: heroes
-		});
-		
-		heroes.attr('comparator', 'id');
-		
-		heroes.attr("0.id",3);
-		
-		var lis = frag.childNodes[0].getElementsByTagName("li");
-		
-		equal(lis[0].innerHTML, "2-Batman");
-		equal(lis[1].innerHTML, "3-Superman");
-		
-	});
-	
-	test("removing comparator tears down bubbling", function(){
-		
-		var heroes = new can.List([ { id: 1, name: 'Superman'}, { id: 2, name: 'Batman'} ]);
-		var lengthHandler = function(){};
-		
-		heroes.bind("length",lengthHandler);
-		
-		ok(!heroes[0]._bindings, "item has no bindings");
-		
-		heroes.attr('comparator', 'id');
-		
-		heroes.attr("0.id",3);
-		
-		ok(heroes._bindings, "list has bindings");
-		ok(heroes[0]._bindings, "item has bindings");
-		
-		heroes.removeAttr('comparator');
-		
-		ok(!heroes[0]._bindings, "has bindings");
-		ok(heroes._bindings, "list has bindings");
-		
-		heroes.unbind("length",lengthHandler);
-		ok(!heroes._bindings, "list has no bindings");
 	});
 
 });

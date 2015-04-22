@@ -1726,26 +1726,26 @@ steal('can/util',
 		 * usually want to return a `can.mustache.safeString.` In this case,
 		 * you will want to manually escape parameters with `[can.esc].`
 		 *
-		 * ```
+		 * @codestart
 		 * can.mustache.registerHelper('link', function(text, url) {
 		 *   text = can.esc(text);
 		 *   url  = can.esc(url);
 		 *
-		 *   var result = '<a href="' + url + '">' + text + '</a>';
+		 *   var result = '&lt;a href="' + url + '"&gt;' + text + '&lt;/a&gt;';
 		 *   return can.mustache.safeString(result);
 		 * });
-		 * ```
+		 * @codeend
 		 *
 		 * Rendering:
-		 * ```
-		 * <div>{{link "Google", "http://google.com"}}</div>
-		 * ```
+		 * @codestart
+		 * &lt;div&gt;{{link "Google", "http://google.com"}}&lt;/div&gt;
+		 * @codeend
 		 *
 		 * Results in:
 		 *
-		 * ```
-		 * <div><a href="http://google.com">Google</a></div>
-		 * ```
+		 * @codestart
+		 * &lt;div&gt;&lt;a href="http://google.com"&gt;Google&lt;/a&gt;&lt;/div&gt;
+		 * @codeend
 		 *
 		 * As an anchor tag whereas if we would have just returned the result rather than a
 		 * `can.mustache.safeString` our template would have rendered a div with the escaped anchor tag.

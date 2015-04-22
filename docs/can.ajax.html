@@ -104,13 +104,6 @@
 	<!-- First Level -->
 	
 	   <li class="search-container">
-	   		<a href="can.elementAndAttributes.html" data-search="Elements and Attributes">
-				Elements and Attributes
-			</a>
-			
-	   </li>
-	
-	   <li class="search-container">
 	   		<a href="can.Component.html" data-search="can.Component">
 				can.Component
 			</a>
@@ -244,6 +237,8 @@
 					</li>
 				
 			
+			
+		
 			
 		
 			
@@ -895,7 +890,7 @@
 <ul class="links">
 	
 	
-		<li><a href="https://github.com/bitovi/canjs/tree/master/util/func.js">source</a></li>
+		<li><a href="/Users/akagomez/Sites/bitovi/canjs">source</a></li>
 	
 	
 	
@@ -935,7 +930,7 @@
 				<code>{Object}</code></h4>
 			<div class="description">
 				<p>Configuration options for the AJAX request.
-The list of configuration options is the same as for <a href="http://api.jquery.com/jQuery.ajax/#jQuery-ajax-settings">jQuery.ajax</a>.</p>
+The list of configuration options is the same as for <a href="http://api.jquery.com/jQuery.ajax/#jQuery-ajax-settings">jQuery.ajax()</a>.</p>
 
 			</div>
 			
@@ -950,7 +945,7 @@ The list of configuration options is the same as for <a href="http://api.jquery.
 	<div class="returns">
 		<h4><code>{<a href="can.Deferred.html" >can.Deferred</a>}</code></h4>
 		<div class="description">
-			<p>A <a href="http://canjs.com/docs/can.Deferred.html">can.Deferred</a> that resolves to the data.</p>
+			<p>A can.Deferred that resolves to the data.</p>
 
 		</div>
 		
@@ -973,14 +968,12 @@ The list of configuration options is the same as for <a href="http://api.jquery.
 
 		
 		<section class="comment">
-			<p><code>can.ajax( settings )</code> is used to make an asynchronous HTTP (AJAX) request
-similar to <a href="http://api.jquery.com/jQuery.ajax/jQuery.ajax">http://api.jquery.com/jQuery.ajax/jQuery.ajax</a>. The example below
-makes use of (can.frag)<a href="http://canjs.com/docs/can.frag.html">http://canjs.com/docs/can.frag.html</a>.</p>
+			<p><code>can.ajax( settings )</code> is used to make an asynchronous HTTP (Ajax) request
+similar to <a href="http://api.jquery.com/jQuery.ajax/">jQuery.ajax</a>.</p>
 <pre><code>can.ajax({
-    url: 'http://canjs.com/docs/can.ajax.html',
-    success: function(document) {
-        var frag = can.frag(document);
-        return frag.querySelector(&quot;.heading h1&quot;).innerText; //-&gt; can.ajax
+    url: 'ajax/farm/animals',
+    success: function(animals) {
+        can.$('.farm').html(animals);
     }
 });
 </code></pre>
@@ -1045,7 +1038,7 @@ makes use of (can.frag)<a href="http://canjs.com/docs/can.frag.html">http://canj
 	</script>
 	
 	<script type="text/javascript">
-		var docObject = {"src":"util/func.js","line":474,"codeLine":497,"type":"function","description":"Make an AJAX request.","title":"","name":"can.ajax","parent":"can.util","signatures":[{"code":"can.ajax(settings)","description":"","params":[{"types":[{"type":"Object","options":[]}],"name":"settings","description":"Configuration options for the AJAX request.\nThe list of configuration options is the same as for [jQuery.ajax](http://api.jquery.com/jQuery.ajax/#jQuery-ajax-settings)."}],"returns":{"types":[{"type":"can.Deferred"}],"description":"A [can.Deferred](http://canjs.com/docs/can.Deferred.html) that resolves to the data."}}],"comment":" ","ignoreTemplateRender":true,"templates":"/Users/justin/dev/canjs.com/theme/templates","static":"/Users/justin/dev/canjs.com/theme/static","versionsSelectText":"CanJS v<%= version %>","glob":{"ignore":["guides/*.md","{node_modules,bower_components}/**/*","lib/**/*","test/**/*","util/dojo/dojo.js","**/*_test.js","Gruntfile.js"],"pattern":"**/*.{md,js}","cwd":"/Users/justin/dev/canjs.com/can"},"dest":"/Users/justin/dev/canjs.com/docs","generators":["html"],"urls":{"builderData":"http://bitbuilder.herokuapp.com/canjs","builder":"http://bitbuilder.herokuapp.com/can.custom.js","bithub":"http://bitovi.bithub.com/api/v1/events/","cdn":"//canjs.com/release/","github":"https://github.com/bitovi/canjs.com"},"versions":[{"branch":"master","number":"2.1"},{"number":"2.0"},{"number":"1.1"}],"defaultDownloadVersion":"2.2.4","docConfigDest":"../documentjs.json","project":{"version":"2.2","name":"canjs","source":"git://github.com/bitovi/canjs#master"}};
+		var docObject = {"src":"util/func.js","line":464,"codeLine":486,"type":"function","description":"Make an AJAX request.","title":"","name":"can.ajax","parent":"can.util","signatures":[{"code":"can.ajax(settings)","description":"","params":[{"types":[{"type":"Object","options":[]}],"name":"settings","description":"Configuration options for the AJAX request.\nThe list of configuration options is the same as for [jQuery.ajax()](http://api.jquery.com/jQuery.ajax/#jQuery-ajax-settings)."}],"returns":{"types":[{"type":"can.Deferred"}],"description":"A can.Deferred that resolves to the data."}}],"comment":" ","ignoreTemplateRender":true,"templates":"/Users/akagomez/Sites/bitovi/canjs.com/theme/templates","static":"/Users/akagomez/Sites/bitovi/canjs.com/theme/static","versionsSelectText":"CanJS v<%= version %>","glob":{"ignore":["guides/*.md","guides/**/*.md","{node_modules,bower_components}/**/*","lib/**/*"],"pattern":"**/*.{md,js}","cwd":"/Users/akagomez/Sites/bitovi/canjs.com/can"},"dest":"/Users/akagomez/Sites/bitovi/canjs.com/docs","generators":["html"],"urls":{"builderData":"http://bitbuilder.herokuapp.com/canjs","builder":"http://bitbuilder.herokuapp.com/can.custom.js","bithub":"http://bitovi.bithub.com/api/v1/events/","cdn":"//canjs.com/release/","github":"https://github.com/bitovi/canjs.com"},"versions":[{"branch":"master","number":"2.1"},{"number":"2.0"},{"number":"1.1"}],"defaultDownloadVersion":"2.2.4","docConfigDest":"../documentjs.json","project":{"version":"2.2","name":"canjs","source":"/Users/akagomez/Sites/bitovi/canjs"}};
 	</script>
 	
 	

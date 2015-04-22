@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title></title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <link href="../../assets/css/vendor/morris.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/bootstrap.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/font-awesome.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/font-awesome-ie7.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/codemirror.css" rel="stylesheet">
+  <link href="../../assets/css/plato.css" rel="stylesheet">
+  <link href="../../assets/css/plato-file.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="http://github.com/jsoverson/plato">Plato on Github</a>
+    <ul class="nav navbar-nav">
+      <li>
+        <a href="../../index.html">Report Home</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="jumbotron">
+  <div class="container">
+    <h1>compute/compute.js</h1>
+  </div>
+</div>
+
+<div class="container aggregate-stats">
+  <div class="row">
+    <div class="col-md-6">
+      <h2 class="header">Maintainability <a href="http://blogs.msdn.com/b/codeanalysis/archive/2007/11/20/maintainability-index-range-and-meaning.aspx"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="A value between 0 and 100 that represents the relative ease of maintaining the code. A high value means better maintainability." data-original-title="Maintainability Index"></i></a></h2>
+      <p class="stat">73.27</p>
+    </div>
+    <div class="col-md-6">
+      <h2 class="header">Lines of code <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC"></i></h2>
+      <p class="stat">96</p>
+    </div>
+  </div>
+  <div class="row historical">
+    <div class="col-md-6">
+      <p id="chart_historical_maint" class="chart"></p>
+    </div>
+    <div class="col-md-6">
+      <p id="chart_historical_sloc" class="chart"></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h2 class="header">Difficulty  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="The difficulty measure is related to the difficulty of the program to write or understand." data-original-title="Difficulty"></i></a></h2>
+      <p class="stat">27.72</p>
+    </div>
+    <div class="col-md-6">
+      <h2 class="header">Estimated Errors  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Halstead's delivered bugs is an estimate for the number of errors in the implementation." data-original-title="Delivered Bugs"></i></a></h2>
+      <p class="stat">0.53</p>
+    </div>
+  </div>
+</div>
+
+<div class="container charts">
+  <div class="row">
+    <h2 class="header">Function weight</h2>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h3 class="chart-header">By Complexity <a href="http://en.wikipedia.org/wiki/Cyclomatic_complexity"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="This metric counts the number of distinct paths through a block of code. Lower values are better." data-original-title="Cyclomatic Complexity"></i></a></h3>
+      <div id="fn-by-complexity" class="stat"></div>
+    </div>
+    <div class="col-md-6">
+      <h3 class="chart-header">By SLOC  <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC"></i></h3>
+      <div id="fn-by-sloc" class="stat"></div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <textarea id="file-source" class="col-md-12">/* jshint maxdepth:7*/
+
+// # can.compute
+// 
+// `can.compute` allows creation of observable values
+// from the result of a funciton. Any time an observable
+// value that the function depends on changes, the
+// function automatically updates. This enables creating
+// observable data that relies on other sources, potentially
+// multiple different ones. For instance, a `can.compute` is
+// able to:
+// - Combine a first and last name into a full name and update when either changes
+// - Calculate the absolute value of an observable number, updating any time the observable number does
+// - Specify complicated behavior for getting and setting a value, as well as how to handle changes
+
+steal(&#039;can/util&#039;, &#039;can/util/bind&#039;, &#039;can/util/batch&#039;, &#039;can/compute/proto_compute.js&#039;, function (can, bind) {
+
+	// ## Reading Helpers
+	//
+	// The following methods are used to call a function that relies on
+	// observable data and to track the observable events which should 
+	// be listened to when changes occur.
+	// To do this, [`can.__reading(observable, event)`](#can-__reading) is called to
+	// &quot;broadcast&quot; the corresponding event on each read.
+	// 
+	// ### Observed
+	//
+	// An &quot;Observed&quot; is an object of observable objects and events that
+	// a function relies on. These objects and events must be listened to
+	// in order to determine when to check a function for updates.
+	// This looks like the following:
+	//
+	//     { 
+	//       &quot;map1|first&quot;: {obj: map, event: &quot;first&quot;},
+	//       &quot;map1|last&quot; : {obj: map, event: &quot;last&quot;}
+	//     }
+	// 
+	// Each object-event pair is mapped so no duplicates will be listed.
+
+	can.compute = function (getterSetter, context, eventName, bindOnce) {
+
+		var internalCompute = new can.Compute(getterSetter, context, eventName, bindOnce);
+
+		var compute = function(val) {
+			if(arguments.length) {
+				return internalCompute.set(val);
+			}
+
+			return internalCompute.get();
+		};
+
+		compute.bind = can.proxy(internalCompute.bind, internalCompute);
+		compute.unbind = can.proxy(internalCompute.unbind, internalCompute);
+		compute.isComputed = internalCompute.isComputed;
+		compute.clone = function(ctx) {
+			if(typeof getterSetter === &#039;function&#039;) {
+				context = ctx;
+			}
+
+			return can.compute(getterSetter, context, ctx, bindOnce);
+		};
+
+		compute.computeInstance = internalCompute;
+
+		return compute;
+	};
+	// Instead of calculating whether anything is listening every time,
+	// use a function to do nothing (which may be overwritten)
+	var k = function () {};
+	// A list of temporarily bound computes
+	var computes, unbindComputes = function () {
+			for (var i = 0, len = computes.length; i &lt; len; i++) {
+				computes[i].unbind(&#039;change&#039;, k);
+			}
+			computes = null;
+		};
+	// Binds computes for a moment to retain their value and prevent caching
+	can.compute.temporarilyBind = function (compute) {
+		compute.bind(&#039;change&#039;, k);
+		if (!computes) {
+			computes = [];
+			setTimeout(unbindComputes, 10);
+		}
+		computes.push(compute);
+	};
+	
+	// Whether a compute is truthy
+	can.compute.truthy = function (compute) {
+		return can.compute(function () {
+			var res = compute();
+			if (typeof res === &#039;function&#039;) {
+				res = res();
+			}
+			return !!res;
+		});
+	};
+	can.compute.async = function(initialValue, asyncComputer, context){
+		return can.compute(initialValue, {
+			fn: asyncComputer,
+			context: context
+		});
+	};
+
+
+	can.compute.read = can.Compute.read;
+
+
+	can.compute.set = can.Compute.set;
+
+	return can.compute;
+});</textarea>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p>.</p>
+  </div>
+</footer>
+
+<script type="text/html" id="complexity-popover-template">
+  <div class="complexity-notice">
+    Complexity : {{ complexity.cyclomatic }} <br>
+    Length : {{ complexity.halstead.length }} <br>
+    Difficulty : {{ complexity.halstead.difficulty.toFixed(2) }} <br>
+    Est # bugs : {{ complexity.halstead.bugs.toFixed(2) }}<br>
+  </div>
+</script>
+
+<script type="text/javascript" src="../../assets/scripts/bundles/core-bundle.js"></script>
+<script type="text/javascript" src="../../assets/scripts/bundles/codemirror.js"></script>
+<script type="text/javascript" src="../../assets/scripts/codemirror.markpopovertext.js"></script>
+<script type="text/javascript" src="report.js"></script>
+<script type="text/javascript" src="report.history.js"></script>
+<script type="text/javascript" src="../../assets/scripts/plato-file.js"></script>
+</body>
+</html>

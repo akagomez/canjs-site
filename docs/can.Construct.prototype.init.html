@@ -104,13 +104,6 @@
 	<!-- First Level -->
 	
 	   <li class="search-container">
-	   		<a href="can.elementAndAttributes.html" data-search="Elements and Attributes">
-				Elements and Attributes
-			</a>
-			
-	   </li>
-	
-	   <li class="search-container">
 	   		<a href="can.Component.html" data-search="can.Component">
 				can.Component
 			</a>
@@ -203,7 +196,7 @@
 					<li class="search-container  ">
 						<a 	class="property" 
 							href="can.Construct.constructorExtends.html" 
-							data-search="can.Construct.constructorExtends">
+							data-search="constructorExtends">
 							constructorExtends
 						</a>
 						
@@ -500,7 +493,7 @@
 <ul class="links">
 	
 	
-		<li><a href="https://github.com/bitovi/canjs/tree/master/construct/construct.js">source</a></li>
+		<li><a href="/Users/akagomez/Sites/bitovi/canjs">source</a></li>
 	
 	
 	
@@ -570,35 +563,7 @@ after <a href="can.Construct.prototype.setup.html">setup</a>. The <code>init</co
 should go, and a common thing to do in <code>init</code> is to save the arguments passed into the constructor.</p>
 <h2>Examples</h2>
 <p>First, we'll make a Person constructor that has a first and last name:</p>
-<pre><code>var Person = can.Construct.extend({
-    init: function(first, last) {
-        this.first = first;
-        this.last  = last;
-    }
-});
-
-var justin = new Person(&quot;Justin&quot;, &quot;Meyer&quot;);
-justin.first; // &quot;Justin&quot;
-justin.last; // &quot;Meyer&quot;
-</code></pre>
 <p>Then we'll extend Person into Programmer and add a favorite language:</p>
-<pre><code>var Programmer = Person.extend({
-    init: function(first, last, language) {
-        // call base's init
-        Person.prototype.init.apply(this, arguments);
-
-        // other initialization code
-        this.language = language;
-    },
-    bio: function() {
-        return &quot;Hi! I'm &quot;&quot; + this.first + &quot; &quot; + this.last +
-            &quot; and I write &quot; + this.language + &quot;.&quot;;
-    }
-});
-
-var brian = new Programmer(&quot;Brian&quot;, &quot;Moschel&quot;, 'ECMAScript');
-brian.bio(); // &quot;Hi! I'm Brian Moschel and I write ECMAScript.&quot;;
-</code></pre>
 <h2>Modified Arguments</h2>
 <p><a href="can.Construct.prototype.setup.html">setup</a> is able to modify the arguments passed to <code>init</code>.
 If you aren't receiving the exact arguments as those passed to <code>new Construct(args)</code>,
@@ -665,7 +630,7 @@ the inheritance chain.</p>
 	</script>
 	
 	<script type="text/javascript">
-		var docObject = {"type":"function","name":"can.Construct.prototype.init","parent":"can.Construct.prototype","src":"construct/construct.js","line":695,"codeLine":754,"description":"Called when a new instance of a can.Construct is created.","title":"init","signatures":[{"code":"construct.init(...args)","description":"","params":[{"types":[{"type":"*"}],"name":"args","description":"the arguments passed to the constructor (or the items of the array returned from [can.Construct::setup])"}]}],"comment":" ","ignoreTemplateRender":true,"templates":"/Users/justin/dev/canjs.com/theme/templates","static":"/Users/justin/dev/canjs.com/theme/static","versionsSelectText":"CanJS v<%= version %>","glob":{"ignore":["guides/*.md","{node_modules,bower_components}/**/*","lib/**/*","test/**/*","util/dojo/dojo.js","**/*_test.js","Gruntfile.js"],"pattern":"**/*.{md,js}","cwd":"/Users/justin/dev/canjs.com/can"},"dest":"/Users/justin/dev/canjs.com/docs","generators":["html"],"urls":{"builderData":"http://bitbuilder.herokuapp.com/canjs","builder":"http://bitbuilder.herokuapp.com/can.custom.js","bithub":"http://bitovi.bithub.com/api/v1/events/","cdn":"//canjs.com/release/","github":"https://github.com/bitovi/canjs.com"},"versions":[{"branch":"master","number":"2.1"},{"number":"2.0"},{"number":"1.1"}],"defaultDownloadVersion":"2.2.4","docConfigDest":"../documentjs.json","project":{"version":"2.2","name":"canjs","source":"git://github.com/bitovi/canjs#master"}};
+		var docObject = {"type":"function","name":"can.Construct.prototype.init","parent":"can.Construct.prototype","src":"dist/steal/can/construct/construct.js","line":555,"codeLine":614,"description":"Called when a new instance of a can.Construct is created.","title":"init","signatures":[{"code":"construct.init(...args)","description":"","params":[{"types":[{"type":"*"}],"name":"args","description":"the arguments passed to the constructor (or the items of the array returned from [can.Construct::setup])"}]}],"comment":" ","ignoreTemplateRender":true,"templates":"/Users/akagomez/Sites/bitovi/canjs.com/theme/templates","static":"/Users/akagomez/Sites/bitovi/canjs.com/theme/static","versionsSelectText":"CanJS v<%= version %>","glob":{"ignore":["guides/*.md","guides/**/*.md","{node_modules,bower_components}/**/*","lib/**/*"],"pattern":"**/*.{md,js}","cwd":"/Users/akagomez/Sites/bitovi/canjs.com/can"},"dest":"/Users/akagomez/Sites/bitovi/canjs.com/docs","generators":["html"],"urls":{"builderData":"http://bitbuilder.herokuapp.com/canjs","builder":"http://bitbuilder.herokuapp.com/can.custom.js","bithub":"http://bitovi.bithub.com/api/v1/events/","cdn":"//canjs.com/release/","github":"https://github.com/bitovi/canjs.com"},"versions":[{"branch":"master","number":"2.1"},{"number":"2.0"},{"number":"1.1"}],"defaultDownloadVersion":"2.2.4","docConfigDest":"../documentjs.json","project":{"version":"2.2","name":"canjs","source":"/Users/akagomez/Sites/bitovi/canjs"}};
 	</script>
 	
 	

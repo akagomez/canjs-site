@@ -503,7 +503,7 @@ user tried to pass something like id=”{foo}”, so give them a good warning</p
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-28">&#182;</a>
               </div>
-              <p>Cross-bind the value in the scope to this
+              <p>Cross-bind the value in the viewModel to this
 component’s viewModel</p>
 
             </div>
@@ -858,8 +858,7 @@ it’s source value just changed</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>				<span class="hljs-keyword">this</span>.scope = <span class="hljs-keyword">this</span>.viewModel = componentScope;
-				can.data(can.$(el), <span class="hljs-string">"scope"</span>, <span class="hljs-keyword">this</span>.scope);
-				can.data(can.$(el), <span class="hljs-string">"viewModel"</span>, <span class="hljs-keyword">this</span>.scope);</pre></div></div>
+				can.data(can.$(el), <span class="hljs-string">"scope"</span>, <span class="hljs-keyword">this</span>.scope);</pre></div></div>
             
         </li>
         
@@ -1523,7 +1522,24 @@ unbind <code>change</code> event listeners set by the controller.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>	
+            <div class="content"><div class='highlight'><pre>	can.scope = can.viewModel = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(el, attr, val)</span> </span>{
+		el = can.$(el);
+		<span class="hljs-keyword">var</span> scope = can.data(el, <span class="hljs-string">"scope"</span>);
+		<span class="hljs-keyword">if</span>(!scope) {
+			scope = <span class="hljs-keyword">new</span> can.Map();
+			can.data(el, <span class="hljs-string">"scope"</span>, scope);
+		}
+		<span class="hljs-keyword">switch</span> (<span class="hljs-built_in">arguments</span>.length) {
+			<span class="hljs-keyword">case</span> <span class="hljs-number">0</span>:
+			<span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:
+				<span class="hljs-keyword">return</span> scope;
+			<span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:
+				<span class="hljs-keyword">return</span> scope.attr(attr);
+			<span class="hljs-keyword">default</span>:
+				scope.attr(attr, val);
+				<span class="hljs-keyword">return</span> el;
+		}
+	};
 
 	<span class="hljs-keyword">var</span> $ = can.$;</pre></div></div>
             

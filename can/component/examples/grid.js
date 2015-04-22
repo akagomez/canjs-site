@@ -10,17 +10,17 @@ can.Component.extend({
 		},
 		'{deferreddata} change': 'update',
 		update: function () {
-			var deferred = this.viewModel.attr('deferreddata'),
-				viewModel = this.viewModel;
+			var deferred = this.scope.attr('deferreddata'),
+				scope = this.scope;
 			if (can.isDeferred(deferred)) {
 				this.element.find('tbody')
 					.css('opacity', 0.5);
 				deferred.then(function (items) {
-					viewModel.attr('items')
+					scope.attr('items')
 						.attr(items, true);
 				});
 			} else {
-				viewModel.attr('items')
+				scope.attr('items')
 					.attr(deferred, true);
 			}
 		},

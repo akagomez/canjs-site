@@ -34,11 +34,10 @@ steal("can/util", "can/view/elements.js",function(can, elements){
 			var clone = a.cloneNode(true);
 
 			return clone.innerHTML === "<xyz></xyz>";
-		})(),
-		namespacesWork = typeof document !== "undefined" && !!document.createElementNS;
+		})();
 
 	/**
-	 * @function cloneNode
+	 * @method cloneNode
 	 * @hide
 	 *
 	 * A custom cloneNode function to be used in browsers that properly support cloning
@@ -104,12 +103,8 @@ steal("can/util", "can/view/elements.js",function(can, elements){
 		
 		if(nodeType === "object") {
 			if( node.tag ) {
-				if(namespacesWork && node.namespace) {
-					el = document.createElementNS(node.namespace, node.tag);
-				} else {
-					el = document.createElement(node.tag);
-				}
-				
+				el = document.createElement(node.tag);
+			
 				if(node.attrs) {
 					for(var attrName in node.attrs) {
 						var value = node.attrs[attrName];

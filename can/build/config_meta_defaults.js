@@ -38,10 +38,6 @@ var reverseNormalize = function(name, load, baseName, baseLoad){
 		return name;
 	}
 
-	if(name === 'util/can') {
-		return 'can/util/can';
-	}
-
 	var parts = name.split("/");
 	if(parts.length > 1) {
 		parts.splice(parts.length-2,1);

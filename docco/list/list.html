@@ -86,7 +86,7 @@
 	<span class="hljs-comment">/**
 	 * @add can.List
 	 */</span>
-	<span class="hljs-keyword">var</span> list = Map.extend(
+	<span class="hljs-keyword">var</span> list = <span class="hljs-built_in">Map</span>.extend(
 		<span class="hljs-comment">/**
 		 * @static
 		 */</span>
@@ -127,7 +127,7 @@
 			 *
 			 *
 			 */</span>
-			Map: Map
+			<span class="hljs-built_in">Map</span>: <span class="hljs-built_in">Map</span>
 			<span class="hljs-comment">/**
 			 * @function can.Map.extend
 			 *
@@ -193,7 +193,7 @@
 			},
 			_triggerChange: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(attr, how, newVal, oldVal)</span> </span>{
 
-				Map.prototype._triggerChange.apply(<span class="hljs-keyword">this</span>, <span class="hljs-built_in">arguments</span>);</pre></div></div>
+				<span class="hljs-built_in">Map</span>.prototype._triggerChange.apply(<span class="hljs-keyword">this</span>, <span class="hljs-built_in">arguments</span>);</pre></div></div>
             
         </li>
         
@@ -344,7 +344,7 @@ bounds index property.</p>
 			 * Returns the serialized form of this list.
 			 */</span>
 			serialize: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
-				<span class="hljs-keyword">return</span> Map.helpers.serialize(<span class="hljs-keyword">this</span>, <span class="hljs-string">'serialize'</span>, []);
+				<span class="hljs-keyword">return</span> <span class="hljs-built_in">Map</span>.helpers.serialize(<span class="hljs-keyword">this</span>, <span class="hljs-string">'serialize'</span>, []);
 			},
 			<span class="hljs-comment">/**
 			 * @function can.List.prototype.each each
@@ -834,7 +834,7 @@ bounds index property.</p>
 			 * - _length_ The current length of the list.
 			 * If events were batched when the _length_ event was triggered, _length_
 			 * will have the length of the list when `stopBatch` was called. Because
-			 * of this, you may receive multiple _length_ events with the same
+			 * of this, you may recieve multiple _length_ events with the same
 			 * _length_ parameter.
 			 *
 			 * Here is a concrete tour through the _length_ event handler's arguments:
@@ -855,7 +855,7 @@ bounds index property.</p>
 			 */</span>
 			_attrs: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(items, remove)</span> </span>{
 				<span class="hljs-keyword">if</span> (items === <span class="hljs-literal">undefined</span>) {
-					<span class="hljs-keyword">return</span> Map.helpers.serialize(<span class="hljs-keyword">this</span>, <span class="hljs-string">'attr'</span>, []);
+					<span class="hljs-keyword">return</span> <span class="hljs-built_in">Map</span>.helpers.serialize(<span class="hljs-keyword">this</span>, <span class="hljs-string">'attr'</span>, []);
 				}</pre></div></div>
             
         </li>
@@ -885,7 +885,7 @@ bounds index property.</p>
 					<span class="hljs-keyword">var</span> curVal = <span class="hljs-keyword">this</span>[prop],
 						newVal = items[prop];
 
-					<span class="hljs-keyword">if</span> (Map.helpers.isObservable(curVal) &amp;&amp; Map.helpers.canMakeObserve(newVal)) {
+					<span class="hljs-keyword">if</span> (<span class="hljs-built_in">Map</span>.helpers.isObservable(curVal) &amp;&amp; <span class="hljs-built_in">Map</span>.helpers.canMakeObserve(newVal)) {
 						curVal.attr(newVal, remove);</pre></div></div>
             
         </li>
@@ -967,14 +967,14 @@ bounds index property.</p>
 			 * @description Add elements to the end of a list.
 			 * @signature `list.push(...elements)`
 			 *
-			 * `push` adds elements onto the end of a List.
+			 * `push` adds elements onto the end of a List.]
 			 *
 			 * @param {*} elements the elements to add to the List
 			 *
 			 * @return {Number} the new length of the List
 			 *
 			 * @body
-			 * `push` adds elements onto the end of a List here is an example:
+			 * `push` is fairly straightforward:
 			 *
 			 * @codestart
 			 * var list = new can.List(['Alice']);
@@ -1147,22 +1147,24 @@ bounds index property.</p>
 			 * @description Remove an element from the end of a List.
 			 * @signature `list.pop()`
 			 *
-			 * `pop` removes an element from the end of a List.
+			 * `push` removes an element from the end of a List.
 			 *
 			 * @return {*} the element just popped off the List, or `undefined` if the List was empty
 			 *
 			 * @body
 			 * `pop` is the opposite action from `[can.List.push push]`:
 			 *
-			 * ```
-			 * var list = new can.List(['Alice', 'Bob', 'Eve']);
+			 * @codestart
+			 * var list = new can.List(['Alice']);
+			 *
+			 * list.push('Bob', 'Eve');
 			 * list.attr(); // ['Alice', 'Bob', 'Eve']
 			 *
 			 * list.pop(); // 'Eve'
 			 * list.pop(); // 'Bob'
 			 * list.pop(); // 'Alice'
 			 * list.pop(); // undefined
-			 * ```
+			 * @codeend
 			 *
 			 * ## Events
 			 *
@@ -1532,7 +1534,7 @@ triggering events.</p>
 			<span class="hljs-keyword">return</span> filteredList;
 		}
 	});
-	can.List = Map.List = list;
+	can.List = <span class="hljs-built_in">Map</span>.List = list;
 	<span class="hljs-keyword">return</span> can.List;
 });</pre></div></div>
             

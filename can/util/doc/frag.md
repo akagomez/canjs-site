@@ -1,7 +1,7 @@
 @function can.frag
 @parent can.util
 
-Convert a String, HTMLElement, documentFragment, or contentArray into a documentFragment.
+Convert various objects into a documentFragment.
 
 @param {String|HTMLElement|documentFragment|can.contentArray} item
 

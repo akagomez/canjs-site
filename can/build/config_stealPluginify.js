@@ -42,7 +42,7 @@ var makeStandaloneAndStealUtil = function(lib){
 			//verbose: true
 		},
 		outputs: {
-			"steal +ignorelibs +dev": {
+			"steal +ignorelibs": {
 				graphs: ["can/util/util"],
 				dest: function(moduleName){
 					moduleName = denpm(moduleName);
@@ -189,12 +189,16 @@ module.exports = function(){
 					normalize: canNormalize,
 					minify: true
 				},
-				"steal +dev": {
+				"steal": {
 					graphs: allModuleNames.concat(["can"]),
 					dest: function(moduleName){
 						var name;
 						moduleName = denpm(moduleName);
-						name = "dist/steal/can/"+moduleName+".js";
+						if(moduleName === "util/util"){
+							name = "dist/steal/can/util/jquery/jquery.js";
+						} else {
+							name = "dist/steal/can/"+moduleName+".js";
+						}
 						return path.join(__dirname,"..",name);
 					},
 					format: "steal",
@@ -251,16 +255,19 @@ module.exports = function(){
 				main: allModuleNames.concat(["can"]),
 				map: {
 					"can/util/util" : "can/util/library"
+				},
+				paths: {
+					"can/util/library": "util/jquery/jquery.js"
 				}
 			},
 			options : {
 				quiet: true
 			},
 			"outputs": {
-				"amd-dev +amddev+ignorelibs": {
+				"amd-dev +amddev": {
 					graphs: allModuleNames.concat(["can"])
 				},
-				"amd +amd+ignorelibs": {
+				"amd +amd": {
 					graphs: allModuleNames.concat(["can"])
 				}
 			}

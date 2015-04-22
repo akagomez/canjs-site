@@ -75,13 +75,11 @@
               <p>there are things that you need to evaluate when you get them back as a property read
 for example a compute or a function you might need to call to get the next value to 
 actually check</p>
-<ul>
-<li>isArgument - should be renamed to something like “dontReadLastPropertyValue”</li>
-</ul>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>	<span class="hljs-keyword">var</span> read = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(parent, reads, options)</span> </span>{
+            <div class="content"><div class='highlight'><pre>
+	<span class="hljs-keyword">var</span> read = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(parent, reads, options)</span> </span>{
 		options = options || {};
 		<span class="hljs-keyword">var</span> state = {
 			foundObservable: <span class="hljs-literal">false</span>
@@ -131,10 +129,10 @@ actually check</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>			readLength = reads.length,
+            <div class="content"><div class='highlight'><pre>			foundObs,
+			readLength = reads.length,
 			i = <span class="hljs-number">0</span>;
-
-
+		
 		<span class="hljs-keyword">while</span>( i &lt; readLength ) {
 			prev = cur;</pre></div></div>
             
@@ -173,7 +171,7 @@ actually check</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>			cur = readValue(cur, i, reads, options, state, prev);
+            <div class="content"><div class='highlight'><pre>			cur = readValue(cur, i, reads, options, state);
 			type = <span class="hljs-keyword">typeof</span> cur;</pre></div></div>
             
         </li>
@@ -224,6 +222,33 @@ actually check</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-10">&#182;</a>
               </div>
+              <p>handle an ending function
+unless it is a can.Construct-derived constructor</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>		<span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> cur === <span class="hljs-string">'function'</span> &amp;&amp; !(can.Construct &amp;&amp; cur.prototype <span class="hljs-keyword">instanceof</span> can.Construct) &amp;&amp; !(can.route &amp;&amp; cur === can.route)) {
+			<span class="hljs-keyword">if</span> (options.isArgument) {
+				<span class="hljs-keyword">if</span> (!cur.isComputed &amp;&amp; options.proxyMethods !== <span class="hljs-literal">false</span>) {
+					cur = can.proxy(cur, prev);
+				}
+			} <span class="hljs-keyword">else</span> {
+				<span class="hljs-keyword">if</span> (cur.isComputed &amp;&amp; !foundObs &amp;&amp; options.foundObservable) {
+					options.foundObservable(cur, i);
+				}
+				cur = cur.call(prev);
+			}
+		}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
               <p>if we don’t have a value, exit early.</p>
 
             </div>
@@ -239,33 +264,14 @@ actually check</p>
 		};
 	};
 	
-	<span class="hljs-keyword">var</span> readValue = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value, index, reads, options, state, prev)</span></span>{
+	<span class="hljs-keyword">var</span> readValue = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value, index, reads, options, state)</span></span>{
 		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i =<span class="hljs-number">0</span>, len = read.valueReaders.length; i &lt; len; i++){
 			<span class="hljs-keyword">if</span>( read.valueReaders[i].test(value, index, reads, options) ) {
-				value = read.valueReaders[i].read(value, index, reads, options, state, prev);
+				value = read.valueReaders[i].read(value, index, reads, options, state);
 			}
 		}
 		<span class="hljs-keyword">return</span> value;
 	};</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-11">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-11">&#182;</a>
-              </div>
-              <p>value readers check the current value
-and get a new value from it
-ideally they would keep calling until 
-none of these passed</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>	read.valueReaders = [{
-		name: <span class="hljs-string">"compute"</span>,</pre></div></div>
             
         </li>
         
@@ -276,26 +282,14 @@ none of these passed</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-12">&#182;</a>
               </div>
-              <p>compute value reader</p>
+              <p>value readers check the current value
+and get a new value from it
+ideally they would keep calling until 
+none of these passed</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>		test: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value, i, reads, options)</span></span>{
-			<span class="hljs-keyword">return</span> value &amp;&amp; value.isComputed;
-		},
-		read: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value, i, reads, options, state)</span></span>{
-			<span class="hljs-keyword">if</span>(options.isArgument &amp;&amp; i === reads.length ) {
-				<span class="hljs-keyword">return</span> value;
-			}
-			
-			<span class="hljs-keyword">if</span> (!state.foundObservable &amp;&amp; options.foundObservable) {
-				options.foundObservable(value, i);
-				state.foundObservable = <span class="hljs-literal">true</span>;
-			}
-			<span class="hljs-keyword">return</span> value <span class="hljs-keyword">instanceof</span> can.Compute ? value.get() : value();
-		}
-	},{
-		name: <span class="hljs-string">"function"</span>,</pre></div></div>
+            <div class="content"><div class='highlight'><pre>	read.valueReaders = [{</pre></div></div>
             
         </li>
         
@@ -305,6 +299,31 @@ none of these passed</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <p>compute value reader</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>		test: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value, i, reads, options)</span></span>{
+			<span class="hljs-keyword">return</span> value &amp;&amp; value.isComputed &amp;&amp; (!options.isArgument &amp;&amp; i &lt; reads.length );
+		},
+		read: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value, i, reads, options, state)</span></span>{
+			<span class="hljs-keyword">if</span> (!state.foundObservable &amp;&amp; options.foundObservable) {
+				options.foundObservable(value, i);
+				state.foundObservable = <span class="hljs-literal">true</span>;
+			}
+			<span class="hljs-keyword">return</span> value <span class="hljs-keyword">instanceof</span> can.Compute ? value.get() : value();
+		}
+	},{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-14">&#182;</a>
               </div>
               <p>if this is a function before the last read and its not a constructor function</p>
 
@@ -316,43 +335,25 @@ none of these passed</p>
         </li>
         
         
-        <li id="section-14">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-14">&#182;</a>
-              </div>
-              <p>i = reads.length if this is the last iteration of the read for-loop.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>			<span class="hljs-keyword">return</span> type === <span class="hljs-string">'function'</span> &amp;&amp; !value.isComputed &amp;&amp;
-				(options.executeAnonymousFunctions || (options.isArgument &amp;&amp; i === reads.length) ) &amp;&amp;
-				!(can.Construct &amp;&amp; value.prototype <span class="hljs-keyword">instanceof</span> can.Construct) &amp;&amp;
-				!(can.route &amp;&amp; value === can.route);
-		},
-		read: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value, i, reads, options, state, prev)</span></span>{
-			<span class="hljs-keyword">if</span> (options.isArgument &amp;&amp; i === reads.length) {
-				<span class="hljs-keyword">return</span> options.proxyMethods !== <span class="hljs-literal">false</span> ? can.proxy(value, prev) : value;
-			}
-			<span class="hljs-keyword">return</span> value.call(prev);
-		}
-	}];</pre></div></div>
-            
-        </li>
-        
-        
         <li id="section-15">
             <div class="annotation">
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-15">&#182;</a>
               </div>
-              <p>propertyReaders actually read a property value </p>
+              <p>i = reads.length if this is the last iteration of the read for-loop.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>	read.propertyReaders = [</pre></div></div>
+            <div class="content"><div class='highlight'><pre>			<span class="hljs-keyword">return</span> i &lt; reads.length  &amp;&amp;
+				type === <span class="hljs-string">'function'</span> &amp;&amp;
+				options.executeAnonymousFunctions &amp;&amp;
+				!(can.Construct &amp;&amp; value.prototype <span class="hljs-keyword">instanceof</span> can.Construct);
+		},
+		read: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span></span>{
+			<span class="hljs-keyword">return</span> value();
+		}
+	}];</pre></div></div>
             
         </li>
         
@@ -363,12 +364,26 @@ none of these passed</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-16">&#182;</a>
               </div>
+              <p>propertyReaders actually read a property value </p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	read.propertyReaders = [</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-17">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-17">&#182;</a>
+              </div>
               <p>read a can.Map or can.route</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>		{
-			name: <span class="hljs-string">"map"</span>,
 			test: can.isMapLike,
 			read: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value, prop, index, options, state)</span></span>{
 				<span class="hljs-keyword">if</span> (!state.foundObservable &amp;&amp; options.foundObservable) {
@@ -380,11 +395,11 @@ none of these passed</p>
         </li>
         
         
-        <li id="section-17">
+        <li id="section-18">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-17">&#182;</a>
+                <a class="pilcrow" href="#section-18">&#182;</a>
               </div>
               <p>call that method</p>
 
@@ -396,11 +411,11 @@ none of these passed</p>
         </li>
         
         
-        <li id="section-18">
+        <li id="section-19">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-18">&#182;</a>
+                <a class="pilcrow" href="#section-19">&#182;</a>
               </div>
               <p>if the property value is a can.Construct</p>
 
@@ -417,11 +432,11 @@ none of these passed</p>
         </li>
         
         
-        <li id="section-19">
+        <li id="section-20">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-19">&#182;</a>
+                <a class="pilcrow" href="#section-20">&#182;</a>
               </div>
               <p>use attr to get that value</p>
 
@@ -435,18 +450,17 @@ none of these passed</p>
         </li>
         
         
-        <li id="section-20">
+        <li id="section-21">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-20">&#182;</a>
+                <a class="pilcrow" href="#section-21">&#182;</a>
               </div>
               <p>read a promise</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>		{
-			name: <span class="hljs-string">"promise"</span>,
 			test: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span></span>{
 				<span class="hljs-keyword">return</span> can.isPromise(value);
 			},
@@ -461,20 +475,17 @@ none of these passed</p>
 						isPending: <span class="hljs-literal">true</span>,
 						state: <span class="hljs-string">"pending"</span>,
 						isResolved: <span class="hljs-literal">false</span>,
-						isRejected: <span class="hljs-literal">false</span>,
-						value: <span class="hljs-literal">undefined</span>,
-						reason: <span class="hljs-literal">undefined</span>
-					};
-					can.cid(observeData);</pre></div></div>
+						isRejected: <span class="hljs-literal">false</span>
+					};</pre></div></div>
             
         </li>
         
         
-        <li id="section-21">
+        <li id="section-22">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-21">&#182;</a>
+                <a class="pilcrow" href="#section-22">&#182;</a>
               </div>
               <p>proto based would be faster</p>
 
@@ -496,25 +507,9 @@ none of these passed</p>
 					});
 				}
 				can.__reading(observeData,<span class="hljs-string">"state"</span>);
-				<span class="hljs-keyword">return</span> prop <span class="hljs-keyword">in</span> observeData ? observeData[prop] : value[prop];
+				<span class="hljs-keyword">return</span> observeData[prop];
 			}
 		},</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-22">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-22">&#182;</a>
-              </div>
-              <p>read a normal object</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>		{
-			name: <span class="hljs-string">"object"</span>,</pre></div></div>
             
         </li>
         
@@ -524,6 +519,21 @@ none of these passed</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-23">&#182;</a>
+              </div>
+              <p>read a normal object</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>		{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-24">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-24">&#182;</a>
               </div>
               <p>this is the default</p>
 
@@ -538,53 +548,7 @@ none of these passed</p>
 				}
 			}
 		}
-	];</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-24">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-24">&#182;</a>
-              </div>
-              <p>This should be able to set a property similar to how read works.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>	read.write = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(parent, key, value, options)</span> </span>{
-		options = options || {};
-		<span class="hljs-keyword">if</span>(can.isMapLike(parent)) {</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-25">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-25">&#182;</a>
-              </div>
-              <p>HACK! … check if the attr is a comptue, if it is, set it.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>			<span class="hljs-keyword">if</span>(!options.isArgument &amp;&amp; parent._data &amp;&amp; parent._data[key] &amp;&amp; parent._data[key].isComputed) {
-				<span class="hljs-keyword">return</span> parent._data[key](value);
-			} <span class="hljs-keyword">else</span> {
-				<span class="hljs-keyword">return</span> parent.attr(key, value);
-			}
-		}
-
-		<span class="hljs-keyword">if</span>(parent[key] &amp;&amp; parent[key].isComputed) {
-			<span class="hljs-keyword">return</span> parent[key](value);
-		}
-
-		<span class="hljs-keyword">if</span>(<span class="hljs-keyword">typeof</span> parent === <span class="hljs-string">'object'</span>) {
-			parent[key] = value;
-		}
-	};
+	];
 	
 	
 	<span class="hljs-keyword">return</span> read;

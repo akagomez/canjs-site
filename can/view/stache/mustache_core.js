@@ -312,8 +312,7 @@ steal("can/util",
 					scope: scope,
 					contexts: scope,
 					hash: hash,
-					nodeList: nodeList,
-					exprData: exprData
+					nodeList: nodeList
 				});
 
 				args.push(helperOptions);
@@ -340,7 +339,7 @@ steal("can/util",
 			} else if( mode === "#" || mode === "^" ) {
 				// Setup renderers.
 				convertToScopes(helperOptions, scope, options, nodeList, truthyRenderer, falseyRenderer);
-				var evaluator = function(){
+				return function(){
 					// Get the value
 					var value;
 					if (can.isFunction(name) && name.isComputed) {
@@ -364,8 +363,6 @@ steal("can/util",
 						return value ? helperOptions.fn(value || scope, options) : helperOptions.inverse(scope, options);
 					}
 				};
-				evaluator.bindOnce = false;
-				return evaluator;
 			} else {
 				// not supported!
 			}
@@ -492,7 +489,7 @@ steal("can/util",
 				// parent expresions.  If this value changes, the parent expressions should
 				// not re-evaluate. We prevent that by making sure this compute is ignored by 
 				// everyone else.
-				var compute = can.compute(evaluator, null, false, evaluator.bindOnce === false ?  false : true);
+				var compute = can.compute(evaluator, null, false, true);
 				
 				// Bind on the compute to set the cached value. This helps performance
 				// so live binding can read a cached value instead of re-calculating.

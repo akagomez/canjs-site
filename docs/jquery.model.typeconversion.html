@@ -104,13 +104,6 @@
 	<!-- First Level -->
 	
 	   <li class="search-container">
-	   		<a href="can.elementAndAttributes.html" data-search="Elements and Attributes">
-				Elements and Attributes
-			</a>
-			
-	   </li>
-	
-	   <li class="search-container">
 	   		<a href="can.Component.html" data-search="can.Component">
 				can.Component
 			</a>
@@ -261,7 +254,7 @@
 <ul class="links">
 	
 	
-		<li><a href="https://github.com/bitovi/canjs/tree/master/model/pages/typeconversion.md">source</a></li>
+		<li><a href="/Users/akagomez/Sites/bitovi/canjs">source</a></li>
 	
 	
 	
@@ -313,50 +306,11 @@ a string.</p>
 Instead, you can set the type of
 an attribute and provide a function to convert that type.</p>
 <p>The following sets the birthday attribute to &quot;date&quot; and provides a date conversion function:</p>
-<pre><code>$.Model(&quot;Contact&quot;,
-{
-  attributes : { 
-    birthday : 'date'
-  },
-  convert : {
-    date : function(raw){
-      if(typeof raw == 'string'){
-        var matches = raw.match(/(\d+)-(\d+)-(\d+)/)
-        return new Date( matches[1], 
-                        (+matches[2])-1, 
-                         matches[3] )
-      }else if(raw instanceof Date){
-        return raw;
-      }
-    }
-  },
-  findAll : function( ... ){ ... }
-},
-{
-  // No prototype properties necessary
-})
-</code></pre>
 <div class='demo_wrapper' data-demo-src='jquery/model/demo-convert.html'></div>
 <h1>Serialization</h1>
 <p>Serialization occurs before the model is saved. This allows you to prepare your model's attributes before they're sent to the server.</p>
 <p>By default every attribute will be passed through the 'default' serialization method that will return the value if the property holds a primitive value (string, number, ...), or it will call the &quot;serialize&quot; method if the property holds an object with the &quot;serialize&quot; method set.</p>
 <p>You can set the serialization methods similar to the convert methods:</p>
-<pre><code>$.Model(&quot;Contact&quot;,
-{
-  attributes : { 
-    birthday : 'date'
-  },
-  serialize : {
-    date : function( val, type ){
-      return val.getYear() + &quot;-&quot; + (val.getMonth() + 1) + &quot;-&quot; + val.getDate(); 
-    }
-  },
-  findAll : function( ... ){ ... }
-},
-{
-  // No prototype properties necessary
-})
-</code></pre>
 <p>This code will format the 'birthday' attribute as '2011-11-24' before it will be sent to the server.</p>
 
 		</section>
@@ -419,7 +373,7 @@ an attribute and provide a function to convert that type.</p>
 	</script>
 	
 	<script type="text/javascript">
-		var docObject = {"type":"page","name":"jquery.model.typeconversion","src":"model/pages/typeconversion.md","description":"You often want to convert from what the model sends you to\na form more useful to JavaScript.  For example, \ncontacts might be returned from the server with dates that look like:\n\"1982-10-20\".  We can model to convert it to something closer \nto <code>new Date(1982,10,20)</code>. We can do this in two ways:","title":"Type Conversion","parent":"jQuery.Model","ignoreTemplateRender":true,"templates":"/Users/justin/dev/canjs.com/theme/templates","static":"/Users/justin/dev/canjs.com/theme/static","versionsSelectText":"CanJS v<%= version %>","glob":{"ignore":["guides/*.md","{node_modules,bower_components}/**/*","lib/**/*","test/**/*","util/dojo/dojo.js","**/*_test.js","Gruntfile.js"],"pattern":"**/*.{md,js}","cwd":"/Users/justin/dev/canjs.com/can"},"dest":"/Users/justin/dev/canjs.com/docs","generators":["html"],"urls":{"builderData":"http://bitbuilder.herokuapp.com/canjs","builder":"http://bitbuilder.herokuapp.com/can.custom.js","bithub":"http://bitovi.bithub.com/api/v1/events/","cdn":"//canjs.com/release/","github":"https://github.com/bitovi/canjs.com"},"versions":[{"branch":"master","number":"2.1"},{"number":"2.0"},{"number":"1.1"}],"defaultDownloadVersion":"2.2.4","docConfigDest":"../documentjs.json","project":{"version":"2.2","name":"canjs","source":"git://github.com/bitovi/canjs#master"}};
+		var docObject = {"type":"page","name":"jquery.model.typeconversion","src":"model/pages/typeconversion.md","description":"You often want to convert from what the model sends you to\na form more useful to JavaScript.  For example, \ncontacts might be returned from the server with dates that look like:\n\"1982-10-20\".  We can model to convert it to something closer \nto <code>new Date(1982,10,20)</code>. We can do this in two ways:","title":"Type Conversion","parent":"jQuery.Model","ignoreTemplateRender":true,"templates":"/Users/akagomez/Sites/bitovi/canjs.com/theme/templates","static":"/Users/akagomez/Sites/bitovi/canjs.com/theme/static","versionsSelectText":"CanJS v<%= version %>","glob":{"ignore":["guides/*.md","guides/**/*.md","{node_modules,bower_components}/**/*","lib/**/*"],"pattern":"**/*.{md,js}","cwd":"/Users/akagomez/Sites/bitovi/canjs.com/can"},"dest":"/Users/akagomez/Sites/bitovi/canjs.com/docs","generators":["html"],"urls":{"builderData":"http://bitbuilder.herokuapp.com/canjs","builder":"http://bitbuilder.herokuapp.com/can.custom.js","bithub":"http://bitovi.bithub.com/api/v1/events/","cdn":"//canjs.com/release/","github":"https://github.com/bitovi/canjs.com"},"versions":[{"branch":"master","number":"2.1"},{"number":"2.0"},{"number":"1.1"}],"defaultDownloadVersion":"2.2.4","docConfigDest":"../documentjs.json","project":{"version":"2.2","name":"canjs","source":"/Users/akagomez/Sites/bitovi/canjs"}};
 	</script>
 	
 	

@@ -159,7 +159,7 @@ steal(<span class="hljs-string">'can/util'</span>, <span class="hljs-string">'ca
               
             </div>
             
-            <div class="content"><div class='highlight'><pre>	<span class="hljs-keyword">var</span> Map = can.Map = can.Construct.extend({
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-keyword">var</span> <span class="hljs-built_in">Map</span> = can.Map = can.Construct.extend({
 			<span class="hljs-comment">/**
 			 * @static
 			 */</span>
@@ -296,8 +296,8 @@ steal(<span class="hljs-string">'can/util'</span>, <span class="hljs-string">'ca
             </div>
             
             <div class="content"><div class='highlight'><pre>				<span class="hljs-keyword">if</span> (can.List &amp;&amp; !(<span class="hljs-keyword">this</span>.prototype <span class="hljs-keyword">instanceof</span> can.List)) {
-					<span class="hljs-keyword">this</span>.List = Map.List.extend({
-						Map: <span class="hljs-keyword">this</span>
+					<span class="hljs-keyword">this</span>.List = <span class="hljs-built_in">Map</span>.List.extend({
+						<span class="hljs-built_in">Map</span>: <span class="hljs-keyword">this</span>
 					}, {});
 				}
 
@@ -695,15 +695,15 @@ steal(<span class="hljs-string">'can/util'</span>, <span class="hljs-string">'ca
             </div>
             
             <div class="content"><div class='highlight'><pre>						<span class="hljs-keyword">var</span> result,
-							isObservable =  Map.helpers.isObservable(val),
+							isObservable =  <span class="hljs-built_in">Map</span>.helpers.isObservable(val),
 							serialized = isObservable &amp;&amp; serializeMap[how][can.cid(val)];
 						<span class="hljs-keyword">if</span>( serialized ) {
 							result = serialized;
 						} <span class="hljs-keyword">else</span> {
 							<span class="hljs-keyword">if</span>(how === <span class="hljs-string">"serialize"</span>) {
-								result = Map.helpers._serialize(map, name, val);
+								result = <span class="hljs-built_in">Map</span>.helpers._serialize(map, name, val);
 							} <span class="hljs-keyword">else</span> {
-								result = Map.helpers._getValue(map, name, val, how);
+								result = <span class="hljs-built_in">Map</span>.helpers._getValue(map, name, val, how);
 							}
 						}</pre></div></div>
             
@@ -732,10 +732,10 @@ steal(<span class="hljs-string">'can/util'</span>, <span class="hljs-string">'ca
 					<span class="hljs-keyword">return</span> where;
 				},
 				_serialize: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(map, name, val)</span></span>{
-					<span class="hljs-keyword">return</span> Map.helpers._getValue(map, name, val, <span class="hljs-string">"serialize"</span>);
+					<span class="hljs-keyword">return</span> <span class="hljs-built_in">Map</span>.helpers._getValue(map, name, val, <span class="hljs-string">"serialize"</span>);
 				},
 				_getValue: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(map, name, val, how)</span></span>{
-					<span class="hljs-keyword">if</span>( Map.helpers.isObservable(val) ) {
+					<span class="hljs-keyword">if</span>( <span class="hljs-built_in">Map</span>.helpers.isObservable(val) ) {
 						<span class="hljs-keyword">return</span> val[how]();
 					} <span class="hljs-keyword">else</span> {
 						<span class="hljs-keyword">return</span> val;
@@ -1431,8 +1431,8 @@ returns the “real” data object itself.</p>
 						<span class="hljs-keyword">var</span> List = can.List;
 						<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> List(value);
 					} <span class="hljs-keyword">else</span> {
-						<span class="hljs-keyword">var</span> Map = <span class="hljs-keyword">this</span>.constructor.Map || can.Map;
-						<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Map(value);
+						<span class="hljs-keyword">var</span> <span class="hljs-built_in">Map</span> = <span class="hljs-keyword">this</span>.constructor.Map || can.Map;
+						<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>(value);
 					}
 				}
 				<span class="hljs-keyword">return</span> value;
@@ -1463,7 +1463,7 @@ returns the “real” data object itself.</p>
 
 					current =  <span class="hljs-keyword">this</span>._init ? <span class="hljs-literal">undefined</span> : <span class="hljs-keyword">this</span>.__get( first );
 
-					<span class="hljs-keyword">if</span>( Map.helpers.isObservable(current) ) {
+					<span class="hljs-keyword">if</span>( <span class="hljs-built_in">Map</span>.helpers.isObservable(current) ) {
 						current._set(second, value);
 					} <span class="hljs-keyword">else</span> {
 						<span class="hljs-keyword">throw</span> <span class="hljs-string">"can.Map: Object does not exist"</span>;
@@ -1739,7 +1739,7 @@ and clean it up since no one is listening to this property any more.</p>
 			 */</span>
 			_attrs: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(props, remove)</span> </span>{
 				<span class="hljs-keyword">if</span> (props === <span class="hljs-literal">undefined</span>) {
-					<span class="hljs-keyword">return</span> Map.helpers.serialize(<span class="hljs-keyword">this</span>, <span class="hljs-string">'attr'</span>, {});
+					<span class="hljs-keyword">return</span> <span class="hljs-built_in">Map</span>.helpers.serialize(<span class="hljs-keyword">this</span>, <span class="hljs-string">'attr'</span>, {});
 				}
 
 				props = can.simpleExtend({}, props);
@@ -1845,7 +1845,7 @@ and clean it up since no one is listening to this property any more.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>					<span class="hljs-keyword">if</span> ( Map.helpers.isObservable( newVal ) ) {
+            <div class="content"><div class='highlight'><pre>					<span class="hljs-keyword">if</span> ( <span class="hljs-built_in">Map</span>.helpers.isObservable( newVal ) ) {
 
 						self.__set(prop, self.__type(newVal, prop), curVal);</pre></div></div>
             
@@ -1862,7 +1862,7 @@ and clean it up since no one is listening to this property any more.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>					} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (Map.helpers.isObservable(curVal) &amp;&amp; Map.helpers.canMakeObserve(newVal) ) {
+            <div class="content"><div class='highlight'><pre>					} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Map</span>.helpers.isObservable(curVal) &amp;&amp; <span class="hljs-built_in">Map</span>.helpers.canMakeObserve(newVal) ) {
 						curVal.attr(newVal, remove);</pre></div></div>
             
         </li>
@@ -1974,10 +1974,10 @@ otherwise, create a new compute that returns the value of a property on <code>th
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>	Map.prototype.on = Map.prototype.bind;
-	Map.prototype.off = Map.prototype.unbind;
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-built_in">Map</span>.prototype.on = <span class="hljs-built_in">Map</span>.prototype.bind;
+	<span class="hljs-built_in">Map</span>.prototype.off = <span class="hljs-built_in">Map</span>.prototype.unbind;
 
-	<span class="hljs-keyword">return</span> Map;
+	<span class="hljs-keyword">return</span> <span class="hljs-built_in">Map</span>;
 });</pre></div></div>
             
         </li>

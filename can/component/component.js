@@ -106,18 +106,11 @@ steal("can/util", "can/view/callbacks","can/control", "can/observe", "can/view/m
 									  this.template),
 					twoWayBindings = {},
 					scope = this.scope || this.viewModel,
-					// tracks which viewModel property is currently updating
-					viewModelPropertyUpdates = {},
+					// what viewModel property is currently updating
+					scopePropertyUpdating,
 					// the object added to the viewModel
 					componentScope,
-					frag,
-					// an array of teardown stuff that should happen when the element is removed
-					teardownFunctions = [],
-					callTeardownFunctions = function(){
-						for(var i = 0, len = teardownFunctions.length ; i < len; i++) {
-							teardownFunctions[i]();
-						}
-					};
+					frag;
 
 				// ## Scope
 
@@ -154,7 +147,7 @@ steal("can/util", "can/view/callbacks","can/control", "can/observe", "can/view/m
 							return;
 						}
 					}
-					// Cross-bind the value in the scope to this
+					// Cross-bind the value in the viewModel to this
 					// component's viewModel
 					var computeData = hookupOptions.scope.computeData(value, {
 						args: []
@@ -163,13 +156,9 @@ steal("can/util", "can/view/callbacks","can/control", "can/observe", "can/view/m
 
 					// bind on this, check it's value, if it has dependencies
 					var handler = function (ev, newVal) {
-						// setup counter to prevent updating the scope with viewModel changes caused by scope updates.
-						viewModelPropertyUpdates[name] = (viewModelPropertyUpdates[name] || 0 )+1;
-						
+						scopePropertyUpdating = name;
 						componentScope.attr(name, newVal);
-						can.batch.afterPreviousEvents(function(){
-							--viewModelPropertyUpdates[name];
-						});
+						scopePropertyUpdating = null;
 					};
 
 					// Compute only returned if bindable
@@ -183,7 +172,7 @@ steal("can/util", "can/view/callbacks","can/control", "can/observe", "can/view/m
 						compute.unbind("change", handler);
 					} else {
 						// Make sure we unbind (there's faster ways of doing this)
-						teardownFunctions.push(function () {
+						can.bind.call(el, "removed", function () {
 							compute.unbind("change", handler);
 						});
 						// Setup the two-way binding
@@ -222,9 +211,8 @@ steal("can/util", "can/view/callbacks","can/control", "can/observe", "can/view/m
 				can.each(twoWayBindings, function (computeData, prop) {
 					handlers[prop] = function (ev, newVal) {
 						// Check that this property is not being changed because
-						// it's scope value just changed
-						if (!viewModelPropertyUpdates[prop]) {
-							//console.log("updating view.scope ",prop,"from",  componentScope._cid);
+						// it's source value just changed
+						if (scopePropertyUpdating !== prop) {
 							computeData.compute(newVal);
 						}
 					};
@@ -247,7 +235,6 @@ steal("can/util", "can/view/callbacks","can/control", "can/observe", "can/view/m
 				// Set `componentScope` to `this.viewModel` and set it to the element's `data` object as a `viewModel` property
 				this.scope = this.viewModel = componentScope;
 				can.data(can.$(el), "scope", this.scope);
-				can.data(can.$(el), "viewModel", this.scope);
 
 				// Create a real Scope object out of the viewModel property
 				var renderedScope = lexicalContent ?
@@ -259,6 +246,7 @@ steal("can/util", "can/view/callbacks","can/control", "can/observe", "can/view/m
 
 				// ## Helpers
 
+
 				// Setup helpers to callback with `this` as the component
 				can.each(this.helpers || {}, function (val, prop) {
 					if (can.isFunction(val)) {
@@ -267,14 +255,13 @@ steal("can/util", "can/view/callbacks","can/control", "can/observe", "can/view/m
 						};
 					}
 				});
-				
-				
+
 				// Teardown reverse bindings when the element is removed
-				teardownFunctions.push(function(){
+				var tearDownBindings = function(){
 					can.each(handlers, function (handler, prop) {
 						componentScope.unbind(prop, handlers[prop]);
 					});
-				});
+				};
 
 				// ## `events` control
 
@@ -290,22 +277,16 @@ steal("can/util", "can/view/callbacks","can/control", "can/observe", "can/view/m
 					var oldDestroy = this._control.destroy;
 					this._control.destroy = function(){
 						oldDestroy.apply(this, arguments);
-						callTeardownFunctions();
+						tearDownBindings();
 					};
 					this._control.on();
 				} else {
 					can.bind.call(el, "removed", function () {
-						callTeardownFunctions();
+						tearDownBindings();
 					});
 				}
 
 				// ## Rendering
-
-				// Keep a nodeList so we can kill any directly nested nodeLists within this component
-				var nodeList = can.view.nodeLists.register([], undefined, true);
-				teardownFunctions.push(function(){
-					can.view.nodeLists.unregister(nodeList);
-				});
 
 				// If this component has a template (that we've already converted to a renderer)
 				if (this.constructor.renderer) {
@@ -349,24 +330,18 @@ steal("can/util", "can/view/callbacks","can/control", "can/observe", "can/view/m
 						}
 					};
 					// Render the component's template
-					frag = this.constructor.renderer(renderedScope, hookupOptions.options.add(options), nodeList);
+					frag = this.constructor.renderer(renderedScope, hookupOptions.options.add(options));
 				} else {
 					// Otherwise render the contents between the 
 					if(hookupOptions.templateType === "legacy") {
 						frag = can.view.frag(hookupOptions.subtemplate ? hookupOptions.subtemplate(renderedScope, hookupOptions.options.add(options)) : "");
 					} else {
-						// we need to be the parent ... or we need to 
-						frag = hookupOptions.subtemplate ?
-							hookupOptions.subtemplate(renderedScope, hookupOptions.options.add(options), nodeList) :
-							document.createDocumentFragment();
+						frag = hookupOptions.subtemplate ? hookupOptions.subtemplate(renderedScope, hookupOptions.options.add(options)) : document.createDocumentFragment();
 					}
 					
 				}
 				// Append the resulting document fragment to the element
 				can.appendChild(el, frag);
-				
-				// update the nodeList with the new children so the mapping gets applied
-				can.view.nodeLists.update(nodeList, el.childNodes);
 			}
 		});
 
@@ -507,7 +482,24 @@ steal("can/util", "can/view/callbacks","can/control", "can/observe", "can/view/m
 	 */
 		// Define the `can.viewModel` function that can be used to retrieve the
 		// `viewModel` from the element
-	
+	can.scope = can.viewModel = function (el, attr, val) {
+		el = can.$(el);
+		var scope = can.data(el, "scope");
+		if(!scope) {
+			scope = new can.Map();
+			can.data(el, "scope", scope);
+		}
+		switch (arguments.length) {
+			case 0:
+			case 1:
+				return scope;
+			case 2:
+				return scope.attr(attr);
+			default:
+				scope.attr(attr, val);
+				return el;
+		}
+	};
 
 	var $ = can.$;
 

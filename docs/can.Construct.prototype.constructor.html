@@ -104,13 +104,6 @@
 	<!-- First Level -->
 	
 	   <li class="search-container">
-	   		<a href="can.elementAndAttributes.html" data-search="Elements and Attributes">
-				Elements and Attributes
-			</a>
-			
-	   </li>
-	
-	   <li class="search-container">
 	   		<a href="can.Component.html" data-search="can.Component">
 				can.Component
 			</a>
@@ -203,7 +196,7 @@
 					<li class="search-container  ">
 						<a 	class="property" 
 							href="can.Construct.constructorExtends.html" 
-							data-search="can.Construct.constructorExtends">
+							data-search="constructorExtends">
 							constructorExtends
 						</a>
 						
@@ -502,7 +495,7 @@
 <ul class="links">
 	
 	
-		<li><a href="https://github.com/bitovi/canjs/tree/master/construct/construct.js">source</a></li>
+		<li><a href="/Users/akagomez/Sites/bitovi/canjs">source</a></li>
 	
 	
 	
@@ -556,18 +549,6 @@ the constructor's static properties from an instance.</p>
 		<section class="comment">
 			<h2>Example</h2>
 <p>This can.Construct has a static counter that counts how many instances have been created:</p>
-<pre><code>var Counter = can.Construct.extend({
-    count: 0
-}, {
-    init: function() {
-        this.constructor.count++;
-    }
-});
-
-var childCounter = new Counter();
-console.log(childCounter.constructor.count); // 1
-console.log(Counter.count); // 1
-</code></pre>
 
 		</section>
 		
@@ -629,7 +610,7 @@ console.log(Counter.count); // 1
 	</script>
 	
 	<script type="text/javascript">
-		var docObject = {"src":"construct/construct.js","line":599,"codeLine":628,"type":"property","description":"A reference to the constructor function that created the instance. This allows you to access\nthe constructor's static properties from an instance.","types":[{"type":"Object","options":[]}],"title":"constructor","name":"can.Construct.prototype.constructor","parent":"can.Construct.prototype","comment":" ","ignoreTemplateRender":true,"templates":"/Users/justin/dev/canjs.com/theme/templates","static":"/Users/justin/dev/canjs.com/theme/static","versionsSelectText":"CanJS v<%= version %>","glob":{"ignore":["guides/*.md","{node_modules,bower_components}/**/*","lib/**/*","test/**/*","util/dojo/dojo.js","**/*_test.js","Gruntfile.js"],"pattern":"**/*.{md,js}","cwd":"/Users/justin/dev/canjs.com/can"},"dest":"/Users/justin/dev/canjs.com/docs","generators":["html"],"urls":{"builderData":"http://bitbuilder.herokuapp.com/canjs","builder":"http://bitbuilder.herokuapp.com/can.custom.js","bithub":"http://bitovi.bithub.com/api/v1/events/","cdn":"//canjs.com/release/","github":"https://github.com/bitovi/canjs.com"},"versions":[{"branch":"master","number":"2.1"},{"number":"2.0"},{"number":"1.1"}],"defaultDownloadVersion":"2.2.4","docConfigDest":"../documentjs.json","project":{"version":"2.2","name":"canjs","source":"git://github.com/bitovi/canjs#master"}};
+		var docObject = {"src":"dist/steal/can/construct/construct.js","line":461,"codeLine":488,"type":"property","description":"A reference to the constructor function that created the instance. This allows you to access\nthe constructor's static properties from an instance.","types":[{"type":"Object","options":[]}],"title":"constructor","name":"can.Construct.prototype.constructor","parent":"can.Construct.prototype","ignoreTemplateRender":true,"templates":"/Users/akagomez/Sites/bitovi/canjs.com/theme/templates","static":"/Users/akagomez/Sites/bitovi/canjs.com/theme/static","versionsSelectText":"CanJS v<%= version %>","glob":{"ignore":["guides/*.md","guides/**/*.md","{node_modules,bower_components}/**/*","lib/**/*"],"pattern":"**/*.{md,js}","cwd":"/Users/akagomez/Sites/bitovi/canjs.com/can"},"dest":"/Users/akagomez/Sites/bitovi/canjs.com/docs","generators":["html"],"urls":{"builderData":"http://bitbuilder.herokuapp.com/canjs","builder":"http://bitbuilder.herokuapp.com/can.custom.js","bithub":"http://bitovi.bithub.com/api/v1/events/","cdn":"//canjs.com/release/","github":"https://github.com/bitovi/canjs.com"},"versions":[{"branch":"master","number":"2.1"},{"number":"2.0"},{"number":"1.1"}],"defaultDownloadVersion":"2.2.4","docConfigDest":"../documentjs.json","project":{"version":"2.2","name":"canjs","source":"/Users/akagomez/Sites/bitovi/canjs"}};
 	</script>
 	
 	
